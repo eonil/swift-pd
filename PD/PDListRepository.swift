@@ -10,7 +10,9 @@ public struct PDListRepository<Value>: PDRepositoryProtocol {
         AnyHashable,
         PDList<Value>,
         PDListChange>
-    public fileprivate(set) var timeline = Timeline()
+    public fileprivate(set) var timeline = Timeline(
+        version: AnyHashable(PDIdentity()),
+        snapshot: PDList<Value>())
     public init() {}
     private init(timeline tl: Timeline) {
         timeline = tl
@@ -19,7 +21,7 @@ public struct PDListRepository<Value>: PDRepositoryProtocol {
         guard n < timeline.changes.count else { return self }
         let m = timeline.changes.count - n
         var tl = timeline
-        tl.removeFirst(m)
+        tl.eraseOld(m)
         return PDListRepository(timeline: tl)
     }
 }
@@ -43,19 +45,19 @@ RangeReplaceableCollection {
             return s[i]
         }
         set(v) {
+            let k = AnyHashable(PDIdentity())
             var s = timeline.snapshots.last!
             s[i] = v
-            timeline.versionsImpl.append(AnyHashable(PDIdentity()))
-            timeline.snapshotsImpl.append(s)
-            timeline.changesImpl.append(PDListChange(from: i..<i, to: i..<i.advanced(by: i)))
+            let x = PDListChange(from: i..<i, to: i..<i.advanced(by: i))
+            timeline.recordNew(change: x, version: k, snapshot: s)
         }
     }
     public mutating func replaceSubrange<C>(_ subrange: Range<PDListRepository<Value>.Index>, with newElements: C) where C : Collection, Element == C.Element {
+        let v = AnyHashable(PDIdentity())
         var s = timeline.snapshots.last!
         s.replaceSubrange(subrange, with: newElements)
-        timeline.versionsImpl.append(AnyHashable(PDIdentity()))
-        timeline.snapshotsImpl.append(s)
-        timeline.changesImpl.append(PDListChange(from: subrange, to: subrange.lowerBound..<subrange.lowerBound.advanced(by: newElements.count)))
+        let x = PDListChange(from: subrange, to: subrange.lowerBound..<subrange.lowerBound.advanced(by: newElements.count))
+        timeline.recordNew(change: x, version: v, snapshot: s)
     }
 }
 public struct PDListChange: PDTimelineChangeProtocol {

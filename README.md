@@ -46,7 +46,6 @@ steppings.
 
 Credits & License
 ---------------------
-B-Tree code is written by Károly Lőrentey.
 The code has been copied form [Github](https://github.com/attaswift/BTree).
 The code has been embedded for convenience and performance.
 

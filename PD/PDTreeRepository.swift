@@ -16,8 +16,10 @@ Value: TreeProtocol {
         AnyHashable,
         Value,
         PDTreeTimelineChange>
-    public fileprivate(set) var timeline = Timeline()
-    public init() {}
+    public fileprivate(set) var timeline: Timeline
+    public init(initial v: Value) {
+        timeline = Timeline(version: AnyHashable(PDIdentity()), snapshot: v)
+    }
     private init(timeline tl: Timeline) {
         timeline = tl
     }
@@ -34,27 +36,21 @@ Value.SubtreeCollection.Index == IndexPath.Element {
         s.insert(element, at: idxp)
         let v = AnyHashable(PDIdentity())
         let c = PDTreeTimelineChange(from: idxp..<idxp, to: idxp..<idxp.lastAdvanced(1))
-        timeline.versionsImpl.append(v)
-        timeline.snapshotsImpl.append(s)
-        timeline.changesImpl.append(c)
+        timeline.recordNew(change: c, version: v, snapshot: s)
     }
     mutating func replace(at idxp: IndexPath, with element: Value) {
         var s = timeline.snapshots.last!
         s[idxp] = element
         let v = AnyHashable(PDIdentity())
         let c = PDTreeTimelineChange(from: idxp..<idxp.lastAdvanced(1), to: idxp..<idxp.lastAdvanced(1))
-        timeline.versionsImpl.append(v)
-        timeline.snapshotsImpl.append(s)
-        timeline.changesImpl.append(c)
+        timeline.recordNew(change: c, version: v, snapshot: s)
     }
     mutating func remove(at idxp: IndexPath) {
         var s = timeline.snapshots.last!
         s.remove(at: idxp)
         let v = AnyHashable(PDIdentity())
         let c = PDTreeTimelineChange(from: idxp..<idxp.lastAdvanced(1), to: idxp..<idxp.lastAdvanced(1))
-        timeline.versionsImpl.append(v)
-        timeline.snapshotsImpl.append(s)
-        timeline.changesImpl.append(c)
+        timeline.recordNew(change: c, version: v, snapshot: s)
     }
 }
 
@@ -71,18 +67,18 @@ extension IndexPath {
 }
 
 extension PDTimelineSteppingPoint: Sequence where
-Snapshot: TreeProtocol,
-Snapshot.SubtreeCollection.Index == IndexPath.Element,
-Change.Portion == Range<IndexPath> {
+Timeline.Snapshot: TreeProtocol,
+Timeline.Snapshot.SubtreeCollection.Index == IndexPath.Element,
+Timeline.Change.Portion == Range<IndexPath> {
     public typealias Element = Iterator.Element
     public func makeIterator() -> Iterator {
-        let it = TreeIndexPathRangeDFSIterator<Snapshot>(with: portion, on: snapshot)
+        let it = TreeIndexPathRangeDFSIterator<Timeline.Snapshot>(with: portion, on: snapshot)
         return Iterator(source: snapshot, impl: it)
     }
     public struct Iterator: IteratorProtocol {
-        private(set) var source: Snapshot
-        private(set) var impl: TreeIndexPathRangeDFSIterator<Snapshot>
-        public mutating func next() -> (IndexPath,Snapshot)? {
+        private(set) var source: Timeline.Snapshot
+        private(set) var impl: TreeIndexPathRangeDFSIterator<Timeline.Snapshot>
+        public mutating func next() -> (IndexPath,Timeline.Snapshot)? {
             guard let idxp = impl.next() else { return nil }
             let v = source[idxp]
             return (idxp,v)

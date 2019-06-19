@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4548E2C622BAADFF0099E410 /* PDTimelineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548E2C522BAADFF0099E410 /* PDTimelineProtocol.swift */; };
+		4548E2C822BAAE290099E410 /* PDTimelineStepping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548E2C722BAAE290099E410 /* PDTimelineStepping.swift */; };
 		45A0888E22BA7A43000628D0 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0888D22BA7A43000628D0 /* Export.swift */; };
 		45DE46C022B8FEF4006DAC40 /* PDRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE46BF22B8FEF4006DAC40 /* PDRepositoryProtocol.swift */; };
 		45DE470D22B903D9006DAC40 /* TreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE470C22B903D9006DAC40 /* TreeProtocol.swift */; };
@@ -52,27 +54,13 @@
 
 /* Begin PBXFileReference section */
 		4548E2B022BAA79A0099E410 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		4548E2C522BAADFF0099E410 /* PDTimelineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimelineProtocol.swift; sourceTree = "<group>"; };
+		4548E2C722BAAE290099E410 /* PDTimelineStepping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimelineStepping.swift; sourceTree = "<group>"; };
 		45A0887F22BA7A27000628D0 /* SBTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBTL.xcodeproj; path = "../swift-sbtl/SBTL.xcodeproj"; sourceTree = "<group>"; };
 		45A0888D22BA7A43000628D0 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		45DE46B322B8FED7006DAC40 /* libPD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE46BF22B8FEF4006DAC40 /* PDRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDRepositoryProtocol.swift; sourceTree = "<group>"; };
 		45DE46E822B8FF81006DAC40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		45DE46E922B90024006DAC40 /* Compatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
-		45DE46EA22B90024006DAC40 /* BTreePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreePath.swift; sourceTree = "<group>"; };
-		45DE46EB22B90024006DAC40 /* BTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeNode.swift; sourceTree = "<group>"; };
-		45DE46EC22B90024006DAC40 /* BTreeCursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeCursor.swift; sourceTree = "<group>"; };
-		45DE46ED22B90025006DAC40 /* BTreeMerger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeMerger.swift; sourceTree = "<group>"; };
-		45DE46EE22B90025006DAC40 /* SortedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortedSet.swift; sourceTree = "<group>"; };
-		45DE46EF22B90025006DAC40 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
-		45DE46F022B90025006DAC40 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		45DE46F122B90025006DAC40 /* SortedBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortedBag.swift; sourceTree = "<group>"; };
-		45DE46F222B90025006DAC40 /* BTreeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeBuilder.swift; sourceTree = "<group>"; };
-		45DE46F322B90025006DAC40 /* BTreeIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeIterator.swift; sourceTree = "<group>"; };
-		45DE46F422B90025006DAC40 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		45DE46F522B90025006DAC40 /* BTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTree.swift; sourceTree = "<group>"; };
-		45DE46F622B90025006DAC40 /* BTreeComparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeComparisons.swift; sourceTree = "<group>"; };
-		45DE46F722B90025006DAC40 /* BTreeIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTreeIndex.swift; sourceTree = "<group>"; };
-		45DE46F822B90025006DAC40 /* BridgedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgedList.swift; sourceTree = "<group>"; };
 		45DE470C22B903D9006DAC40 /* TreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeProtocol.swift; sourceTree = "<group>"; };
 		45DE471022B909C5006DAC40 /* PDTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTreeRepository.swift; sourceTree = "<group>"; };
 		45DE471222B90B89006DAC40 /* PDIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDIdentity.swift; sourceTree = "<group>"; };
@@ -110,7 +98,6 @@
 				45DE46E822B8FF81006DAC40 /* README.md */,
 				4548E2B022BAA79A0099E410 /* Package.swift */,
 				45A0887F22BA7A27000628D0 /* SBTL.xcodeproj */,
-				45DE46E722B8FF66006DAC40 /* BTree */,
 				45DE46B522B8FED7006DAC40 /* PD */,
 				45DE46B422B8FED7006DAC40 /* Products */,
 			);
@@ -128,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				45DE46BF22B8FEF4006DAC40 /* PDRepositoryProtocol.swift */,
+				4548E2C522BAADFF0099E410 /* PDTimelineProtocol.swift */,
+				4548E2C722BAAE290099E410 /* PDTimelineStepping.swift */,
 				45DE471A22B91968006DAC40 /* PDListRepository.swift */,
 				45DE471022B909C5006DAC40 /* PDTreeRepository.swift */,
 				45DE471E22B92630006DAC40 /* PDTreeTransmission.swift */,
@@ -139,29 +128,6 @@
 				45A0888D22BA7A43000628D0 /* Export.swift */,
 			);
 			path = PD;
-			sourceTree = "<group>";
-		};
-		45DE46E722B8FF66006DAC40 /* BTree */ = {
-			isa = PBXGroup;
-			children = (
-				45DE46F822B90025006DAC40 /* BridgedList.swift */,
-				45DE46F522B90025006DAC40 /* BTree.swift */,
-				45DE46F222B90025006DAC40 /* BTreeBuilder.swift */,
-				45DE46F622B90025006DAC40 /* BTreeComparisons.swift */,
-				45DE46EC22B90024006DAC40 /* BTreeCursor.swift */,
-				45DE46F722B90025006DAC40 /* BTreeIndex.swift */,
-				45DE46F322B90025006DAC40 /* BTreeIterator.swift */,
-				45DE46ED22B90025006DAC40 /* BTreeMerger.swift */,
-				45DE46EB22B90024006DAC40 /* BTreeNode.swift */,
-				45DE46EA22B90024006DAC40 /* BTreePath.swift */,
-				45DE46E922B90024006DAC40 /* Compatibility.swift */,
-				45DE46F422B90025006DAC40 /* List.swift */,
-				45DE46F022B90025006DAC40 /* Map.swift */,
-				45DE46F122B90025006DAC40 /* SortedBag.swift */,
-				45DE46EE22B90025006DAC40 /* SortedSet.swift */,
-				45DE46EF22B90025006DAC40 /* Weak.swift */,
-			);
-			path = BTree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +230,9 @@
 			files = (
 				45DE472122B936BF006DAC40 /* TreeIndexPathRangeSequence.swift in Sources */,
 				45DE471122B909C5006DAC40 /* PDTreeRepository.swift in Sources */,
+				4548E2C622BAADFF0099E410 /* PDTimelineProtocol.swift in Sources */,
 				45DE471322B90B89006DAC40 /* PDIdentity.swift in Sources */,
+				4548E2C822BAAE290099E410 /* PDTimelineStepping.swift in Sources */,
 				45DE471722B90BDA006DAC40 /* PDTreeIndexPathSortedSet.swift in Sources */,
 				45A0888E22BA7A43000628D0 /* Export.swift in Sources */,
 				45DE471D22B919EC006DAC40 /* PDTimeline.swift in Sources */,
