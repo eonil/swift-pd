@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SBTL",
+        "repositoryURL": "https://github.com/eonil/swift-sbtl",
+        "state": {
+          "branch": "master",
+          "revision": "8ceb578a1f4daabdc7da559877c6c67a9753f71b",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
