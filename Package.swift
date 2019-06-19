@@ -12,11 +12,12 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/eonil/swift-sbtl", .branch("master")),
+        .package(url: "https://github.com/eonil/swift-hamt", .branch("master")),
     ],
     targets: [
         .target(
             name: "PD",
-            dependencies: ["SBTL"],
+            dependencies: ["SBTL", "HAMT"],
             path: "PD"),
 //        .target(
 //            name: "SBTLBenchmark",

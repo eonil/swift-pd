@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "HAMT",
+        "repositoryURL": "https://github.com/eonil/swift-hamt",
+        "state": {
+          "branch": "master",
+          "revision": "f98e512c087b40629300b7f3620fc36bada2ed73",
+          "version": null
+        }
+      },
+      {
         "package": "SBTL",
         "repositoryURL": "https://github.com/eonil/swift-sbtl",
         "state": {
