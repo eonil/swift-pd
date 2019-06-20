@@ -19,13 +19,9 @@ let package = Package(
             name: "PD",
             dependencies: ["SBTL", "HAMT"],
             path: "PD"),
-//        .target(
-//            name: "SBTLBenchmark",
-//            dependencies: ["SBTL"],
-//            path: "SBTLBenchmark"),
-//        .testTarget(
-//            name: "SBTLUnitTests",
-//            dependencies: ["SBTL"],
-//            path: "SBTLUnitTests"),
+        .testTarget(
+            name: "PDTest",
+            dependencies: ["PD"],
+            path: "PDTest"),
     ]
 )

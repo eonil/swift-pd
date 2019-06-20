@@ -12,8 +12,16 @@ public protocol PD2ReplayingProtocol {
     ///
     /// This method find matching version in supplied timeline and re-apply
     /// changes since the version. If there's no matching version, this method
-    /// is no-op.
+    /// crashes.
     ///
     mutating func replay(_: Timeline)
+
+//    mutating func replay(_: Timeline, )
 }
+//public enum PD2ReplayOption {
+//    /// If there's no matching version,
+//    /// just replace
+//    case replace
+//    case cancel
+//}
 

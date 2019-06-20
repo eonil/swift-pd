@@ -36,6 +36,25 @@
 /// A timeline is designed for large, homogeneous collection types.
 /// Therefore, snapshot should define an index type to select item in the collection.
 /// Generic algorithm for heterogeneous collection cannot be defined.
+///
+/// Global Uniqueness
+/// -----------------
+/// Please note that steps and points in timeline are all **globally-unique**.
+/// This means, two timelines with equal change-set will be treated as
+/// different. This is **time**line, and conceptual **time-point** of operation
+/// is recorded together under-the-hood. Therefore, any operations involves
+/// timeline can behave differently with your expectation.
+///
+/// - Note: Actually `version` contains does the hidden time-point value.
+///
+/// For example, you create two `PD2ListRepository` instance and you
+/// can think they're equal because they are all empty. But actually
+/// repository already stored the initial time-point with empty list,
+/// and their time-point are different. As a result, two new empty
+/// repositories are considered different.
+///
+/// The only way to make equal timeline is *copying existing instance*.
+///
 public protocol PD2TimelineProtocol {
     associatedtype Version: Equatable
     associatedtype Snapshot: Collection
@@ -43,15 +62,19 @@ public protocol PD2TimelineProtocol {
 
     var steps: Steps { get }
     /// - Returns:
-    ///     An empty timeline if there's no matching version in this timeline.
-    func steps(since: Version) -> Self
+    ///     `nil` if there's no matching version in this timeline.
+    func suffix(since: Version) -> Self?
 }
 
 public struct PD2Timeline<Snapshot>: PD2TimelineProtocol where
 Snapshot: Collection {
     private var impl = PDList<Step>()
 
-    public typealias Version = AnyHashable
+    public typealias Version = PD2Timestamp
+    public init() {}
+    public init(_ x: Step) {
+        record(x)
+    }
     mutating func record(_ s: Step) {
         precondition(
             steps.isEmpty || steps.last!.new.version == s.old.version,
@@ -68,14 +91,14 @@ Snapshot: Collection {
     public var steps: Steps {
         return Steps(impl: impl)
     }
-    public func steps(since v: AnyHashable) -> PD2Timeline<Snapshot> {
-        guard let i = points.lastIndex(where: { p in p.version == v }) else { return PD2Timeline() }
+    public func suffix(since v: PD2Timestamp) -> PD2Timeline<Snapshot>? {
+        guard let i = points.lastIndex(where: { p in p.version == v }) else { return nil }
         let xs = steps[i...]
         var tl = PD2Timeline()
         tl.record(contentsOf: xs)
         return tl
     }
-
+    
     public struct Steps: RandomAccessCollection {
         fileprivate var impl: PDList<Step>
         public var startIndex: Int {
@@ -105,12 +128,11 @@ Snapshot: Collection {
         /// Unique identifier of this time-point.
         public let version: Version
         /// Range selected for editing at this time-point.
-        /// `Snapshot.SubSeqeunce` doesn't have to be
-        /// `Slice` type.
-        public let slice: Slice<Snapshot>
+        public let range: Range<Snapshot.Index>
         /// Whole collection snapshot at this time-point.
-        public var snapshot: Snapshot {
-            return slice.base
+        public let snapshot: Snapshot
+        public var slice: Snapshot.SubSequence {
+            return snapshot[range]
         }
     }
 }
@@ -124,11 +146,11 @@ public extension PD2Timeline {
             return impl.startIndex
         }
         public var endIndex: Int {
-            return impl.endIndex + 1
+            return impl.isEmpty ? 0 : impl.endIndex + 1
         }
         public subscript(_ i: Int) -> Point {
             return i == impl.endIndex
-                ? impl[i].new
+                ? impl[i-1].new
                 : impl[i].old
         }
     }
@@ -159,7 +181,9 @@ extension PD2Timeline {
             // Seek for lastest matching version
             // and replay afterwords.
             let v = p.new.version
-            let x1 = x.steps(since: v)
+            guard let x1 = x.suffix(since: v) else {
+                fatalError("Timeline does not continue.")
+            }
             guard !x1.steps.isEmpty else { return }
             record(contentsOf: x1)
         }

@@ -33,12 +33,4 @@
 ///
 public protocol PD2RepositoryProtocol: PD2ReplayingProtocol {
     var timeline: Timeline { get }
-
-    /// Replays records in timeline automatically from matching version.
-    ///
-    /// This method find matching version in supplied timeline and re-apply
-    /// changes since the version. If there's no matching version, this method
-    /// is no-op.
-    /// 
-    mutating func replay(_: Timeline)
 }

@@ -25,5 +25,10 @@ struct PDIdentity: Hashable, Comparable {
     }
 }
 
+extension PDIdentity {
+    /// Marker identity for empty state.
+    static let empty = PDIdentity()
+}
+
 private final class PDSVMarker {}
 

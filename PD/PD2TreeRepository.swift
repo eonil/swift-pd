@@ -62,17 +62,16 @@ Snapshot.SubtreeCollection.Index == IndexPath.Element {
         set(w) {
             preconditionNonEmptyPoints()
             let p = timeline.points.last!
-            var s = p.snapshot
+            let s = p.snapshot
             let v = p.version
-            let m = Slice(base: s, bounds: i..<s.index(after: i))
-            s[i] = w
-            let v1 = AnyHashable(PDIdentity())
-            let m1 = Slice(
-                base: s,
-                bounds: i..<s.index(after: i))
+            let r = i..<s.index(after: i)
+            var s1 = s
+            s1[i] = w
+            let v1 = PD2Timestamp()
+            let r1 = i..<s1.index(after: i)
             let x = Timeline.Step(
-                old: Timeline.Point(version: v, slice: m),
-                new: Timeline.Point(version: v1, slice: m1))
+                old: Timeline.Point(version: v, range: r, snapshot: s),
+                new: Timeline.Point(version: v1, range: r1, snapshot: s1))
             timeline.record(x)
         }
     }
@@ -80,28 +79,30 @@ Snapshot.SubtreeCollection.Index == IndexPath.Element {
         preconditionNonEmptyPoints()
         let p = timeline.points.last!
         let v = p.version
-        var s = p.snapshot
-        let m = Slice(base: s, bounds: i..<i)
-        s.insert(e, at: i)
-        let v1 = AnyHashable(PDIdentity())
-        let m1 = Slice(base: s, bounds: i..<s.index(after: i))
+        let s = p.snapshot
+        let r = i..<i
+        var s1 = s
+        s1.insert(e, at: i)
+        let v1 = PD2Timestamp()
+        let r1 = i..<s1.index(after: i)
         let x = Timeline.Step(
-            old: Timeline.Point(version: v, slice: m),
-            new: Timeline.Point(version: v1, slice: m1))
+            old: Timeline.Point(version: v, range: r, snapshot: s),
+            new: Timeline.Point(version: v1, range: r1, snapshot: s1))
         timeline.record(x)
     }
     public mutating func remove(at i: Snapshot.Index) {
         preconditionNonEmptyPoints()
         let p = timeline.points.last!
         let v = p.version
-        var s = p.snapshot
-        let m = Slice(base: s, bounds: i..<s.index(after: i))
-        s.remove(at: i)
-        let v1 = AnyHashable(PDIdentity())
-        let m1 = Slice(base: s, bounds: i..<i)
+        let s = p.snapshot
+        let r = i..<s.index(after: i)
+        var s1 = s
+        s1.remove(at: i)
+        let v1 = PD2Timestamp()
+        let r1 = i..<i
         let x = Timeline.Step(
-            old: Timeline.Point(version: v, slice: m),
-            new: Timeline.Point(version: v1, slice: m1))
+            old: Timeline.Point(version: v, range: r, snapshot: s),
+            new: Timeline.Point(version: v1, range: r1, snapshot: s1))
         timeline.record(x)
     }
 }

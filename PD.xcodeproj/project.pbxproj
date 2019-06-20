@@ -16,13 +16,27 @@
 		4548E2E922BB6FC50099E410 /* PD2UndoRedo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548E2E822BB6FC50099E410 /* PD2UndoRedo.swift */; };
 		4548E2ED22BB7A2F0099E410 /* PDTreeIndexPathSortedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE471622B90BDA006DAC40 /* PDTreeIndexPathSortedSet.swift */; };
 		4548E2F022BB88440099E410 /* PD2ReplayingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548E2EF22BB88440099E410 /* PD2ReplayingProtocol.swift */; };
+		4548E31122BB91D10099E410 /* PDTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548E31022BB91D10099E410 /* PDTest.swift */; };
+		4548E31322BB91D10099E410 /* libPD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DE46B322B8FED7006DAC40 /* libPD.a */; };
+		4569EAE822BBAEC400782C6A /* PD2Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569EAE722BBAEC400782C6A /* PD2Snapshot.swift */; };
+		4569EB0122BBC3B100782C6A /* PDSumListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569EB0022BBC3B100782C6A /* PDSumListTest.swift */; };
 		45A0888E22BA7A43000628D0 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0888D22BA7A43000628D0 /* Export.swift */; };
+		45D8F48E22BB92CA0096E6BF /* libSBTL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A0888622BA7A28000628D0 /* libSBTL.a */; };
+		45D8F49022BB9C270096E6BF /* CompressingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F48F22BB9C270096E6BF /* CompressingTime.swift */; };
+		45D8F49222BBA5B10096E6BF /* PD2Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F49122BBA5B10096E6BF /* PD2Timestamp.swift */; };
+		45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */; };
 		45DE470D22B903D9006DAC40 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE470C22B903D9006DAC40 /* Tree.swift */; };
-		45DE471322B90B89006DAC40 /* PDIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE471222B90B89006DAC40 /* PDIdentity.swift */; };
 		45DE472122B936BF006DAC40 /* TreeIndexPathRangeSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE472022B936BF006DAC40 /* TreeIndexPathRangeSequence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4548E31422BB91D10099E410 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45DE46A922B8FEC1006DAC40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45DE46B222B8FED7006DAC40;
+			remoteInfo = PD;
+		};
 		45A0888522BA7A28000628D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45A0887F22BA7A27000628D0 /* SBTL.xcodeproj */;
@@ -66,8 +80,16 @@
 		4548E2E022BB6D340099E410 /* PD2Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Repository.swift; sourceTree = "<group>"; };
 		4548E2E822BB6FC50099E410 /* PD2UndoRedo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2UndoRedo.swift; sourceTree = "<group>"; };
 		4548E2EF22BB88440099E410 /* PD2ReplayingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2ReplayingProtocol.swift; sourceTree = "<group>"; };
+		4548E30E22BB91D10099E410 /* PDTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4548E31022BB91D10099E410 /* PDTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTest.swift; sourceTree = "<group>"; };
+		4548E31222BB91D10099E410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4569EAE722BBAEC400782C6A /* PD2Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Snapshot.swift; sourceTree = "<group>"; };
+		4569EB0022BBC3B100782C6A /* PDSumListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSumListTest.swift; sourceTree = "<group>"; };
 		45A0887F22BA7A27000628D0 /* SBTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBTL.xcodeproj; path = "../swift-sbtl/SBTL.xcodeproj"; sourceTree = "<group>"; };
 		45A0888D22BA7A43000628D0 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
+		45D8F48F22BB9C270096E6BF /* CompressingTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressingTime.swift; sourceTree = "<group>"; };
+		45D8F49122BBA5B10096E6BF /* PD2Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Timestamp.swift; sourceTree = "<group>"; };
+		45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Timeline.extension.swift; sourceTree = "<group>"; };
 		45DE46B322B8FED7006DAC40 /* libPD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE46BF22B8FEF4006DAC40 /* PDRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDRepositoryProtocol.swift; sourceTree = "<group>"; };
 		45DE46E822B8FF81006DAC40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -82,6 +104,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4548E30B22BB91D10099E410 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45D8F48E22BB92CA0096E6BF /* libSBTL.a in Frameworks */,
+				4548E31322BB91D10099E410 /* libPD.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DE46B122B8FED7006DAC40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,6 +126,7 @@
 		4548E2EE22BB7A410099E410 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
+				45DE471222B90B89006DAC40 /* PDIdentity.swift */,
 				45DE46BF22B8FEF4006DAC40 /* PDRepositoryProtocol.swift */,
 				4548E2CD22BAB7930099E410 /* PDRepository.swift */,
 				4548E2C522BAADFF0099E410 /* PDTimelineProtocol.swift */,
@@ -107,6 +139,17 @@
 			path = Deprecated;
 			sourceTree = "<group>";
 		};
+		4548E30F22BB91D10099E410 /* PDTest */ = {
+			isa = PBXGroup;
+			children = (
+				4548E31022BB91D10099E410 /* PDTest.swift */,
+				4569EB0022BBC3B100782C6A /* PDSumListTest.swift */,
+				45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */,
+				4548E31222BB91D10099E410 /* Info.plist */,
+			);
+			path = PDTest;
+			sourceTree = "<group>";
+		};
 		45A0888022BA7A27000628D0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +160,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		45D8F48B22BB92CA0096E6BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		45DE46A822B8FEC1006DAC40 = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +174,9 @@
 				4548E2B022BAA79A0099E410 /* Package.swift */,
 				45A0887F22BA7A27000628D0 /* SBTL.xcodeproj */,
 				45DE46B522B8FED7006DAC40 /* PD */,
+				4548E30F22BB91D10099E410 /* PDTest */,
 				45DE46B422B8FED7006DAC40 /* Products */,
+				45D8F48B22BB92CA0096E6BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				45DE46B322B8FED7006DAC40 /* libPD.a */,
+				4548E30E22BB91D10099E410 /* PDTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,14 +196,16 @@
 				4548E2DA22BB5B790099E410 /* PD2ListRepository.swift */,
 				4548E2DE22BB68180099E410 /* PD2TreeRepository.swift */,
 				4548E2D222BB4F1F0099E410 /* PD2Timeline.swift */,
+				4569EAE722BBAEC400782C6A /* PD2Snapshot.swift */,
 				4548E2E822BB6FC50099E410 /* PD2UndoRedo.swift */,
 				4548E2EF22BB88440099E410 /* PD2ReplayingProtocol.swift */,
+				45D8F49122BBA5B10096E6BF /* PD2Timestamp.swift */,
 				45DE472022B936BF006DAC40 /* TreeIndexPathRangeSequence.swift */,
 				45DE471622B90BDA006DAC40 /* PDTreeIndexPathSortedSet.swift */,
-				45DE471222B90B89006DAC40 /* PDIdentity.swift */,
 				45DE470C22B903D9006DAC40 /* Tree.swift */,
 				4548E2D622BB576B0099E410 /* TreeProtocol.extension.swift */,
 				4548E2D822BB57F70099E410 /* MutableTreeProtocol.extension.swift */,
+				45D8F48F22BB9C270096E6BF /* CompressingTime.swift */,
 				45A0888D22BA7A43000628D0 /* Export.swift */,
 				4548E2EE22BB7A410099E410 /* Deprecated */,
 			);
@@ -170,6 +225,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4548E30D22BB91D10099E410 /* PDTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4548E31622BB91D10099E410 /* Build configuration list for PBXNativeTarget "PDTest" */;
+			buildPhases = (
+				4548E30A22BB91D10099E410 /* Sources */,
+				4548E30B22BB91D10099E410 /* Frameworks */,
+				4548E30C22BB91D10099E410 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4548E31522BB91D10099E410 /* PBXTargetDependency */,
+			);
+			name = PDTest;
+			productName = PDTest;
+			productReference = 4548E30E22BB91D10099E410 /* PDTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		45DE46B222B8FED7006DAC40 /* PD */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45DE46BC22B8FED7006DAC40 /* Build configuration list for PBXNativeTarget "PD" */;
@@ -194,8 +267,12 @@
 		45DE46A922B8FEC1006DAC40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1020;
 				TargetAttributes = {
+					4548E30D22BB91D10099E410 = {
+						CreatedOnToolsVersion = 11.0;
+					};
 					45DE46B222B8FED7006DAC40 = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
@@ -222,6 +299,7 @@
 			projectRoot = "";
 			targets = (
 				45DE46B222B8FED7006DAC40 /* PD */,
+				4548E30D22BB91D10099E410 /* PDTest */,
 			);
 		};
 /* End PBXProject section */
@@ -250,20 +328,42 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXResourcesBuildPhase section */
+		4548E30C22BB91D10099E410 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		4548E30A22BB91D10099E410 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */,
+				4548E31122BB91D10099E410 /* PDTest.swift in Sources */,
+				4569EB0122BBC3B100782C6A /* PDSumListTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DE46B022B8FED7006DAC40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				45DE472122B936BF006DAC40 /* TreeIndexPathRangeSequence.swift in Sources */,
+				4569EAE822BBAEC400782C6A /* PD2Snapshot.swift in Sources */,
 				4548E2E922BB6FC50099E410 /* PD2UndoRedo.swift in Sources */,
 				4548E2D322BB4F1F0099E410 /* PD2Timeline.swift in Sources */,
 				4548E2ED22BB7A2F0099E410 /* PDTreeIndexPathSortedSet.swift in Sources */,
-				45DE471322B90B89006DAC40 /* PDIdentity.swift in Sources */,
 				45A0888E22BA7A43000628D0 /* Export.swift in Sources */,
+				45D8F49222BBA5B10096E6BF /* PD2Timestamp.swift in Sources */,
 				4548E2E122BB6D340099E410 /* PD2Repository.swift in Sources */,
 				4548E2F022BB88440099E410 /* PD2ReplayingProtocol.swift in Sources */,
 				4548E2D922BB57F70099E410 /* MutableTreeProtocol.extension.swift in Sources */,
+				45D8F49022BB9C270096E6BF /* CompressingTime.swift in Sources */,
 				4548E2D722BB576B0099E410 /* TreeProtocol.extension.swift in Sources */,
 				45DE470D22B903D9006DAC40 /* Tree.swift in Sources */,
 				4548E2DF22BB68180099E410 /* PD2TreeRepository.swift in Sources */,
@@ -274,6 +374,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4548E31522BB91D10099E410 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45DE46B222B8FED7006DAC40 /* PD */;
+			targetProxy = 4548E31422BB91D10099E410 /* PBXContainerItemProxy */;
+		};
 		45A0888C22BA7A32000628D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SBTL;
@@ -282,6 +387,92 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4548E31722BB91D10099E410 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = PDTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Eonil.PDTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4548E31822BB91D10099E410 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = PDTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Eonil.PDTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		45DE46AD22B8FEC1006DAC40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -409,6 +600,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -482,6 +674,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4548E31622BB91D10099E410 /* Build configuration list for PBXNativeTarget "PDTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4548E31722BB91D10099E410 /* Debug */,
+				4548E31822BB91D10099E410 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45DE46AC22B8FEC1006DAC40 /* Build configuration list for PBXProject "PD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
