@@ -22,6 +22,7 @@ Here's an example of how to implement transmission into another datastructure.
 See how I make `news` timeline and iterate over from/to elements in each
 steppings.
 
+```swift
     private var transferredVersion = AnyHashable(Identity())
     private var viewSource = OT4Source<Identity,EPIssueContent>()
 
@@ -41,13 +42,11 @@ steppings.
             transferredVersion = news.versions.last ?? transferredVersion
         }
     }
+```
 
 
 
 Credits & License
 ---------------------
-The code has been copied form [Github](https://github.com/attaswift/BTree).
-The code has been embedded for convenience and performance.
-
 All other code is written by Eonil, Hoon H. and licensed under MIT License.
 

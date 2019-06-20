@@ -1,30 +1,32 @@
 //
-//  TreeProtocol.swift
-//  PersistentDatastructure
+//  TreeProtocol.extension.swift
+//  PD
 //
-//  Created by Henry on 2019/06/18.
+//  Created by Henry on 2019/06/20.
 //
 
 import Foundation
 
-public protocol TreeProtocol {
-    associatedtype SubtreeCollection: RandomAccessCollection where SubtreeCollection.Element == Self
-    var subtrees: SubtreeCollection { get }
+extension TreeProtocol where Index == IndexPath {
+
 }
-public protocol MutableTreeProtocol: TreeProtocol where SubtreeCollection: MutableCollection & RangeReplaceableCollection {
-    var subtrees: SubtreeCollection { get set }
+/// Tree will get automatic collection support if subtree has `Int` index.
+/// In this automatic support, index type is `IndexPath`, starting index is `[]`(root),
+/// and ending index is `[subtrees.count]`(next of last child).
+/// Iteration will be done in Depth-First-Search order.
+extension TreeProtocol where SubtreeCollection.Index == IndexPath.Element {
+    public var startIndex: IndexPath {
+        return []
+    }
+    public var endIndex: IndexPath {
+        return [subtrees.count]
+    }
+    public func index(after i: IndexPath) -> IndexPath {
+        return i.nextDFS(on: self) ?? endIndex
+    }
 }
 
-
-
-
-
-
-
-
-
-
-public extension TreeProtocol where SubtreeCollection.Index == Int {
+public extension TreeProtocol where SubtreeCollection.Index == IndexPath.Element {
     subscript(_ idxp: IndexPath) -> Self {
         switch idxp.count {
         case 0:
@@ -47,7 +49,7 @@ public extension TreeProtocol where SubtreeCollection.Index == Int {
     }
 }
 
-public extension TreeProtocol where SubtreeCollection.Index == Int {
+public extension TreeProtocol where SubtreeCollection.Index == IndexPath.Element {
     ///
     /// Make an iterator which iterates index-paths to all node in tree in DFS(depth first search) manner.
     ///
@@ -95,55 +97,41 @@ public extension TreeProtocol where SubtreeCollection.Index == Int {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-public extension MutableTreeProtocol where SubtreeCollection: RangeReplaceableCollection, SubtreeCollection.Index == IndexPath.Element {
-    /// - Note:
-    ///     Container node is requird to exist.
-    ///     Otherwise, this crashes.
-    mutating func insert(_ n: Self, at idxp: IndexPath) {
-        precondition(!idxp.isEmpty, "You cannot insert at root location.")
-        precondition(contains(at: idxp.dropLast()), "You cannot insert where container node does not exist.")
-        let i = idxp.last!
-        self[idxp.dropLast()].subtrees.insert(n, at: i)
-    }
-    /// - Note:
-    ///     A node must exist at the index.
-    mutating func remove(at idxp: IndexPath) {
-        precondition(contains(at: idxp), "You cannot remove node at wrong index.")
-        let i = idxp.last!
-        self[idxp.dropLast()].subtrees.remove(at: i)
-    }
-}
-public extension MutableTreeProtocol where SubtreeCollection.Index == IndexPath.Element {
-    subscript(_ idxp: IndexPath) -> Self {
-        get {
-            switch idxp.count {
-            case 0:
-                return self
-            default:
-                let i = idxp.first!
-                let p = idxp.dropFirst()
-                return subtrees[i][p]
-            }
+private extension IndexPath {
+    func up() -> IndexPath? {
+        switch count {
+        case 0:
+            // Root.
+            return nil
+        default:
+            return dropLast()
         }
-        set {
-            switch idxp.count {
-            case 0:
-                self = newValue
-            default:
-                let i = idxp.first!
-                let p = idxp.dropFirst()
-                subtrees[i][p] = newValue
-            }
+    }
+    func down<Tree>(at i: Int, on source: Tree) -> IndexPath? where Tree: TreeProtocol, Tree.SubtreeCollection.Index == Element {
+        return i < source[self].subtrees.count ? nil : appending(i)
+    }
+    func right<Tree>(on source: Tree) -> IndexPath? where Tree: TreeProtocol, Tree.SubtreeCollection.Index == Element {
+        switch count {
+        case 0:
+            // Root. No right sibling.
+            return nil
+        default:
+            let i = last! + 1
+            return up()?.down(at: i, on: source)
         }
+    }
+    func nextDFS<Tree>(on source: Tree) -> IndexPath? where Tree: TreeProtocol, Tree.SubtreeCollection.Index == Element {
+        return down(at: 0, on: source)
+            ?? right(on: source)
+            ?? { () -> IndexPath? in
+                var x = self as IndexPath?
+                while x != nil {
+                    if let z = x?.up()?.right(on: source) {
+                        return z
+                    }
+                    x = x?.up()
+                }
+                return nil
+            }()
     }
 }

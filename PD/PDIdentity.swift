@@ -5,8 +5,6 @@
 //  Created by Henry on 2019/06/18.
 //
 
-import Foundation
-
 struct PDIdentity: Hashable, Comparable {
     private var mk = PDSVMarker()
 
