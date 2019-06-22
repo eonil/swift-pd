@@ -75,6 +75,10 @@ Snapshot: Collection {
     public init(capacity c: Int = 1024) {
         capacity = c
     }
+//    private init(capacity c: Int = 1024, timeline x: Timeline) {
+//        capacity = c
+//        timeline = x
+//    }
     public var canUndo: Bool {
         return !past.isEmpty
     }
@@ -104,8 +108,9 @@ Snapshot: Collection {
             past.removeFirst()
         }
         future.removeAll()
+        
         if let p = timeline.steps.last {
-            let v = p.new.version
+            let v = p.new.time
             guard let x1 = x.suffix(since: v) else {
                 fatalError("Timeline does not continue.")
             }
@@ -124,6 +129,8 @@ Snapshot: Collection {
     /// This does not remove undo/redo stack (`past` and `future` collections).
     public var latestOnly: PD2UndoRedo {
         guard let x = timeline.steps.last else { return self }
+        // Change only timeline.
+        // Keep everything else.
         var z = self
         z.timeline = Timeline(x)
         return z

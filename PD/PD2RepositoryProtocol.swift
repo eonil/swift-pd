@@ -1,11 +1,9 @@
 //
-//  PDRepositoryProtocol.swift
-//  PersistentDatastructure
+//  PD2RepositoryProtocol.swift
+//  PD
 //
-//  Created by Henry on 2019/06/18.
+//  Created by Henry on 2019/06/20.
 //
-
-import Foundation
 
 /// A multi-versioned collection type.
 ///
@@ -20,14 +18,19 @@ import Foundation
 /// Timeline
 /// --------
 /// Timeline describes collection changes over time.
-/// All versions, snapshots and changed ranges are stored here.
+/// All timestamps, snapshots and changed ranges are stored here.
 ///
 /// Mutators
 /// --------
 /// You are supposed to place mutators at this level.
 /// DO NOT place mutators at timleine.
 ///
-public protocol PDRepositoryProtocol {
-    associatedtype Timeline: PDTimelineProtocol
+/// Undo/Redo
+/// ---------
+/// Repository keeps all mutations, but do not support
+/// undo/redo by default. You need to implement it yourself.
+/// There's `PD2UndoRedo` type for your convenience.
+///
+public protocol PD2RepositoryProtocol: PD2ReplayingProtocol {
     var timeline: Timeline { get }
 }

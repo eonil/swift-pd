@@ -9,7 +9,7 @@ import Foundation
 import PD
 
 extension PD2Timeline {
-    var versions: [Version] {
-        return points.map({ p in p.version })
+    var times: [Time] {
+        return points.map({ p in p.time })
     }
 }

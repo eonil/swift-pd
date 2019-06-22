@@ -20,10 +20,6 @@ class PDSumListTest: XCTestCase {
         let (i,x) = s.indexAndOffset(for: 550)
         XCTAssertEqual(i, 2)
         XCTAssertEqual(x, 50)
-
-        for x in repo.timeline.steps {
-            x.new
-        }
     }
 }
 

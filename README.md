@@ -4,8 +4,20 @@ Eonil, 2019.
 
 A collection of protocols and default implementation of some persistent datastructures.
 
+
 Persistence
 --------------
+All types are persistent datastructure. Copying cost is always `O(1)`,
+and core mutations are all `O(log(n))` regardless if you make copy
+or not.
+
+Idempotence
+----------------
+`PD2*Repository` types tracks changes in collections into its `timeline`.
+You can use this information to make changes in another repository or collections.
+If you transfer changes into another `PD2Repository`, you don't need to worry
+about synchronization issue. Repositories keep timestamp based version
+values and use them to make correct change.
 
 Transmission
 ----------------
