@@ -1,5 +1,5 @@
 //
-//  PD2Timeline.swift
+//  PDTimeline.swift
 //  PD
 //
 //  Created by Henry on 2019/06/20.
@@ -62,14 +62,14 @@
 ///
 /// - Note:
 ///     Time-points in timeline must be "infinite resolution" conceptually.
-///     `PD2Timestamp` satisfies this requirement.
+///     `PDTimestamp` satisfies this requirement.
 ///     No operations can happend at same time as resolution is infinite,
 ///
 /// Datastructures using timeline are supposed to record time-point implicitly.
 ///
-public protocol PD2TimelineProtocol {
+public protocol PDTimelineProtocol {
     associatedtype Time: Equatable
-    associatedtype Snapshot: Collection
+    associatedtype Snapshot: PDSnapshotProtocol
     associatedtype Steps: RandomAccessCollection
         where Steps.Element == Step
     associatedtype Step
@@ -91,13 +91,13 @@ public protocol PD2TimelineProtocol {
     ///     `nil` if there's no matching time in this timeline.
     func suffix(since: Time) -> Self?
 }
-protocol PD2MutableTimelineProtocol: PD2TimelineProtocol {
+protocol PDMutableTimelineProtocol: PDTimelineProtocol {
     mutating func record(_ s: Step)
     mutating func record<C>(contentsOf other: C) where C: Collection, C.Element == Step
     mutating func record(contentsOf other: Self)
 }
 
-protocol PD2TimelineStepProtocol {
+protocol PDTimelineStepProtocol {
     /// Returns whether this step is continuous to supplied step.
     ///
     /// This function returns `true` if
@@ -108,32 +108,32 @@ protocol PD2TimelineStepProtocol {
     func isContinuous(from other: Self) -> Bool
 }
 
-public struct PD2Timeline<Snapshot>:
-PD2TimelineProtocol,
-PD2MutableTimelineProtocol where
-Snapshot: Collection {
+public struct PDTimeline<Snapshot>:
+PDTimelineProtocol,
+PDMutableTimelineProtocol where
+Snapshot: PDSnapshotProtocol {
     private var impl = PDList<Step>()
 
-    public typealias Time = PD2Timestamp
+    public typealias Time = PDTimestamp
     public init() {}
     public init(_ x: Step) {
         impl.append(x)
     }
 
-    public func isContinuous(to other: PD2Timeline<Snapshot>) -> Bool {
+    public func isContinuous(to other: PDTimeline<Snapshot>) -> Bool {
         let a = self
         let b = other
         guard !a.steps.isEmpty else { return true }
         guard !b.steps.isEmpty else { return true }
         return a.steps.last!.isContinuous(to: b.steps.first!)
     }
-    public func isContinuous(from other: PD2Timeline<Snapshot>) -> Bool {
+    public func isContinuous(from other: PDTimeline<Snapshot>) -> Bool {
         return other.isContinuous(to: self)
     }
-    public func suffix(since v: PD2Timestamp) -> PD2Timeline<Snapshot>? {
+    public func suffix(since v: PDTimestamp) -> PDTimeline<Snapshot>? {
         guard let i = points.lastIndex(where: { p in p.time == v }) else { return nil }
         let xs = steps[i...]
-        var tl = PD2Timeline()
+        var tl = PDTimeline()
         tl.record(contentsOf: xs)
         return tl
     }
@@ -147,7 +147,7 @@ Snapshot: Collection {
         steps.last?.preconditionContinuity(to: other.first!)
         impl.append(contentsOf: other)
     }
-    mutating func record(contentsOf other: PD2Timeline) {
+    mutating func record(contentsOf other: PDTimeline) {
         record(contentsOf: other.steps)
     }
 
@@ -176,19 +176,22 @@ Snapshot: Collection {
         public var old: Point
         public var new: Point
     }
+//    public typealias Point = Snapshot.SteppingPoint
     public struct Point {
         /// Unique identifier of this time-point.
         public let time: Time
-        /// Range selected for editing at this time-point.
-        public let range: Range<Snapshot.Index>
+//        public let range: Range<Snapshot.Index>
         /// Whole collection snapshot at this time-point.
         public let snapshot: Snapshot
-        public var slice: Snapshot.SubSequence {
-            return snapshot[range]
-        }
+//        public var slice: Snapshot.SubSequence {
+//            return snapshot[range]
+//        }
+
+        /// Range selected for editing at this time-point.
+        public let selection: Snapshot.Selection
     }
 }
-public extension PD2Timeline {
+public extension PDTimeline {
     var points: Points {
         return Points(impl: impl)
     }
@@ -208,9 +211,9 @@ public extension PD2Timeline {
     }
 }
 
-public extension PD2Timeline {
-    func reversed() -> PD2Timeline {
-        var q = PD2Timeline()
+public extension PDTimeline {
+    func reversed() -> PDTimeline {
+        var q = PDTimeline()
         for x in steps.lazy.reversed() {
             let x1 = x.reversed()
             q.record(x1)
@@ -218,31 +221,31 @@ public extension PD2Timeline {
         return q
     }
 }
-public extension PD2Timeline.Step {
-    func isContinuous(to other: PD2Timeline.Step) -> Bool {
+public extension PDTimeline.Step {
+    func isContinuous(to other: PDTimeline.Step) -> Bool {
         let a = self
         let b = other
         return a.new.time == b.old.time
     }
-    func isContinuous(from other: PD2Timeline.Step) -> Bool {
+    func isContinuous(from other: PDTimeline.Step) -> Bool {
         return other.isContinuous(to: self)
     }
-    func reversed() -> PD2Timeline.Step {
-        return PD2Timeline.Step(
+    func reversed() -> PDTimeline.Step {
+        return PDTimeline.Step(
             old: new,
             new: old)
     }
 }
-extension PD2Timeline.Step {
-    func preconditionContinuity(to other: PD2Timeline.Step) {
+extension PDTimeline.Step {
+    func preconditionContinuity(to other: PDTimeline.Step) {
         precondition(
             isContinuous(to: other),
             "This timeline and supplied timeline are not continuous.")
     }
 }
 
-extension PD2Timeline {
-    mutating func replay(_ x: PD2Timeline) {
+extension PDTimeline {
+    mutating func replay(_ x: PDTimeline) {
         if let p = steps.last {
             // Some steps.
             // Seek for lastest matching time
@@ -260,7 +263,7 @@ extension PD2Timeline {
             record(contentsOf: x)
         }
     }
-//    mutating func replay(_ x: PD2Timeline, always a: Bool) {
+//    mutating func replay(_ x: PDTimeline, always a: Bool) {
 //        guard !x.steps.isEmpty else { return }
 //        if let p = steps.last {
 //            // Some steps.
@@ -290,20 +293,20 @@ extension PD2Timeline {
 //    }
 }
 
-extension PD2Timeline.Point {
-    /// Makes a stepping that replaces latest snapshot with `p.new`.
-    func replacementStepping(to p: PD2Timeline.Point) -> PD2Timeline.Step {
-        let r = snapshot.startIndex..<snapshot.endIndex
-        let r1 = p.snapshot.startIndex..<p.snapshot.endIndex
-        return PD2Timeline.Step(
-            old: PD2Timeline.Point(
-                time: time,
-                range: r,
-                snapshot: snapshot),
-            new: PD2Timeline.Point(
-                time: p.time,
-                range: r1,
-                snapshot: p.snapshot))
-    }
-}
-
+//extension PDTimeline.Point {
+//    /// Makes a stepping that replaces latest snapshot with `p.new`.
+//    func replacementStepping(to p: PDTimeline.Point) -> PDTimeline.Step {
+//        let r = snapshot.startIndex..<snapshot.endIndex
+//        let r1 = p.snapshot.startIndex..<p.snapshot.endIndex
+//        return PDTimeline.Step(
+//            old: PDTimeline.Point(
+//                time: time,
+//                range: r,
+//                snapshot: snapshot),
+//            new: PDTimeline.Point(
+//                time: p.time,
+//                range: r1,
+//                snapshot: p.snapshot))
+//    }
+//}
+//

@@ -11,7 +11,7 @@ import XCTest
 class PDSumListTest: XCTestCase {
     func test1() {
         typealias L = PDSumList<V>
-        typealias R = PD2ListRepository<L>
+        typealias R = PDListRepository<L>
         var repo = R()
         repo.append(V(100))
         repo.append(V(400))

@@ -1,5 +1,5 @@
 //
-//  PD2UndoRedoRepository.swift
+//  PDUndoRedoRepository.swift
 //  PD
 //
 //  Created by Henry on 2019/06/21.
@@ -8,14 +8,14 @@
 import Foundation
 
 /// A repository with automaic undo/redo support.
-public struct PD2UndoRedoRepository<Repository>:
-PD2RepositoryProtocol where
-Repository: PD2RepositoryProtocol {
-    var archive = PD2UndoRedo<Repository.Timeline.Snapshot>()
+public struct PDUndoRedoRepository<Repository>:
+PDRepositoryProtocol where
+Repository: PDRepositoryProtocol {
+    var archive = PDUndoRedo<Repository.Timeline.Snapshot>()
     var repository: Repository
 }
-public extension PD2UndoRedoRepository where
-Repository: PD2RepositoryProtocol {
+public extension PDUndoRedoRepository where
+Repository: PDRepositoryProtocol {
     typealias Snapshot = Repository.Timeline.Snapshot
     init(_ r: Repository) {
         repository = r
@@ -25,7 +25,6 @@ Repository: PD2RepositoryProtocol {
     }
     mutating func undo() {
         archive.undo()
-        repository.replay(archive.timeline)
         repository.replay(archive.timeline)
     }
     mutating func redo() {

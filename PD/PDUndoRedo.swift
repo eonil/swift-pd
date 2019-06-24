@@ -1,5 +1,5 @@
 //
-//  PD2UndoRedo.swift
+//  PDUndoRedo.swift
 //  PD
 //
 //  Created by Henry on 2019/06/20.
@@ -7,8 +7,8 @@
 
 /// Manages undo/redo records.
 ///
-///     var repo = PD2ListRepository<[String]>()
-///     var archive = PD2UndoRedo<[String]>()
+///     var repo = PDListRepository<[String]>()
+///     var archive = PDUndoRedo<[String]>()
 ///     repo.append("AAA")
 ///     repo.append("BBB")
 ///     repo.append("CCC")
@@ -34,7 +34,7 @@
 ///
 /// You redid 3 operations in `repo`. Now `repo` has 3 items again.
 ///
-public protocol PD2UndoRedoProtocol: PD2ReplayingProtocol {
+public protocol PDUndoRedoProtocol: PDReplayingProtocol {
     /// Accumulative timeline.
     /// Changes made by undo/redo will be appended to this timeline.
     /// This is provided for rendering convenience.
@@ -55,9 +55,9 @@ public protocol PD2UndoRedoProtocol: PD2ReplayingProtocol {
     mutating func replay(_: Timeline)
 }
 
-public struct PD2UndoRedo<Snapshot> where
-Snapshot: Collection {
-    public typealias Timeline = PD2Timeline<Snapshot>
+public struct PDUndoRedo<Snapshot> where
+Snapshot: PDSnapshotProtocol {
+    public typealias Timeline = PDTimeline<Snapshot>
 
     public let capacity: Int
 
@@ -127,7 +127,7 @@ Snapshot: Collection {
 
     /// Returns undo/redo manager only with latest step in `timeline`.
     /// This does not remove undo/redo stack (`past` and `future` collections).
-    public var latestOnly: PD2UndoRedo {
+    public var latestOnly: PDUndoRedo {
         guard let x = timeline.steps.last else { return self }
         // Change only timeline.
         // Keep everything else.

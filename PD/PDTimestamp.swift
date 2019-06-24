@@ -1,5 +1,5 @@
 //
-//  PD2Timestamp.swift
+//  PDTimestamp.swift
 //  PD
 //
 //  Created by Henry on 2019/06/20.
@@ -17,27 +17,27 @@ import Foundation
 /// Though this is a timestamp, you cannot perform comparison
 /// on this value. The time value is hidden for easiler implementation.
 ///
-public struct PD2Timestamp: Equatable {
-    private let refID = PD2RefID()
-    public static func == (_ a: PD2Timestamp, _ b: PD2Timestamp) -> Bool {
+public struct PDTimestamp: Equatable {
+    private let refID = PDRefID()
+    public static func == (_ a: PDTimestamp, _ b: PDTimestamp) -> Bool {
         return a.refID === b.refID
     }
 }
 
 
 #if DEBUG
-extension PD2Timestamp: CustomStringConvertible {
+extension PDTimestamp: CustomStringConvertible {
     public var description: String {
         return "T:\(refID.num)"
     }
 }
-extension PD2Timestamp: CustomDebugStringConvertible {
+extension PDTimestamp: CustomDebugStringConvertible {
     public var debugDescription: String {
         return description
     }
 }
 
-private final class PD2RefID {
+private final class PDRefID {
     let num = {
         let n: Int
         exck.lock()
@@ -51,5 +51,5 @@ private var seed = 0
 private let exck = NSLock()
 
 #else
-private final class PD2RefID {}
+private final class PDRefID {}
 #endif

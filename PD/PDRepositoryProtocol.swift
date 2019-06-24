@@ -1,5 +1,5 @@
 //
-//  PD2RepositoryProtocol.swift
+//  PDRepositoryProtocol.swift
 //  PD
 //
 //  Created by Henry on 2019/06/20.
@@ -29,8 +29,8 @@
 /// ---------
 /// Repository keeps all mutations, but do not support
 /// undo/redo by default. You need to implement it yourself.
-/// There's `PD2UndoRedo` type for your convenience.
+/// There's `PDUndoRedo` type for your convenience.
 ///
-public protocol PD2RepositoryProtocol: PD2ReplayingProtocol {
+public protocol PDRepositoryProtocol: PDReplayingProtocol {
     var timeline: Timeline { get }
 }

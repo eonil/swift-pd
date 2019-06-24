@@ -1,13 +1,13 @@
 //
-//  PD2ReplayingProtocol.swift
+//  PDReplayingProtocol.swift
 //  PD
 //
 //  Created by Henry on 2019/06/20.
 //
 
-public protocol PD2ReplayingProtocol {
-    associatedtype Snapshot: Collection
-    typealias Timeline = PD2Timeline<Snapshot>
+public protocol PDReplayingProtocol {
+    associatedtype Snapshot: PDSnapshotProtocol
+    typealias Timeline = PDTimeline<Snapshot>
 
     /// Replays records in timeline automatically from matching time-point.
     ///
@@ -32,7 +32,7 @@ public protocol PD2ReplayingProtocol {
 //    ///
 //    mutating func replay(_: Timeline, always: Bool)
 }
-//public enum PD2ReplayOption {
+//public enum PDReplayOption {
 //    /// If there's no matching time-point,
 //    /// just replace
 //    case replace

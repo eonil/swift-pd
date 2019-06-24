@@ -10,7 +10,7 @@ import XCTest
 
 class PDTest: XCTestCase {
     func testBasics() {
-        typealias R = PD2ListRepository<[Int]>
+        typealias R = PDListRepository<[Int]>
         var repo = R()
         XCTAssertEqual(repo.count, 0)
         XCTAssertEqual(repo.timeline.steps.count, 0)
@@ -24,8 +24,8 @@ class PDTest: XCTestCase {
         XCTAssertEqual(repo.timeline.steps.last!.new.snapshot, [111,222,333])
     }
     func testUndoRedo() {
-        typealias R = PD2ListRepository<[Int]>
-        typealias U = PD2UndoRedo<[Int]>
+        typealias R = PDListRepository<[Int]>
+        typealias U = PDUndoRedo<[Int]>
         let initialRepo = R()
         var repo = initialRepo
         var repo1 = initialRepo
