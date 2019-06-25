@@ -9,7 +9,8 @@ import Foundation
 import BTree
 
 /// A repository for unordered map-trees.
-public struct PDUnorderedMapTreeRepository<Key,Value>: PDRepositoryProtocol where
+public struct PDUnorderedMapTreeRepository<Key,Value>:
+PDRepositoryProtocol where
 Key: Comparable {
     private(set) var impl = Timeline()
     private var defaultRootElement: Element
@@ -19,12 +20,45 @@ Key: Comparable {
     var defaultSnapshot: Snapshot {
         return Snapshot(defaultRootElement)
     }
+    mutating func recordValuesStepping(at ks: PDSet<Key>, with s: Snapshot) {
+        if let p = impl.steps.last?.new {
+            let x = Step.values(
+                from: (p.time, p.snapshot),
+                to: (PDTimestamp(),s),
+                at: ks)
+            impl.record(x)
+        }
+        else {
+            let x = Step.values(
+                from: (PDTimestamp(), defaultSnapshot),
+                to: (PDTimestamp(),s),
+                at: ks)
+            impl.record(x)
+        }
+    }
+    mutating func recordSubtreesStepping(from a: PDSet<Key>, to b: PDSet<Key>, in pk: Key, with s: Snapshot) {
+        if let p = impl.steps.last?.new {
+            let x = Step.subtrees(
+                from: (p.time, p.snapshot, a),
+                to: (PDTimestamp(), s, b),
+                in: pk)
+            impl.record(x)
+        }
+        else {
+            let x = Step.subtrees(
+                from: (PDTimestamp(), defaultSnapshot, a),
+                to: (PDTimestamp(), s, b),
+                in: pk)
+            impl.record(x)
+        }
+    }
 }
 public extension PDUnorderedMapTreeRepository {
-    typealias Timeline = PDTimeline<Snapshot>
+    typealias Timeline = PDTimeline<Step>
+    typealias Step = PDUnorderedMapTreeStep<Snapshot>
     typealias Snapshot = PDUnorderedMapTree<Key,Value>
     typealias Element = Snapshot.Element
-    typealias Selection = Snapshot.Selection
+//    typealias Selection = Snapshot.Selection
 
     init(_ e: Element) {
         defaultRootElement = e
@@ -61,11 +95,7 @@ public extension PDUnorderedMapTreeRepository {
             s[e.0] = e.1
             ks.insert(e.0)
         }
-        impl.recordStepping(
-            from: .values(ks),
-            to: .values(ks),
-            with: s,
-            default: Snapshot(defaultRootElement))
+        recordValuesStepping(at: ks, with: s)
     }
     mutating func insertSubtrees<C>(contentsOf es: C, in pk: Key) where C: Collection, C.Element == Element {
         var s = latestSnapshot
@@ -76,11 +106,7 @@ public extension PDUnorderedMapTreeRepository {
             ks.insert(e.0)
         }
         s = x.tree
-        impl.recordStepping(
-            from: .subtrees([], in: pk),
-            to: .subtrees(ks, in: pk),
-            with: s,
-            default: Snapshot(defaultRootElement))
+        recordSubtreesStepping(from: [], to: ks, in: pk, with: s)
     }
     mutating func insertSubtree(_ e: Element, in pk: Key) {
         insertSubtrees(contentsOf: [e], in: pk)
@@ -92,28 +118,24 @@ public extension PDUnorderedMapTreeRepository {
             x.removeSubtree(k)
         }
         s = x.tree
-        impl.recordStepping(
-            from: .subtrees(PDSet(ks), in: pk),
-            to: .subtrees([], in: pk),
-            with: s,
-            default: Snapshot(defaultRootElement))
+        recordSubtreesStepping(from: PDSet(ks), to: [], in: pk, with: s)
     }
     mutating func removeSubtree(_ k: Key, in pk: Key) {
         removeSubtrees(contentsOf: [k], in: pk)
     }
 }
 
-extension PDUnorderedMapTree: PDSnapshotProtocol {}
-public extension PDUnorderedMapTree {
-    enum Selection {
-        /// Only values for the keys has been changed.
-        /// No change in topology at all.
-        /// Zero-length key-set effectively makes no-op.
-        case values(PDSet<Key>)
-        /// Topology of direct subtrees of subtree for the key has been changed.
-        /// Target key itself has not been changed.
-        /// This also can represents an insertion/removal position
-        /// with zero-length range.
-        case subtrees(PDSet<Key>, in: Key)
-    }
-}
+//extension PDUnorderedMapTree: PDSnapshotProtocol {}
+//public extension PDUnorderedMapTree {
+//    enum Selection {
+//        /// Only values for the keys has been changed.
+//        /// No change in topology at all.
+//        /// Zero-length key-set effectively makes no-op.
+//        case values(PDSet<Key>)
+//        /// Topology of direct subtrees of subtree for the key has been changed.
+//        /// Target key itself has not been changed.
+//        /// This also can represents an insertion/removal position
+//        /// with zero-length range.
+//        case subtrees(PDSet<Key>, in: Key)
+//    }
+//}

@@ -55,9 +55,8 @@ public protocol PDUndoRedoProtocol: PDReplayingProtocol {
     mutating func replay(_: Timeline)
 }
 
-public struct PDUndoRedo<Snapshot> where
-Snapshot: PDSnapshotProtocol {
-    public typealias Timeline = PDTimeline<Snapshot>
+public struct PDUndoRedo<Base> where Base: PDRepositoryProtocol {
+    public typealias Timeline = PDTimeline<Base.Step>
 
     public let capacity: Int
 

@@ -21,38 +21,56 @@ RangeReplaceableCollection {
         impl.replay(x)
     }
     var latestSnapshot: Snapshot {
-        return impl.steps.last?.new.snapshot ?? Snapshot()
+        return impl.steps.last?.new.snapshot ?? defaultSnapshot
     }
+    var defaultSnapshot: Snapshot {
+        return Snapshot()
+    }
+    /// Convenient error-avoiding utilit function to append stepping.
     mutating func recordStepping(from a: Range<Int>, to b: Range<Int>, with s: Snapshot) {
-        let t = PDTimestamp()
         if let p = impl.steps.last?.new {
-            let x = Timeline.Step(
-                old: Timeline.Point(
-                    time: p.time,
-                    snapshot: p.snapshot,
-                    selection: a),
-                new: Timeline.Point(
-                    time: t,
-                    snapshot: s,
-                    selection: b))
+            let x = PDListStep(
+                old: Timeline.Point(time: p.time, snapshot: p.snapshot, range: a),
+                new: Timeline.Point(time: PDTimestamp(), snapshot: s, range: b))
             impl.record(x)
         }
         else {
-            let x = Timeline.Step(
-                old: Timeline.Point(
-                    time: t,
-                    snapshot: latestSnapshot,
-                    selection: a),
-                new: Timeline.Point(
-                    time: t,
-                    snapshot: s,
-                    selection: b))
+            let x = PDListStep(
+                old: Timeline.Point(time: PDTimestamp(), snapshot: defaultSnapshot, range: a),
+                new: Timeline.Point(time: PDTimestamp(), snapshot: s, range: b))
             impl.record(x)
         }
     }
+//    mutating func recordStepping(from a: Range<Int>, to b: Range<Int>, with s: Snapshot) {
+//        let t = PDTimestamp()
+//        if let p = impl.steps.last?.new {
+//            let x = Timeline.Step(
+//                previous: Timeline.Point(
+//                    time: p.time,
+//                    snapshot: p.snapshot,
+//                    selection: a),
+//                new: Timeline.Point(
+//                    time: t,
+//                    snapshot: s,
+//                    selection: b))
+//            impl.record(x)
+//        }
+//        else {
+//            let x = Timeline.Step(
+//                previous: Timeline.Point(
+//                    time: t,
+//                    snapshot: latestSnapshot,
+//                    selection: a),
+//                new: Timeline.Point(
+//                    time: t,
+//                    snapshot: s,
+//                    selection: b))
+//            impl.record(x)
+//        }
+//    }
 }
 public extension PDListRepository {
-    typealias Timeline = PDTimeline<Snapshot>
+    typealias Timeline = PDTimeline<PDListStep<PDList<Element>>>
     typealias Snapshot = PDList<Element>
 
     var timeline: Timeline {
