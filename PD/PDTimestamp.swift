@@ -19,6 +19,7 @@ import Foundation
 ///
 public struct PDTimestamp: Equatable {
     private let refID = PDRefID()
+    public init() {}
     public static func == (_ a: PDTimestamp, _ b: PDTimestamp) -> Bool {
         return a.refID === b.refID
     }
