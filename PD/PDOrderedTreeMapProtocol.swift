@@ -6,7 +6,7 @@
 //
 
 public protocol PDOrderedTreeMapProtocol: PDSnapshotProtocol
-where Selection == PDSet<Key> {
+where Selection == PDOrderedTreeMapSelection<Key> {
     associatedtype Key: Comparable
     associatedtype Value
     typealias Element = (key: Key, value: Value)
@@ -21,7 +21,6 @@ where Selection == PDSet<Key> {
 
 extension PDOrderedTreeMap: PDOrderedTreeMapProtocol {}
 public extension PDOrderedTreeMap {
-    typealias Selection = PDSet<Key>
     mutating func insert(_ element: (key: Key, value: Value), at i: Int, in key: Key) {
         var s = subtree(for: key)!
         s.insert(element, at: i)
@@ -37,5 +36,34 @@ public extension PDOrderedTreeMap {
     }
 }
 public extension PDOrderedTreeMap {
+    typealias Selection = PDOrderedTreeMapSelection<Key>
+}
 
+/// Designates selected portion in the tree.
+///
+/// This has been designed to provide best performance.
+/// Solving explicit index from `OrderedTreeMap` takes O(n log(n)),
+/// therefore highly discouraged.
+/// We need to record indices to avoid such index resolution.
+///
+public enum PDOrderedTreeMapSelection<Key> where Key: Comparable {
+    /// Only values for the keys has been changed.
+    /// No change in topology at all.
+    /// Zero-length key-set effectively makes no-op.
+    case value(Key)
+    /// Topology of direct subtrees of subtree for the key has been changed.
+    /// Target key itself has not been changed.
+    /// This also can represents an insertion/removal position
+    /// with zero-length range.
+    case subtrees(Range<Int>, in: Key)
+}
+public extension PDOrderedTreeMapSelection {
+    /// We cannot know count in O(1) as `.subtrees`
+    /// includes all descendant nodes.
+    var isEmpty: Bool {
+        switch self {
+        case .value(_):             return false
+        case .subtrees(let r,_):    return r.isEmpty
+        }
+    }
 }

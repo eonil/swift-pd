@@ -69,27 +69,31 @@ public extension PDOrderedTreeMapRepo {
 //    }
 }
 public extension PDOrderedTreeMapRepo {
-    subscript(_ key: Snapshot.Key) -> Snapshot.Value {
+    subscript(_ k: Snapshot.Key) -> Snapshot.Value {
         get {
-            return latestSnapshot[key]
+            return latestSnapshot[k]
         }
         set(v) {
             var s = latestSnapshot
-            s[key] = v
-            impl.recordStepping(from: [key], to: [key], with: s, default: Snapshot(defaultRootElement))
+            s[k] = v
+            let x = Selection.value(k)
+            impl.recordStepping(from: x, to: x, with: s, default: Snapshot(defaultRootElement))
         }
     }
-    mutating func insert(_ element: Snapshot.Element, at i: Int, in key: Key) {
+    mutating func insert(_ e: Snapshot.Element, at i: Int, in k: Key) {
         var s = latestSnapshot
-        s.insert(element, at: i, in: key)
-        let ck = element.key
-        impl.recordStepping(from: [], to: [ck], with: s, default: Snapshot(defaultRootElement))
+        s.insert(e, at: i, in: k)
+        let a = Selection.subtrees(i..<i, in: k)
+        let b = Selection.subtrees(i..<i+1, in: k)
+        impl.recordStepping(from: a, to: b, with: s, default: Snapshot(defaultRootElement))
     }
     @discardableResult
-    mutating func remove(at i: Int, in key: Key) -> Element {
+    mutating func remove(at i: Int, in k: Key) -> Element {
         var s = latestSnapshot
-        let e = s.remove(at: i, in: key)
-        impl.recordStepping(from: [e.key], to: [], with: s, default: Snapshot(defaultRootElement))
+        let e = s.remove(at: i, in: k)
+        let a = Selection.subtrees(i..<i+1, in: k)
+        let b = Selection.subtrees(i..<i, in: k)
+        impl.recordStepping(from: a, to: b, with: s, default: Snapshot(defaultRootElement))
         return e
     }
 }
