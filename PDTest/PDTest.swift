@@ -105,6 +105,11 @@ class PDTest: XCTestCase {
         XCTAssertEqual(arc.past.count, 1)
         XCTAssertEqual(arc.future.count, 1)
 
+        // If test fails after `removeAll`,
+        // it might because of wrong default `removeAll`
+        // implementation provided by `RangeReplacementCollection`.
+        // You can fix it by providing overriden implementations
+        // for all `removeAll` overloads.
         repo.removeAll()
         repo.append(contentsOf: [888,999])
         arc.replay(repo.timeline)

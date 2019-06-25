@@ -82,4 +82,12 @@ public extension PDListRepository {
         let b = q.lowerBound..<q.lowerBound.advanced(by: newElements.count)
         recordStepping(from: a, to: b, with: s)
     }
+    mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
+        let s = latestSnapshot
+        replaceSubrange(s.indices, with: [])
+    }
+//    mutating func removeAll(where shouldBeRemoved: (Element) throws -> Bool) rethrows {
+//        let s = latestSnapshot
+//        replaceSubrange(s.indices, with: [])
+//    }
 }
