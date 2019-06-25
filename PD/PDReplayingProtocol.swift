@@ -17,3 +17,10 @@ public protocol PDReplayingProtocol {
     ///
     mutating func replay(_: Timeline)
 }
+
+public extension PDReplayingProtocol {
+    mutating func replay(_ x: Step) {
+        let tx = Timeline(x)
+        replay(tx)
+    }
+}
