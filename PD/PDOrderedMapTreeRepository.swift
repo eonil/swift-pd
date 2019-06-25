@@ -80,6 +80,9 @@ public extension PDOrderedMapTreeRepository {
     var subtree: Snapshot.Subtree {
         return latestSnapshot.subtree
     }
+    func subtree(for k: Key) -> Snapshot.Subtree? {
+        return latestSnapshot.subtree(for: k)
+    }
     subscript(_ k: Key) -> Value {
         get {
             let s = latestSnapshot
