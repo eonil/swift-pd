@@ -7,7 +7,7 @@ import PackageDescription
 let package = Package(
     name: "PD",
     products: [
-        .library(name: "PD", targets: ["PD"]),
+        .library(name: "PD", type: .static, targets: ["PD"]),
     ],
     dependencies: [
         .package(url: "https://github.com/eonil/swift-tree", .branch("master")),
