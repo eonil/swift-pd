@@ -61,10 +61,16 @@ public extension PDListRepository {
 }
 public extension PDListRepository {
     typealias Index = Int
-    var startIndex: Index { latestSnapshot.startIndex }
-    var endIndex: Index { latestSnapshot.endIndex }
+    var startIndex: Index {
+        return latestSnapshot.startIndex
+    }
+    var endIndex: Index {
+        return latestSnapshot.endIndex
+    }
     subscript(_ i: Index) -> Snapshot.Element {
-        get { latestSnapshot[i]  }
+        get {
+            return latestSnapshot[i]
+        }
         set(v) {
             let s = latestSnapshot
             var s1 = s

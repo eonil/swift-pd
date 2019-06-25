@@ -8,21 +8,18 @@ let package = Package(
     name: "PD",
     products: [
         .library(name: "PD", targets: ["PD"]),
-//        .executable(name: "SBTMBenchmark", targets: ["SBTLBenchmark"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/eonil/swift-sbtl", .branch("master")),
-        .package(url: "https://github.com/eonil/swift-hamt", .branch("master")),
         .package(url: "https://github.com/eonil/swift-tree", .branch("master")),
     ],
     targets: [
         .target(
             name: "PD",
-            dependencies: ["SBTL", "HAMT", "Tree"],
+            dependencies: ["Tree"],
             path: "PD"),
         .testTarget(
             name: "PDTest",
-            dependencies: ["PD"],
+            dependencies: ["PD", "Tree"],
             path: "PDTest"),
     ]
 )

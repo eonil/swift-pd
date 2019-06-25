@@ -2,20 +2,20 @@
   "object": {
     "pins": [
       {
-        "package": "HAMT",
-        "repositoryURL": "https://github.com/eonil/swift-hamt",
+        "package": "BTree",
+        "repositoryURL": "https://github.com/eonil/BTree",
         "state": {
           "branch": "master",
-          "revision": "f98e512c087b40629300b7f3620fc36bada2ed73",
+          "revision": "b95c306e268f90e96efe76dce354192f4ea8d716",
           "version": null
         }
       },
       {
-        "package": "SBTL",
-        "repositoryURL": "https://github.com/eonil/swift-sbtl",
+        "package": "Tree",
+        "repositoryURL": "https://github.com/eonil/swift-tree",
         "state": {
           "branch": "master",
-          "revision": "8ceb578a1f4daabdc7da559877c6c67a9753f71b",
+          "revision": "959d93bb46059730e15d105b37d4c03ac4450707",
           "version": null
         }
       }
