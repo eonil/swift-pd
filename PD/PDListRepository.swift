@@ -58,6 +58,12 @@ public extension PDListRepository {
     var timeline: Timeline {
         return impl
     }
+    var latestOnly: PDListRepository {
+        guard let x = timeline.steps.last else { return self }
+        var z = self
+        z.impl = Timeline(x)
+        return z
+    }
 }
 public extension PDListRepository {
     typealias Index = Int

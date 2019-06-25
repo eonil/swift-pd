@@ -33,11 +33,5 @@
 ///
 public protocol PDRepositoryProtocol: PDReplayingProtocol {
     var timeline: Timeline { get }
-    init(timeline: Timeline)
-}
-public extension PDRepositoryProtocol {
-    var latestOnly: Self {
-        guard let x = timeline.steps.last else { return self }
-        return Self(timeline: Timeline(x))
-    }
+    var latestOnly: Self { get }
 }

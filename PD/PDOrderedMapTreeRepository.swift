@@ -9,7 +9,8 @@ import Foundation
 import BTree
 
 /// A repository for ordered map-trees.
-public struct PDOrderedMapTreeRepository<Key,Value> where Key: Comparable {
+public struct PDOrderedMapTreeRepository<Key,Value>: PDRepositoryProtocol where
+Key: Comparable {
     private(set) var impl = Timeline()
     private var defaultRootElement: Element
     var latestSnapshot: Snapshot {
@@ -34,6 +35,14 @@ public extension PDOrderedMapTreeRepository {
     mutating func replay(_ x: Timeline) {
         impl.replay(x)
     }
+    var latestOnly: PDOrderedMapTreeRepository {
+        guard let x = timeline.steps.last else { return self }
+        var z = self
+        z.impl = Timeline(x)
+        return z
+    }
+}
+public extension PDOrderedMapTreeRepository {
     subscript(_ k: Key) -> Value {
         get {
             let s = latestSnapshot
