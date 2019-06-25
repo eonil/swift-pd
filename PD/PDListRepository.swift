@@ -1,11 +1,11 @@
 //
-//  PDListRepo.swift
+//  PDListRepository.swift
 //  PD
 //
 //  Created by Henry on 2019/06/23.
 //
 
-public struct PDListRepo<Element>:
+public struct PDListRepository<Element>:
 PDRepositoryProtocol,
 Sequence,
 Collection,
@@ -14,6 +14,9 @@ MutableCollection,
 RangeReplaceableCollection {
     private(set) var impl = Timeline()
     public init() {}
+    public init(timeline z: Timeline) {
+        impl = z
+    }
     public mutating func replay(_ x: Timeline) {
         impl.replay(x)
     }
@@ -48,7 +51,7 @@ RangeReplaceableCollection {
         }
     }
 }
-public extension PDListRepo {
+public extension PDListRepository {
     typealias Timeline = PDTimeline<Snapshot>
     typealias Snapshot = PDList<Element>
 
@@ -56,7 +59,7 @@ public extension PDListRepo {
         return impl
     }
 }
-public extension PDListRepo {
+public extension PDListRepository {
     typealias Index = Int
     var startIndex: Index { latestSnapshot.startIndex }
     var endIndex: Index { latestSnapshot.endIndex }
@@ -73,9 +76,8 @@ public extension PDListRepo {
     }
     mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: __owned C) where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
         let q = subrange.relative(to: self)
-        let s = latestSnapshot
-        var s1 = s
-        s1.replaceSubrange(q, with: newElements)
+        var s = latestSnapshot
+        s.replaceSubrange(q, with: newElements)
         let a = q
         let b = q.lowerBound..<q.lowerBound.advanced(by: newElements.count)
         recordStepping(from: a, to: b, with: s)

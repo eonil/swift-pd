@@ -19,4 +19,5 @@ public typealias PDSumList<T> = SBTL<T> where T: SBTLValueProtocol
 public typealias PDSumMap<K,V> = SBTLMap<K,V> where K: Comparable, V: SBTLValueProtocol
 public typealias PDSumProtocol = SBTLValueProtocol
 
-public typealias PDOrderedTreeMap<Key,Value> = OrderedTreeMap<Key,Value> where Key: Comparable
+public typealias PDUnorderedMapTree<Key,Value> = PersistentUnorderedMapTree<Key,Value> where Key: Comparable
+public typealias PDOrderedMapTree<Key,Value> = PersistentOrderedMapTree<Key,Value> where Key: Comparable
