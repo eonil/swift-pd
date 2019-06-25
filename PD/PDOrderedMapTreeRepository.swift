@@ -77,7 +77,7 @@ public extension PDOrderedMapTreeRepository {
     }
 }
 public extension PDOrderedMapTreeRepository {
-    func subtree() -> Snapshot.Subtree {
+    var subtree: Snapshot.Subtree {
         return latestSnapshot.subtree
     }
     subscript(_ k: Key) -> Value {
