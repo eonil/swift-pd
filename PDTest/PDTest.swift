@@ -25,7 +25,7 @@ class PDTest: XCTestCase {
     }
     func testUndoRedo() {
         typealias R = PDListRepository<Int>
-        typealias U = PDUndoRedo<R.Snapshot>
+        typealias U = PDUndoRedo<R>
         let initialRepo = R()
         var repo = initialRepo
         var repo1 = initialRepo
