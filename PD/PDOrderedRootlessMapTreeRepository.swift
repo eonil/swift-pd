@@ -14,6 +14,7 @@ import BTree
 /// as this repository does not require root element.
 ///
 public struct PDOrderedRootlessMapTreeRepository<Key,Value>:
+Collection,
 PDRepositoryProtocol where
 Key: Comparable {
     private(set) var impl = Timeline()
@@ -61,7 +62,6 @@ public extension PDOrderedRootlessMapTreeRepository {
     typealias Timeline = PDTimeline<Step>
     typealias Step = PDOrderedRootlessMapTreeStep<Snapshot>
     typealias Snapshot = PDOrderedRootlessMapTree<Key,Value>
-    typealias Element = Snapshot.Element
 
     var timeline: Timeline {
         return impl
@@ -126,5 +126,25 @@ public extension PDOrderedRootlessMapTreeRepository {
     mutating func removeAll() {
         let s = latestSnapshot
         recordSubtreesStepping(from: 0..<s.count, to: 0..<0, in: nil, with: defaultSnapshot)
+    }
+}
+public extension PDOrderedRootlessMapTreeRepository {
+    typealias Iterator = Snapshot.Iterator
+    typealias Index = Snapshot.Index
+    typealias Element = Snapshot.Element
+    func makeIterator() -> Iterator {
+        return latestSnapshot.makeIterator()
+    }
+    var startIndex: Index {
+        return latestSnapshot.startIndex
+    }
+    var endIndex: Index {
+        return latestSnapshot.endIndex
+    }
+    func index(after i: Index) -> Index {
+        return latestSnapshot.index(after: i)
+    }
+    subscript(_ i: Index) -> Element {
+        return latestSnapshot[i]
     }
 }
