@@ -105,9 +105,7 @@ public extension PDOrderedRootlessMapTreeRepository {
     }
     mutating func insertSubtrees<C>(contentsOf es: C, at i: Int, in pk: Key?) where C: Collection, C.Element == Element {
         var s = latestSnapshot
-        var x = s.subtree(for: pk)
-        x.insert(contentsOf: es, at: i)
-        s = x.tree
+        s.insert(contentsOf: es, at: i, in: pk)
         recordSubtreesStepping(from: i..<i, to: i..<i+1, in: pk, with: s)
     }
     mutating func insertSubtree(_ e: Element, at i: Int, in pk: Key?) {
@@ -115,9 +113,7 @@ public extension PDOrderedRootlessMapTreeRepository {
     }
     mutating func removeSubtrees(_ r: Range<Int>, in pk: Key?) {
         var s = latestSnapshot
-        var x = s.subtree(for: pk)
-        x.removeSubrange(r)
-        s = x.tree
+        s.removeSubtrees(r, in: pk)
         recordSubtreesStepping(from: r, to: r.lowerBound..<r.lowerBound, in: pk, with: s)
     }
     mutating func removeSubtree(at i: Int, in pk: Key?) {
