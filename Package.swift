@@ -1,11 +1,12 @@
-// swift-tools-version:4.0
-// https://github.com/apple/swift-package-manager/blob/master/Documentation/PackageDescriptionV4.md
-
-import Foundation
+// swift-tools-version:5.0
+// https://github.com/apple/swift-package-manager/blob/master/Documentation/PackageDescription.md
 import PackageDescription
 
 let package = Package(
     name: "PD",
+    platforms: [
+        .macOS(.v10_11),
+    ],
     products: [
         .library(name: "PD", type: .static, targets: ["PD"]),
     ],

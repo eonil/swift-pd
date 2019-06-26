@@ -11,11 +11,20 @@
         }
       },
       {
+        "package": "TestUtil",
+        "repositoryURL": "https://github.com/eonil/swift-test-util",
+        "state": {
+          "branch": "master",
+          "revision": "d23c5f342bba20b496720e255c2c9163698fa618",
+          "version": null
+        }
+      },
+      {
         "package": "Tree",
         "repositoryURL": "https://github.com/eonil/swift-tree",
         "state": {
           "branch": "master",
-          "revision": "e1e1eb00b2ad341c15ed05477597810c66f1423d",
+          "revision": "4b6aa8191eb0a888b608bd8f7af1f023e27a6a6d",
           "version": null
         }
       }
