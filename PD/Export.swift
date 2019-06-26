@@ -20,3 +20,4 @@ public typealias PDMap<K,V> = Map<K,V> where K: Comparable
 
 public typealias PDUnorderedMapTree<Key,Value> = PersistentUnorderedMapTree<Key,Value> where Key: Comparable
 public typealias PDOrderedMapTree<Key,Value> = PersistentOrderedMapTree<Key,Value> where Key: Comparable
+public typealias PDOrderedRootlessMapTree<Key,Value> = PersistentOrderedRootlessMapTree<Key,Value> where Key: Comparable

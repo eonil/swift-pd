@@ -1,11 +1,11 @@
 //
-//  PDUnorderedMapTreeStep.swift
+//  PDOrderedRootlessMapTreeStep.swift
 //  PD
 //
-//  Created by Henry on 2019/06/25.
+//  Created by Henry on 2019/06/26.
 //
 
-public enum PDUnorderedMapTreeStep<Snapshot>:
+public enum PDOrderedRootlessMapTreeStep<Snapshot>:
 PDTimelineStepProtocol where
 Snapshot: PDMapProtocol {
     /// Only values for the keys has been changed.
@@ -15,11 +15,16 @@ Snapshot: PDMapProtocol {
     /// Topology of direct subtrees of subtree for the key has been changed.
     /// Target key itself has not been changed.
     /// This also can represents an insertion/removal position
-    /// with zero-length range.
-    case subtrees(from: SubtreesPoint, to: SubtreesPoint, in: Snapshot.Key)
+    /// with zero-length
+    ///
+    /// - `from.range` is removed range in `from.snapshot`.
+    /// - `to.range` is inserted range in`to.range`.
+    /// - Use `nil` to represent root node.
+    ///
+    case subtrees(from: SubtreesPoint, to: SubtreesPoint, in: Snapshot.Key?)
 
     public typealias ValuesPoint = (time: PDTimestamp, snapshot: Snapshot)
-    public typealias SubtreesPoint = (time: PDTimestamp, snapshot: Snapshot, keys: PDSet<Snapshot.Key>)
+    public typealias SubtreesPoint = (time: PDTimestamp, snapshot: Snapshot, range: Range<Int>)
 
     public var old: Point {
         switch self {
@@ -33,7 +38,7 @@ Snapshot: PDMapProtocol {
         case let .subtrees(_,b,_):  return Point(time: b.0, snapshot: b.1)
         }
     }
-    public func reversed() -> PDUnorderedMapTreeStep<Snapshot> {
+    public func reversed() -> PDOrderedRootlessMapTreeStep {
         switch self {
         case let .values(a, b, ks):     return .values(from: b, to: a, at: ks)
         case let .subtrees(a, b, k):    return .subtrees(from: b, to: a, in: k)

@@ -26,6 +26,8 @@
 		45639CA122C22F1100C0DD71 /* PDRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CA022C22F1100C0DD71 /* PDRepositoryProtocol.swift */; };
 		45639CA322C2350300C0DD71 /* PDMapTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CA222C2350300C0DD71 /* PDMapTreeProtocol.swift */; };
 		45639CA522C2352100C0DD71 /* PDUnorderedMapTreeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CA422C2352100C0DD71 /* PDUnorderedMapTreeStep.swift */; };
+		45639CDF22C3205500C0DD71 /* PDOrderedRootlessMapTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CDE22C3205500C0DD71 /* PDOrderedRootlessMapTreeRepository.swift */; };
+		45639CE622C3208B00C0DD71 /* PDOrderedRootlessMapTreeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CE522C3208B00C0DD71 /* PDOrderedRootlessMapTreeStep.swift */; };
 		4569EB0122BBC3B100782C6A /* PDSumListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569EB0022BBC3B100782C6A /* PDSumListTest.swift */; };
 		4586D33822C138C000779050 /* PDOrderedMapRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33722C138C000779050 /* PDOrderedMapRepo.swift */; };
 		4586D33A22C138CE00779050 /* PDOrderedMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33922C138CE00779050 /* PDOrderedMapProtocol.swift */; };
@@ -123,6 +125,8 @@
 		45639CA022C22F1100C0DD71 /* PDRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDRepositoryProtocol.swift; sourceTree = "<group>"; };
 		45639CA222C2350300C0DD71 /* PDMapTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMapTreeProtocol.swift; sourceTree = "<group>"; };
 		45639CA422C2352100C0DD71 /* PDUnorderedMapTreeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDUnorderedMapTreeStep.swift; sourceTree = "<group>"; };
+		45639CDE22C3205500C0DD71 /* PDOrderedRootlessMapTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDOrderedRootlessMapTreeRepository.swift; sourceTree = "<group>"; };
+		45639CE522C3208B00C0DD71 /* PDOrderedRootlessMapTreeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDOrderedRootlessMapTreeStep.swift; sourceTree = "<group>"; };
 		4569EAE722BBAEC400782C6A /* PDSnapshotProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSnapshotProtocol.swift; sourceTree = "<group>"; };
 		4569EB0022BBC3B100782C6A /* PDSumListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSumListTest.swift; sourceTree = "<group>"; };
 		4586D33722C138C000779050 /* PDOrderedMapRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDOrderedMapRepo.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				45639C8D22C1EC6900C0DD71 /* PDOrderedMapTreeStep.swift */,
 				45639C1122C1B6AA00C0DD71 /* PDUnorderedMapTreeRepository.swift */,
 				45639CA422C2352100C0DD71 /* PDUnorderedMapTreeStep.swift */,
+				45639CDE22C3205500C0DD71 /* PDOrderedRootlessMapTreeRepository.swift */,
+				45639CE522C3208B00C0DD71 /* PDOrderedRootlessMapTreeStep.swift */,
 				45639CA222C2350300C0DD71 /* PDMapTreeProtocol.swift */,
 				4591BA7222BC3CDD0052039C /* PDUndoRedoRepository.swift */,
 				4548E2E822BB6FC50099E410 /* PDUndoRedo.swift */,
@@ -442,6 +448,7 @@
 				45639C9922C2274C00C0DD71 /* PDTimeline.points.swift in Sources */,
 				45639CA322C2350300C0DD71 /* PDMapTreeProtocol.swift in Sources */,
 				45639C9722C2248F00C0DD71 /* PDTimeline.swift in Sources */,
+				45639CE622C3208B00C0DD71 /* PDOrderedRootlessMapTreeStep.swift in Sources */,
 				45639C9522C1EFC800C0DD71 /* PDListStep.swift in Sources */,
 				450E6C8822C1167400834386 /* CompressingTime.swift in Sources */,
 				4586D33C22C1393C00779050 /* PDOrderedMap.swift in Sources */,
@@ -455,6 +462,7 @@
 				4586D33822C138C000779050 /* PDOrderedMapRepo.swift in Sources */,
 				45639CA522C2352100C0DD71 /* PDUnorderedMapTreeStep.swift in Sources */,
 				450E6C8E22C1167400834386 /* PDTimestamp.swift in Sources */,
+				45639CDF22C3205500C0DD71 /* PDOrderedRootlessMapTreeRepository.swift in Sources */,
 				45639C9F22C22EB700C0DD71 /* PDReplayingProtocol.swift in Sources */,
 				45639C1222C1B6AA00C0DD71 /* PDUnorderedMapTreeRepository.swift in Sources */,
 			);

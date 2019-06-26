@@ -7,7 +7,7 @@
 
 public enum PDOrderedMapTreeStep<Snapshot>:
 PDTimelineStepProtocol where
-Snapshot: PDMapTreeProtocol {
+Snapshot: PDMapProtocol {
     /// Only values for the keys has been changed.
     /// No change in topology at all.
     /// Zero-length key-set effectively makes no-op.
@@ -15,8 +15,15 @@ Snapshot: PDMapTreeProtocol {
     /// Topology of direct subtrees of subtree for the key has been changed.
     /// Target key itself has not been changed.
     /// This also can represents an insertion/removal position
-    /// with zero-length range.
+    /// with zero-length
+    ///
+    /// `from.range` is removed range in `from.snapshot`.
+    /// `to.range` is inserted range in`to.range`.
+    ///
     case subtrees(from: SubtreesPoint, to: SubtreesPoint, in: Snapshot.Key)
+//    /// Same with `subtrees`, but represented in `CollectionDifference` type.
+//    @available(OSX 10.15, *)
+//    case subtreesDifference(CollectionDifference<Int>, in: Snapshot.Key)
 
     public typealias ValuesPoint = (time: PDTimestamp, snapshot: Snapshot)
     public typealias SubtreesPoint = (time: PDTimestamp, snapshot: Snapshot, range: Range<Int>)
