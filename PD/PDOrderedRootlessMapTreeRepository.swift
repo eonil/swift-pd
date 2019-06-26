@@ -9,11 +9,15 @@ import Foundation
 import BTree
 
 /// A repository for ordered map-trees.
+///
+/// You can initialize this repository without any parameter
+/// as this repository does not require root element.
+///
 public struct PDOrderedRootlessMapTreeRepository<Key,Value>:
 PDRepositoryProtocol where
 Key: Comparable {
     private(set) var impl = Timeline()
-    private var defaultRootElement: Element
+    public init() {}
     var latestSnapshot: Snapshot {
         return impl.steps.last?.new.snapshot ?? defaultSnapshot
     }
@@ -36,7 +40,7 @@ Key: Comparable {
             impl.record(x)
         }
     }
-    mutating func recordSubtreesStepping(from a: Range<Int>, to b: Range<Int>, in pk: Key, with s: Snapshot) {
+    mutating func recordSubtreesStepping(from a: Range<Int>, to b: Range<Int>, in pk: Key?, with s: Snapshot) {
         if let p = impl.steps.last?.new {
             let x = Step.subtrees(
                 from: (p.time, p.snapshot, a),
@@ -58,11 +62,7 @@ public extension PDOrderedRootlessMapTreeRepository {
     typealias Step = PDOrderedRootlessMapTreeStep<Snapshot>
     typealias Snapshot = PDOrderedRootlessMapTree<Key,Value>
     typealias Element = Snapshot.Element
-    //    typealias Selection = Snapshot.Selection
 
-    init(_ e: Element) {
-        defaultRootElement = e
-    }
     var timeline: Timeline {
         return impl
     }
@@ -122,5 +122,9 @@ public extension PDOrderedRootlessMapTreeRepository {
     }
     mutating func removeSubtree(at i: Int, in pk: Key) {
         removeSubtrees(i..<i, in: pk)
+    }
+    mutating func removeAll() {
+        let s = latestSnapshot
+        recordSubtreesStepping(from: 0..<s.count, to: 0..<0, in: nil, with: defaultSnapshot)
     }
 }
