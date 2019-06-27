@@ -8,7 +8,9 @@
 import Tree
 
 public struct PDKVLTRepository<Key,Value>:
-PDRepositoryProtocol, ReplaceableMapTreeStorage where
+PDRepositoryProtocol,
+KVLTStorageProtocol,
+ReplaceableKVLTStorageProtocol where
 Key: Comparable {
     private(set) var impl: Timeline
     public init() {
@@ -16,6 +18,9 @@ Key: Comparable {
     }
     init(impl x: Timeline) {
         impl = x
+    }
+    var latestSnapshot: Snapshot {
+        return timeline.steps.last?.new.snapshot ?? Snapshot()
     }
 }
 public extension PDKVLTRepository {
@@ -40,6 +45,26 @@ public extension PDKVLTRepository {
         let s = impl.steps.last?.new.snapshot ?? Snapshot()
         return s.collection
     }
+    func collection(of pk: Key?) -> KVLTStorage<Key, Value>.List {
+        return latestSnapshot.collection(of: pk)
+    }
+    func tree(for k: Key) -> KVLTStorage<Key, Value>.Tree {
+        return latestSnapshot.tree(for: k)
+    }
+    subscript(k: Key) -> Value {
+        get { return latestSnapshot[k] }
+        set(v) {
+            let x1 = impl.steps.last
+            let p1 = x1?.new
+            let t1 = p1?.time ?? PDTimestamp()
+            let t2 = PDTimestamp()
+            let s1 = latestSnapshot
+            var s2 = s1
+            s2[k] = v
+            let x2 = Step.values(from: (t1,s1), to: (t2,s2), at: [k])
+            impl.record(x2)
+        }
+    }
     mutating func replace<C>(_ r: Range<Int>, in pk: PDKVLTRepository.Key?, with c: C) where C : Swift.Collection, Key == C.Element.Key, Value == C.Element.Value, C.Element : MapTree, Collection.Index == C.Element.Collection.Index {
         let x1 = impl.steps.last
         let p1 = x1?.new
@@ -51,6 +76,23 @@ public extension PDKVLTRepository {
         s2.replace(r, in: pk, with: c)
         let r1 = r
         let r2 = r.lowerBound..<r.lowerBound+c.count
+
+        let x2 = Step.subtrees(from: (t1,s1,r1), to: (t2,s2,r2), in: pk)
+        impl.record(x2)
+    }
+    mutating func insert<C>(contentsOf c: C, at i: Int, in pk: Key?) where
+    C: Swift.Collection,
+    C.Element == (key: Key, value: Value) {
+        let x1 = impl.steps.last
+        let p1 = x1?.new
+
+        let t1 = p1?.time ?? PDTimestamp()
+        let t2 = PDTimestamp()
+        let s1 = impl.steps.last?.new.snapshot ?? Snapshot()
+        var s2 = s1
+        s2.insert(contentsOf: c, at: i, in: pk)
+        let r1 = i..<i
+        let r2 = i..<i+1
 
         let x2 = Step.subtrees(from: (t1,s1,r1), to: (t2,s2,r2), in: pk)
         impl.record(x2)
