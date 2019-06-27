@@ -29,6 +29,7 @@
 		4586D33A22C138CE00779050 /* PDOrderedMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33922C138CE00779050 /* PDOrderedMapProtocol.swift */; };
 		4586D33C22C1393C00779050 /* PDOrderedMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33B22C1393C00779050 /* PDOrderedMap.swift */; };
 		4591BA7722BC4F990052039C /* TreeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591BA7622BC4F990052039C /* TreeTest.swift */; };
+		459D75D522C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75D422C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift */; };
 		45A0888E22BA7A43000628D0 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0888D22BA7A43000628D0 /* Export.swift */; };
 		45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		4586D33D22C13B9700779050 /* PDTimeline.util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimeline.util.swift; sourceTree = "<group>"; };
 		4591BA7222BC3CDD0052039C /* PDUndoRedoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDUndoRedoRepository.swift; sourceTree = "<group>"; };
 		4591BA7622BC4F990052039C /* TreeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTest.swift; sourceTree = "<group>"; };
+		459D75D422C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDOrderedMapTreeStep.lazy.swift; sourceTree = "<group>"; };
 		45A0887F22BA7A27000628D0 /* SBTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBTL.xcodeproj; path = "../swift-sbtl/SBTL.xcodeproj"; sourceTree = "<group>"; };
 		45A0888D22BA7A43000628D0 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		45A12D9622BF6E5F004DFDAF /* PDListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepository.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				45639C9422C1EFC800C0DD71 /* PDListStep.swift */,
 				45639CDE22C3205500C0DD71 /* PDOrderedMapTreeRepository.swift */,
 				45639CE522C3208B00C0DD71 /* PDOrderedMapTreeStep.swift */,
+				459D75D422C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift */,
 				45639CA222C2350300C0DD71 /* PDMapTreeProtocol.swift */,
 				4591BA7222BC3CDD0052039C /* PDUndoRedoRepository.swift */,
 				4548E2E822BB6FC50099E410 /* PDUndoRedo.swift */,
@@ -447,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459D75D522C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift in Sources */,
 				450E6C8B22C1167400834386 /* PDListRepository.swift in Sources */,
 				45639C9922C2274C00C0DD71 /* PDTimeline.points.swift in Sources */,
 				45639CA322C2350300C0DD71 /* PDMapTreeProtocol.swift in Sources */,

@@ -7,7 +7,8 @@
 
 public enum PDOrderedMapTreeStep<Snapshot>:
 PDTimelineStepProtocol where
-Snapshot: PDMapProtocol {
+Snapshot: PDOrderedMapTreeProtocol,
+Snapshot.Key: Comparable {
     /// Only values for the keys has been changed.
     /// No change in topology at all.
     /// Zero-length key-set effectively makes no-op.
