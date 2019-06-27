@@ -65,6 +65,9 @@ public extension PDOrderedMapTreeRepository {
     mutating func replay(_ x: Timeline) {
         impl.replay(x)
     }
+    mutating func replay(_ x: Step) {
+        impl.record(x)
+    }
     var latestOnly: PDOrderedMapTreeRepository {
         guard let x = timeline.steps.last else { return self }
         var z = self
