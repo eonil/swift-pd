@@ -10,6 +10,4 @@ public protocol PDMapProtocol {
     associatedtype Value
 }
 
-extension PDUnorderedMapTree: PDMapProtocol {}
 extension PDOrderedMapTree: PDMapProtocol {}
-extension PDOrderedRootlessMapTree: PDMapProtocol {}

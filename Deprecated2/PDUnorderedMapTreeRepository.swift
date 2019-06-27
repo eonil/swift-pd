@@ -9,6 +9,7 @@ import Foundation
 import BTree
 
 /// A repository for unordered map-trees.
+@available(*,deprecated: 0, message: "Single element rooted tree doesn't make sense. This type will be removed soon. Use PDOrderedRootlessMapTreeRepository instead of.")
 public struct PDUnorderedMapTreeRepository<Key,Value>:
 PDRepositoryProtocol where
 Key: Comparable {

@@ -1,29 +1,25 @@
 //
-//  PDOrderedRootlessMapTreeRepository.swift
+//  PDOrderedMapTreeRepository.swift
 //  PD
 //
-//  Created by Henry on 2019/06/26.
+//  Created by Henry on 2019/06/25.
 //
 
 import Foundation
 import BTree
 
 /// A repository for ordered map-trees.
-///
-/// You can initialize this repository without any parameter
-/// as this repository does not require root element.
-///
-public struct PDOrderedRootlessMapTreeRepository<Key,Value>:
-Collection,
+@available(*,deprecated: 0, message: "Single element rooted tree doesn't make sense. This type will be removed soon. Use PDOrderedRootlessMapTreeRepository instead of.")
+public struct PDOrderedMapTreeRepository<Key,Value>:
 PDRepositoryProtocol where
 Key: Comparable {
     private(set) var impl = Timeline()
-    public init() {}
+    private var defaultRootElement: Element
     var latestSnapshot: Snapshot {
         return impl.steps.last?.new.snapshot ?? defaultSnapshot
     }
     var defaultSnapshot: Snapshot {
-        return Snapshot()
+        return Snapshot(defaultRootElement)
     }
     mutating func recordValuesStepping(at ks: PDSet<Key>, with s: Snapshot) {
         if let p = impl.steps.last?.new {
@@ -41,7 +37,7 @@ Key: Comparable {
             impl.record(x)
         }
     }
-    mutating func recordSubtreesStepping(from a: Range<Int>, to b: Range<Int>, in pk: Key?, with s: Snapshot) {
+    mutating func recordSubtreesStepping(from a: Range<Int>, to b: Range<Int>, in pk: Key, with s: Snapshot) {
         if let p = impl.steps.last?.new {
             let x = Step.subtrees(
                 from: (p.time, p.snapshot, a),
@@ -58,25 +54,30 @@ Key: Comparable {
         }
     }
 }
-public extension PDOrderedRootlessMapTreeRepository {
+public extension PDOrderedMapTreeRepository {
     typealias Timeline = PDTimeline<Step>
-    typealias Step = PDOrderedRootlessMapTreeStep<Snapshot>
-    typealias Snapshot = PDOrderedRootlessMapTree<Key,Value>
+    typealias Step = PDOrderedMapTreeStep<Snapshot>
+    typealias Snapshot = PDOrderedMapTree<Key,Value>
+    typealias Element = Snapshot.Element
+//    typealias Selection = Snapshot.Selection
 
+    init(_ e: Element) {
+        defaultRootElement = e
+    }
     var timeline: Timeline {
         return impl
     }
     mutating func replay(_ x: Timeline) {
         impl.replay(x)
     }
-    var latestOnly: PDOrderedRootlessMapTreeRepository {
+    var latestOnly: PDOrderedMapTreeRepository {
         guard let x = timeline.steps.last else { return self }
         var z = self
         z.impl = Timeline(x)
         return z
     }
 }
-public extension PDOrderedRootlessMapTreeRepository {
+public extension PDOrderedMapTreeRepository {
     var subtree: Snapshot.Subtree {
         return latestSnapshot.subtree
     }
@@ -103,44 +104,41 @@ public extension PDOrderedRootlessMapTreeRepository {
         }
         recordValuesStepping(at: ks, with: s)
     }
-    mutating func insertSubtrees<C>(contentsOf es: C, at i: Int, in pk: Key?) where C: Collection, C.Element == Element {
+    mutating func replaceSubtrees<C>(_ r: Range<Int>, in pk: Key, with ts: C) where C: Collection, C.Element == Snapshot.Subtree {
         var s = latestSnapshot
-        s.insert(contentsOf: es, at: i, in: pk)
-        recordSubtreesStepping(from: i..<i, to: i..<i+1, in: pk, with: s)
+        var x = s.subtree(for: pk)!
+        x.replaceSubtrees(r, with: ts)
+        s = x.tree
+
+        let q = r.lowerBound..<r.lowerBound+ts.count
+        recordSubtreesStepping(from: r, to: q, in: pk, with: s)
     }
-    mutating func insertSubtree(_ e: Element, at i: Int, in pk: Key?) {
+    mutating func insertSubtrees<C>(contentsOf es: C, at i: Int, in pk: Key) where C: Collection, C.Element == Element {
+        let ts = es.lazy.map({ e in Snapshot(e).subtree })
+        replaceSubtrees(i..<i, in: pk, with: ts)
+    }
+    mutating func insertSubtree(_ e: Element, at i: Int, in pk: Key) {
         insertSubtrees(contentsOf: [e], at: i, in: pk)
     }
-    mutating func removeSubtrees(_ r: Range<Int>, in pk: Key?) {
-        var s = latestSnapshot
-        s.removeSubtrees(r, in: pk)
-        recordSubtreesStepping(from: r, to: r.lowerBound..<r.lowerBound, in: pk, with: s)
+    mutating func removeSubtrees(_ r: Range<Int>, in pk: Key) {
+        replaceSubtrees(r, in: pk, with: [])
     }
-    mutating func removeSubtree(at i: Int, in pk: Key?) {
+    mutating func removeSubtree(at i: Int, in pk: Key) {
         removeSubtrees(i..<i, in: pk)
     }
-    mutating func removeAll() {
-        let s = latestSnapshot
-        recordSubtreesStepping(from: 0..<s.count, to: 0..<0, in: nil, with: defaultSnapshot)
-    }
 }
-public extension PDOrderedRootlessMapTreeRepository {
-    typealias Iterator = Snapshot.Iterator
-    typealias Index = Snapshot.Index
-    typealias Element = Snapshot.Element
-    func makeIterator() -> Iterator {
-        return latestSnapshot.makeIterator()
-    }
-    var startIndex: Index {
-        return latestSnapshot.startIndex
-    }
-    var endIndex: Index {
-        return latestSnapshot.endIndex
-    }
-    func index(after i: Index) -> Index {
-        return latestSnapshot.index(after: i)
-    }
-    subscript(_ i: Index) -> Element {
-        return latestSnapshot[i]
-    }
-}
+
+//extension PDOrderedMapTree: PDSnapshotProtocol {}
+//public extension PDOrderedMapTree {
+//    enum Selection {
+//        /// Only values for the keys has been changed.
+//        /// No change in topology at all.
+//        /// Zero-length key-set effectively makes no-op.
+//        case values(PDSet<Key>)
+//        /// Topology of direct subtrees of subtree for the key has been changed.
+//        /// Target key itself has not been changed.
+//        /// This also can represents an insertion/removal position
+//        /// with zero-length range.
+//        case subtrees(Range<Int>, in: Key)
+//    }
+//}

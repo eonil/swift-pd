@@ -5,6 +5,7 @@
 //  Created by Henry on 2019/06/25.
 //
 
+@available(*,deprecated: 0, message: "Single element rooted tree doesn't make sense. This type will be removed soon. Use PDOrderedRootlessMapTreeRepository instead of.")
 public enum PDUnorderedMapTreeStep<Snapshot>:
 PDTimelineStepProtocol where
 Snapshot: PDMapProtocol {

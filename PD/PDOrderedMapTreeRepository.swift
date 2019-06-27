@@ -2,7 +2,7 @@
 //  PDOrderedMapTreeRepository.swift
 //  PD
 //
-//  Created by Henry on 2019/06/25.
+//  Created by Henry on 2019/06/26.
 //
 
 import Foundation
@@ -10,15 +10,16 @@ import BTree
 
 /// A repository for ordered map-trees.
 public struct PDOrderedMapTreeRepository<Key,Value>:
+Collection,
 PDRepositoryProtocol where
 Key: Comparable {
     private(set) var impl = Timeline()
-    private var defaultRootElement: Element
+    public init() {}
     var latestSnapshot: Snapshot {
         return impl.steps.last?.new.snapshot ?? defaultSnapshot
     }
     var defaultSnapshot: Snapshot {
-        return Snapshot(defaultRootElement)
+        return Snapshot()
     }
     mutating func recordValuesStepping(at ks: PDSet<Key>, with s: Snapshot) {
         if let p = impl.steps.last?.new {
@@ -36,7 +37,7 @@ Key: Comparable {
             impl.record(x)
         }
     }
-    mutating func recordSubtreesStepping(from a: Range<Int>, to b: Range<Int>, in pk: Key, with s: Snapshot) {
+    mutating func recordSubtreesStepping(from a: Range<Int>, to b: Range<Int>, in pk: Key?, with s: Snapshot) {
         if let p = impl.steps.last?.new {
             let x = Step.subtrees(
                 from: (p.time, p.snapshot, a),
@@ -57,12 +58,7 @@ public extension PDOrderedMapTreeRepository {
     typealias Timeline = PDTimeline<Step>
     typealias Step = PDOrderedMapTreeStep<Snapshot>
     typealias Snapshot = PDOrderedMapTree<Key,Value>
-    typealias Element = Snapshot.Element
-//    typealias Selection = Snapshot.Selection
 
-    init(_ e: Element) {
-        defaultRootElement = e
-    }
     var timeline: Timeline {
         return impl
     }
@@ -94,7 +90,7 @@ public extension PDOrderedMapTreeRepository {
     }
     /// Replaces existing values for keys with new values.
     /// This does NOT make any change in topology.
-    mutating func replaceValues(_ es: [Element]) {
+    mutating func replaceValues<C>(_ es: C) where C: Collection, C.Element == Element {
         var s = latestSnapshot
         var ks = PDSet<Key>()
         for e in es {
@@ -103,41 +99,66 @@ public extension PDOrderedMapTreeRepository {
         }
         recordValuesStepping(at: ks, with: s)
     }
-    mutating func replaceSubtrees<C>(_ r: Range<Int>, in pk: Key, with ts: C) where C: Collection, C.Element == Snapshot.Subtree {
+    mutating func insertSubtrees<C>(contentsOf es: C, at i: Int, in pk: Key?) where C: Collection, C.Element == Element {
         var s = latestSnapshot
-        var x = s.subtree(for: pk)!
-        x.replaceSubtrees(r, with: ts)
-        s = x.tree
-
-        let q = r.lowerBound..<r.lowerBound+ts.count
-        recordSubtreesStepping(from: r, to: q, in: pk, with: s)
+        s.insert(contentsOf: es, at: i, in: pk)
+        recordSubtreesStepping(from: i..<i, to: i..<i+1, in: pk, with: s)
     }
-    mutating func insertSubtrees<C>(contentsOf es: C, at i: Int, in pk: Key) where C: Collection, C.Element == Element {
-        let ts = es.lazy.map({ e in Snapshot(e).subtree })
-        replaceSubtrees(i..<i, in: pk, with: ts)
-    }
-    mutating func insertSubtree(_ e: Element, at i: Int, in pk: Key) {
+    mutating func insertSubtree(_ e: Element, at i: Int, in pk: Key?) {
         insertSubtrees(contentsOf: [e], at: i, in: pk)
     }
-    mutating func removeSubtrees(_ r: Range<Int>, in pk: Key) {
-        replaceSubtrees(r, in: pk, with: [])
+    mutating func removeSubtrees(_ r: Range<Int>, in pk: Key?) {
+        var s = latestSnapshot
+        s.removeSubtrees(r, in: pk)
+        recordSubtreesStepping(from: r, to: r.lowerBound..<r.lowerBound, in: pk, with: s)
     }
-    mutating func removeSubtree(at i: Int, in pk: Key) {
+    mutating func removeSubtree(at i: Int, in pk: Key?) {
         removeSubtrees(i..<i, in: pk)
+    }
+    mutating func removeAll() {
+        let s = latestSnapshot
+        recordSubtreesStepping(from: 0..<s.count, to: 0..<0, in: nil, with: defaultSnapshot)
+    }
+}
+public extension PDOrderedMapTreeRepository {
+    typealias Iterator = Snapshot.Iterator
+    typealias Index = Snapshot.Index
+    typealias Element = Snapshot.Element
+    func makeIterator() -> Iterator {
+        return latestSnapshot.makeIterator()
+    }
+    var startIndex: Index {
+        return latestSnapshot.startIndex
+    }
+    var endIndex: Index {
+        return latestSnapshot.endIndex
+    }
+    func index(after i: Index) -> Index {
+        return latestSnapshot.index(after: i)
+    }
+    subscript(_ i: Index) -> Element {
+        return latestSnapshot[i]
     }
 }
 
-//extension PDOrderedMapTree: PDSnapshotProtocol {}
-//public extension PDOrderedMapTree {
-//    enum Selection {
-//        /// Only values for the keys has been changed.
-//        /// No change in topology at all.
-//        /// Zero-length key-set effectively makes no-op.
-//        case values(PDSet<Key>)
-//        /// Topology of direct subtrees of subtree for the key has been changed.
-//        /// Target key itself has not been changed.
-//        /// This also can represents an insertion/removal position
-//        /// with zero-length range.
-//        case subtrees(Range<Int>, in: Key)
-//    }
-//}
+public extension PDOrderedMapTreeRepository {
+    /// Replay with mapping keys and values.
+    /// This function actually performs all operations one-by-one.
+    /// - Parameter with fx:
+    ///     Mapping function.
+    ///     All keys in tree after mapping must be unique.
+    mutating func replay<K1,V1>(_ x: PDOrderedMapTreeRepository<K1,V1>.Step, with fx: (PDOrderedMapTreeRepository<K1,V1>.Element) -> (Element)) where K1: Hashable {
+        switch x {
+        case let .values(_,b1,ks1):
+            let es = ks1.map({ k1 in fx((k1,b1.snapshot[k1])) })
+            replaceValues(es)
+        case let .subtrees(a1,b1,pk1):
+            var s = latestSnapshot
+            let pk = (pk1 == nil ? nil as Key? : fx((pk1!,a1.snapshot[pk1!])).0) as Key?
+            let es = b1.snapshot.subtree(for: pk1)[b1.range].map({ e in fx(e) })
+            s.removeSubtrees(a1.range, in: pk)
+            s.insert(contentsOf: es, at: b1.range.lowerBound, in: pk)
+            recordSubtreesStepping(from: a1.range, to: b1.range, in: pk, with: s)
+        }
+    }
+}

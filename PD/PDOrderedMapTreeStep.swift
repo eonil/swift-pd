@@ -2,7 +2,7 @@
 //  PDOrderedMapTreeStep.swift
 //  PD
 //
-//  Created by Henry on 2019/06/25.
+//  Created by Henry on 2019/06/26.
 //
 
 public enum PDOrderedMapTreeStep<Snapshot>:
@@ -17,13 +17,11 @@ Snapshot: PDMapProtocol {
     /// This also can represents an insertion/removal position
     /// with zero-length
     ///
-    /// `from.range` is removed range in `from.snapshot`.
-    /// `to.range` is inserted range in`to.range`.
+    /// - `from.range` is removed range in `from.snapshot`.
+    /// - `to.range` is inserted range in`to.range`.
+    /// - Use `nil` to represent root node.
     ///
-    case subtrees(from: SubtreesPoint, to: SubtreesPoint, in: Snapshot.Key)
-//    /// Same with `subtrees`, but represented in `CollectionDifference` type.
-//    @available(OSX 10.15, *)
-//    case subtreesDifference(CollectionDifference<Int>, in: Snapshot.Key)
+    case subtrees(from: SubtreesPoint, to: SubtreesPoint, in: Snapshot.Key?)
 
     public typealias ValuesPoint = (time: PDTimestamp, snapshot: Snapshot)
     public typealias SubtreesPoint = (time: PDTimestamp, snapshot: Snapshot, range: Range<Int>)
@@ -40,13 +38,13 @@ Snapshot: PDMapProtocol {
         case let .subtrees(_,b,_):  return Point(time: b.0, snapshot: b.1)
         }
     }
-    public func reversed() -> PDOrderedMapTreeStep<Snapshot> {
+    public func reversed() -> PDOrderedMapTreeStep {
         switch self {
         case let .values(a, b, ks):     return .values(from: b, to: a, at: ks)
         case let .subtrees(a, b, k):    return .subtrees(from: b, to: a, in: k)
         }
     }
-    
+
     public struct Point: PDTimelineStepPointProtocol {
         public var time: PDTimestamp
         public var snapshot: Snapshot
