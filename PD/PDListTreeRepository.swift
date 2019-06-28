@@ -27,11 +27,11 @@ public extension PDListTreeRepository {
     mutating func replay(_ x: Step) {
         impl.record(x)
     }
-    mutating func insert(_ t: ListTree<Value>, at p: IndexPath) {
+    mutating func insert(contentsOf t: ListTree<Value>, at p: IndexPath) {
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
         var s2 = s1
-        s2.insert(t, at: p)
+        s2.insert(contentsOf: t, at: p)
 
         let t1 = x1?.new.time ?? PDTimestamp()
         let t2 = PDTimestamp()
