@@ -38,7 +38,6 @@ public extension PDKVLTRepository {
     }
 }
 public extension PDKVLTRepository {
-    typealias Collection = Snapshot.Collection
     typealias List = Snapshot.List
     typealias Tree = Snapshot.Tree
     var collection: List {
@@ -65,7 +64,14 @@ public extension PDKVLTRepository {
             impl.record(x2)
         }
     }
-    mutating func replace<C>(_ r: Range<Int>, in pk: PDKVLTRepository.Key?, with c: C) where C : Swift.Collection, Key == C.Element.Key, Value == C.Element.Value, C.Element : MapTree, Collection.Index == C.Element.Collection.Index {
+}
+public extension PDKVLTRepository {
+    mutating func replace<C>(_ r: Range<Int>, in pk: PDKVLTRepository.Key?, with c: C) where
+    C: Swift.Collection,
+    C.Element: KeyValueCollectionTreeProtocol,
+    C.Element.Key == Key,
+    C.Element.Value == Value,
+    C.Element.SubCollection.Index == Int {
         let x1 = impl.steps.last
         let p1 = x1?.new
 
@@ -81,7 +87,7 @@ public extension PDKVLTRepository {
         impl.record(x2)
     }
     mutating func insert<C>(contentsOf c: C, at i: Int, in pk: Key?) where
-    C: Swift.Collection,
+    C: Collection,
     C.Element == (key: Key, value: Value) {
         let x1 = impl.steps.last
         let p1 = x1?.new
