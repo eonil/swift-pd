@@ -10,6 +10,10 @@ import Tree
 
 public struct PDListTreeRepository<Value>: PDRepositoryProtocol {
     private(set) var impl = PDTimeline<Step>()
+    private init(impl x: Timeline) {
+        impl = x
+    }
+    public init() {}
 }
 public extension PDListTreeRepository {
     typealias Timeline = PDTimeline<Step>
