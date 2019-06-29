@@ -31,6 +31,29 @@ public extension PDListTreeRepository {
     mutating func replay(_ x: Step) {
         impl.record(x)
     }
+    mutating func setValue(_ v: Value, at p: IndexPath) {
+        let x1 = impl.steps.last
+        let s1 = x1?.new.snapshot ?? Snapshot()
+        var s2 = s1
+        s2[p].value = v
+
+        let t1 = x1?.new.time ?? PDTimestamp()
+        let t2 = PDTimestamp()
+        let r1 = p.last!..<p.last!
+        let r2 = p.last!..<p.last!+1
+        let x2 = Step(
+            old: Step.Point(
+                time: t1,
+                snapshot: s1,
+                path: p.dropLast(),
+                range: r1),
+            new: Step.Point(
+                time: t2,
+                snapshot: s2,
+                path: p.dropLast(),
+                range: r2))
+        impl.record(x2)
+    }
     mutating func insert(contentsOf t: ListTree<Value>, at p: IndexPath) {
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
@@ -53,6 +76,10 @@ public extension PDListTreeRepository {
                 path: p.dropLast(),
                 range: r2))
         impl.record(x2)
+    }
+    mutating func insert(_ v: Value, at p: IndexPath) {
+        let t = ListTree(value: v)
+        insert(contentsOf: t, at: p)
     }
     mutating func remove(_ t: ListTree<Value>, at p: IndexPath) {
         let x1 = impl.steps.last

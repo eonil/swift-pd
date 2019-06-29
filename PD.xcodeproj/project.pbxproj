@@ -35,6 +35,7 @@
 		459D75FD22C4C88E00CE5841 /* PDTimelineStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75FC22C4C88E00CE5841 /* PDTimelineStepPoint.swift */; };
 		45A0888E22BA7A43000628D0 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0888D22BA7A43000628D0 /* Export.swift */; };
 		45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */; };
+		45ECB14B22C76ACE00013698 /* PDListTreeRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Timeline.extension.swift; sourceTree = "<group>"; };
 		45DE46B322B8FED7006DAC40 /* libPD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE46E822B8FF81006DAC40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeRepositoryTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				4591BA7622BC4F990052039C /* TreeTest.swift */,
 				45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */,
 				4548E31222BB91D10099E410 /* Info.plist */,
+				45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */,
 			);
 			path = PDTest;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45ECB14B22C76ACE00013698 /* PDListTreeRepositoryTest.swift in Sources */,
 				45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */,
 				4591BA7722BC4F990052039C /* TreeTest.swift in Sources */,
 				4548E31122BB91D10099E410 /* PDTest.swift in Sources */,
