@@ -8,7 +8,9 @@
 import Foundation
 import Tree
 
-public struct PDListTreeRepository<Value>: PDRepositoryProtocol {
+public struct PDListTreeRepository<Value>:
+PDRepositoryProtocol,
+ListTreeStorageProtocol {
     private(set) var impl = PDTimeline<Step>()
     private init(impl x: Timeline) {
         impl = x
@@ -30,6 +32,12 @@ public extension PDListTreeRepository {
     }
     mutating func replay(_ x: Step) {
         impl.record(x)
+    }
+}
+public extension PDListTreeRepository {
+    var collection: Snapshot.Collection {
+        let s = impl.steps.last?.new.snapshot ?? Snapshot()
+        return s.collection
     }
     mutating func setValue(_ v: Value, at p: IndexPath) {
         let x1 = impl.steps.last
