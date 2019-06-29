@@ -73,7 +73,7 @@ public extension PDListTreeRepository {
         let t = ListTree(value: v)
         insert(contentsOf: t, at: p)
     }
-    mutating func remove(_ t: ListTree<Value>, at p: IndexPath) {
+    mutating func remove(at p: IndexPath) {
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
         var s2 = s1

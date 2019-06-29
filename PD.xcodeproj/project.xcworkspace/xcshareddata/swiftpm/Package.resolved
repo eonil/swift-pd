@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "DifferenceKit",
+        "repositoryURL": "https://github.com/ra1028/DifferenceKit",
+        "state": {
+          "branch": "master",
+          "revision": "4eb31f8e85e4cb13732f9664d6e01e507cd592a0",
+          "version": null
+        }
+      },
+      {
         "package": "TestUtil",
         "repositoryURL": "https://github.com/eonil/swift-test-util",
         "state": {
@@ -24,7 +33,7 @@
         "repositoryURL": "https://github.com/eonil/swift-tree",
         "state": {
           "branch": "master",
-          "revision": "07add3c4bf6e0e6be18ee710520e4f1bf2e08523",
+          "revision": "12f51fce6be86dd4ba9617cb4a4bb619c80b5991",
           "version": null
         }
       }
