@@ -106,7 +106,7 @@ public extension PDListTreeRepository {
         public enum Operation {
             case setValues
             case insertSubtrees
-            case replaceSubtrees
+//            case replaceSubtrees
             case removeSubtrees
         }
     }
