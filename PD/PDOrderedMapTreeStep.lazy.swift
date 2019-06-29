@@ -6,6 +6,7 @@
 //
 
 import Tree
+@available(*,deprecated: 0)
 public extension PDOrderedMapTreeStep {
     typealias LazyValueMapped<Derived> = PDOrderedMapTreeStep<LazyValueMappedTree<Snapshot,Derived>>
     func lazyMapValues<Derived>(_ fx: @escaping (Snapshot.Value) -> Derived) -> LazyValueMapped<Derived> {

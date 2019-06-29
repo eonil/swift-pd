@@ -5,6 +5,7 @@
 //  Created by Henry on 2019/06/26.
 //
 
+@available(*,deprecated: 0)
 public enum PDOrderedMapTreeStep<Snapshot>:
 PDTimelineStepProtocol where
 Snapshot: PDOrderedMapTreeProtocol,

@@ -9,6 +9,7 @@ import Foundation
 import BTree
 
 /// A repository for ordered map-trees.
+@available(*,deprecated: 0)
 public struct PDOrderedMapTreeRepository<Key,Value>:
 Collection,
 PDRepositoryProtocol where

@@ -105,7 +105,12 @@ public extension PDListTreeRepository {
         public var new = Point()
 
         public func reversed() -> PDListTreeRepository<Value>.Step {
-            return Step(old: new, new: old)
+            return Step(
+                operation: operation.reversed(),
+                path: path,
+                range: range,
+                old: new,
+                new: old)
         }
         public struct Point: PDTimelineStepPointProtocol {
             public var time = PDTimestamp()
@@ -116,6 +121,13 @@ public extension PDListTreeRepository {
             case insertSubtrees
 //            case replaceSubtrees
             case removeSubtrees
+            func reversed() -> Operation {
+                switch self {
+                case .setValues:        return .setValues
+                case .removeSubtrees:   return .insertSubtrees
+                case .insertSubtrees:   return .removeSubtrees
+                }
+            }
         }
     }
 }
