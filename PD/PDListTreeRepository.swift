@@ -39,7 +39,7 @@ public extension PDListTreeRepository {
 
         let t1 = x1?.new.time ?? PDTimestamp()
         let t2 = PDTimestamp()
-        let r1 = p.last!..<p.last!
+        let r1 = p.last!..<p.last!+1
         let r2 = p.last!..<p.last!+1
         let x2 = Step(
             old: Step.Point(
