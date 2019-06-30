@@ -5,7 +5,10 @@
 //  Created by Henry on 2019/06/25.
 //
 
-public struct PDListStep<Snapshot>: PDTimelineStepProtocol {
+public struct PDListStep<Snapshot>:
+PDTimelineStepProtocol where
+Snapshot: RandomAccessCollection,
+Snapshot.Index == Int { 
     public var operation = Operation.replace
     /// Range of operation.
     /// For replacements, this range is indices in both point snapshots.
@@ -21,10 +24,7 @@ public struct PDListStep<Snapshot>: PDTimelineStepProtocol {
             old: new,
             new: old)
     }
-    public struct Point: PDTimelineStepPointProtocol {
-        public var time: PDTimestamp
-        public var snapshot: Snapshot
-    }
+    public typealias Point = PDListStepPoint<Snapshot>
     public typealias Operation = PDListStepOperation
 }
 public enum PDListStepOperation {

@@ -5,20 +5,19 @@
 //  Created by Henry on 2019/06/30.
 //
 
-public extension PDListStep where
-Snapshot: RandomAccessCollection,
-Snapshot.Index == Int {
+public extension PDListStep {
+    /// Makes a lazily-evaluated list-step.
     var lazyStep: Lazy { return Lazy(base: self) }
     struct Lazy { var base: PDListStep }
 }
 public extension PDListStep.Lazy {
-    typealias MapSnapshot<X> = LazyMapCollection<Snapshot,X>
+    typealias MapSnapshot<X> = LazyMapCollection<PDListStep.Snapshot,X>
     typealias MapStep<X> = PDListStep<MapSnapshot<X>>
-    func map<X>(_ mfx: @escaping (Snapshot.Element) -> X) -> MapStep<X> {
+    /// Makes a lazy-mapping list-step.
+    func map<X>(_ mfx: @escaping (PDListStep.Snapshot.Element) -> X) -> MapStep<X> {
         typealias C = MapSnapshot<X>
         typealias S = PDListStep<C>
         typealias P = S.Point
-
         let os = base.old.snapshot.lazy.map(mfx)
         let ns = base.new.snapshot.lazy.map(mfx)
         let s = S(

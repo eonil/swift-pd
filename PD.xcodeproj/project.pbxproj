@@ -35,20 +35,21 @@
 		459D75F622C4C6F100CE5841 /* PDKVLTRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75F522C4C6F100CE5841 /* PDKVLTRepository.swift */; };
 		459D75FD22C4C88E00CE5841 /* PDTimelineStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75FC22C4C88E00CE5841 /* PDTimelineStepPoint.swift */; };
 		45A0888E22BA7A43000628D0 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0888D22BA7A43000628D0 /* Export.swift */; };
-		45AC27EE22C85FD40020C5BE /* PDRecursiveTransmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC27ED22C85FD40020C5BE /* PDRecursiveTransmission.swift */; };
 		45AC27F722C862110020C5BE /* PDListRepository.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC27F622C862110020C5BE /* PDListRepository.lazy.swift */; };
 		45AC27FB22C862B40020C5BE /* PDTimelineProtocol.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC27FA22C862B40020C5BE /* PDTimelineProtocol.lazy.swift */; };
 		45AC27FD22C862EC0020C5BE /* PDTimelineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC27FC22C862EC0020C5BE /* PDTimelineProtocol.swift */; };
 		45AC280022C86A9C0020C5BE /* PDRepositoryProtocol.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC27FF22C86A9C0020C5BE /* PDRepositoryProtocol.lazy.swift */; };
 		45AC280222C86ACA0020C5BE /* PDLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280122C86ACA0020C5BE /* PDLazy.swift */; };
 		45AC280422C8725A0020C5BE /* PDListTreeRepository.replayRecursively.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280322C8725A0020C5BE /* PDListTreeRepository.replayRecursively.swift */; };
-		45AC280622C879B60020C5BE /* PDFlattenTreeOfList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280522C879B60020C5BE /* PDFlattenTreeOfList.swift */; };
 		45AC280822C879DE0020C5BE /* PDListRepository.flatten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280722C879DE0020C5BE /* PDListRepository.flatten.swift */; };
 		45AC280A22C87C8B0020C5BE /* PDStepGroupingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280922C87C8B0020C5BE /* PDStepGroupingListRepository.swift */; };
-		45AC280C22C8AB2C0020C5BE /* PDFlattenListTreeTransmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280B22C8AB2C0020C5BE /* PDFlattenListTreeTransmission.swift */; };
-		45AC280E22C8AB6F0020C5BE /* PDListTreeElementProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC280D22C8AB6F0020C5BE /* PDListTreeElementProtocol.swift */; };
 		45AC281222C8B0CB0020C5BE /* PDTimelineStepProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281122C8B0CB0020C5BE /* PDTimelineStepProtocol.swift */; };
 		45AC281422C8B17A0020C5BE /* PDListStep.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281322C8B17A0020C5BE /* PDListStep.lazy.swift */; };
+		45AC281922C8C63A0020C5BE /* PDListRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */; };
+		45AC281D22C8C8AB0020C5BE /* PDListStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */; };
+		45AC282322C8CE130020C5BE /* PDLazyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282222C8CE130020C5BE /* PDLazyRepository.swift */; };
+		45AC282722C8D8470020C5BE /* PDX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282622C8D8470020C5BE /* PDX.swift */; };
+		45AC282922C8EBC70020C5BE /* PDXTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282822C8EBC70020C5BE /* PDXTest.swift */; };
 		45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */; };
 		45ECB14B22C76ACE00013698 /* PDListTreeRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */; };
 		45ECB1BF22C7AD5900013698 /* PDListTreeDiffUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */; };
@@ -126,20 +127,21 @@
 		459D75FC22C4C88E00CE5841 /* PDTimelineStepPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimelineStepPoint.swift; sourceTree = "<group>"; };
 		45A0888D22BA7A43000628D0 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		45A12D9622BF6E5F004DFDAF /* PDListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepository.swift; sourceTree = "<group>"; };
-		45AC27ED22C85FD40020C5BE /* PDRecursiveTransmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDRecursiveTransmission.swift; sourceTree = "<group>"; };
 		45AC27F622C862110020C5BE /* PDListRepository.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepository.lazy.swift; sourceTree = "<group>"; };
 		45AC27FA22C862B40020C5BE /* PDTimelineProtocol.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimelineProtocol.lazy.swift; sourceTree = "<group>"; };
 		45AC27FC22C862EC0020C5BE /* PDTimelineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimelineProtocol.swift; sourceTree = "<group>"; };
 		45AC27FF22C86A9C0020C5BE /* PDRepositoryProtocol.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDRepositoryProtocol.lazy.swift; sourceTree = "<group>"; };
 		45AC280122C86ACA0020C5BE /* PDLazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazy.swift; sourceTree = "<group>"; };
 		45AC280322C8725A0020C5BE /* PDListTreeRepository.replayRecursively.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeRepository.replayRecursively.swift; sourceTree = "<group>"; };
-		45AC280522C879B60020C5BE /* PDFlattenTreeOfList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFlattenTreeOfList.swift; sourceTree = "<group>"; };
 		45AC280722C879DE0020C5BE /* PDListRepository.flatten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepository.flatten.swift; sourceTree = "<group>"; };
 		45AC280922C87C8B0020C5BE /* PDStepGroupingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDStepGroupingListRepository.swift; sourceTree = "<group>"; };
-		45AC280B22C8AB2C0020C5BE /* PDFlattenListTreeTransmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFlattenListTreeTransmission.swift; sourceTree = "<group>"; };
-		45AC280D22C8AB6F0020C5BE /* PDListTreeElementProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeElementProtocol.swift; sourceTree = "<group>"; };
 		45AC281122C8B0CB0020C5BE /* PDTimelineStepProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimelineStepProtocol.swift; sourceTree = "<group>"; };
 		45AC281322C8B17A0020C5BE /* PDListStep.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListStep.lazy.swift; sourceTree = "<group>"; };
+		45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryProtocol.swift; sourceTree = "<group>"; };
+		45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListStepPoint.swift; sourceTree = "<group>"; };
+		45AC282222C8CE130020C5BE /* PDLazyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazyRepository.swift; sourceTree = "<group>"; };
+		45AC282622C8D8470020C5BE /* PDX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDX.swift; sourceTree = "<group>"; };
+		45AC282822C8EBC70020C5BE /* PDXTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDXTest.swift; sourceTree = "<group>"; };
 		45D8F48F22BB9C270096E6BF /* CompressingTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressingTime.swift; sourceTree = "<group>"; };
 		45D8F49122BBA5B10096E6BF /* PDTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimestamp.swift; sourceTree = "<group>"; };
 		45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Timeline.extension.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				4548E31222BB91D10099E410 /* Info.plist */,
 				45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */,
 				4546646F22C7B35E002BD139 /* PDDiffUtilTest.swift */,
+				45AC282822C8EBC70020C5BE /* PDXTest.swift */,
 			);
 			path = PDTest;
 			sourceTree = "<group>";
@@ -229,11 +232,8 @@
 		45AC27EC22C85FB40020C5BE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				45AC27ED22C85FD40020C5BE /* PDRecursiveTransmission.swift */,
 				45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */,
-				45AC280522C879B60020C5BE /* PDFlattenTreeOfList.swift */,
-				45AC280B22C8AB2C0020C5BE /* PDFlattenListTreeTransmission.swift */,
-				45AC280D22C8AB6F0020C5BE /* PDListTreeElementProtocol.swift */,
+				45AC282622C8D8470020C5BE /* PDX.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -243,8 +243,10 @@
 			children = (
 				45A12D9622BF6E5F004DFDAF /* PDListRepository.swift */,
 				45AC27F622C862110020C5BE /* PDListRepository.lazy.swift */,
+				45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */,
 				45639C9422C1EFC800C0DD71 /* PDListStep.swift */,
 				45AC281322C8B17A0020C5BE /* PDListStep.lazy.swift */,
+				45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */,
 				45AC280722C879DE0020C5BE /* PDListRepository.flatten.swift */,
 				45AC280922C87C8B0020C5BE /* PDStepGroupingListRepository.swift */,
 			);
@@ -292,6 +294,7 @@
 		45AC281522C8B3A40020C5BE /* Lazy */ = {
 			isa = PBXGroup;
 			children = (
+				45AC282222C8CE130020C5BE /* PDLazyRepository.swift */,
 			);
 			path = Lazy;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				4591BA7722BC4F990052039C /* TreeTest.swift in Sources */,
 				4548E31122BB91D10099E410 /* PDTest.swift in Sources */,
 				4546647022C7B35E002BD139 /* PDDiffUtilTest.swift in Sources */,
+				45AC282922C8EBC70020C5BE /* PDXTest.swift in Sources */,
 				4569EB0122BBC3B100782C6A /* PDSumListTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,13 +488,13 @@
 				45639CA322C2350300C0DD71 /* PDMapTreeProtocol.swift in Sources */,
 				45AC280822C879DE0020C5BE /* PDListRepository.flatten.swift in Sources */,
 				45AC280022C86A9C0020C5BE /* PDRepositoryProtocol.lazy.swift in Sources */,
-				45AC280622C879B60020C5BE /* PDFlattenTreeOfList.swift in Sources */,
+				45AC282722C8D8470020C5BE /* PDX.swift in Sources */,
+				45AC282322C8CE130020C5BE /* PDLazyRepository.swift in Sources */,
 				45AC27F722C862110020C5BE /* PDListRepository.lazy.swift in Sources */,
 				45639C9722C2248F00C0DD71 /* PDTimeline.swift in Sources */,
 				45639CE622C3208B00C0DD71 /* PDOrderedMapTreeStep.swift in Sources */,
 				45AC27FD22C862EC0020C5BE /* PDTimelineProtocol.swift in Sources */,
 				45AC27FB22C862B40020C5BE /* PDTimelineProtocol.lazy.swift in Sources */,
-				45AC27EE22C85FD40020C5BE /* PDRecursiveTransmission.swift in Sources */,
 				45AC281422C8B17A0020C5BE /* PDListStep.lazy.swift in Sources */,
 				45639C9522C1EFC800C0DD71 /* PDListStep.swift in Sources */,
 				454EA3E522C60AE60043E99D /* PDListTreeRepository.swift in Sources */,
@@ -498,15 +502,15 @@
 				4586D33C22C1393C00779050 /* PDOrderedMap.swift in Sources */,
 				450E6C8522C1167400834386 /* PDUndoRedoRepository.swift in Sources */,
 				45AC280A22C87C8B0020C5BE /* PDStepGroupingListRepository.swift in Sources */,
+				45AC281D22C8C8AB0020C5BE /* PDListStepPoint.swift in Sources */,
 				459D75FD22C4C88E00CE5841 /* PDTimelineStepPoint.swift in Sources */,
 				459D75F622C4C6F100CE5841 /* PDKVLTRepository.swift in Sources */,
 				45ECB1BF22C7AD5900013698 /* PDListTreeDiffUtil.swift in Sources */,
 				45639C9B22C2281200C0DD71 /* PDTimeline.steps.swift in Sources */,
 				450E6C8D22C1167400834386 /* PDUndoRedo.swift in Sources */,
 				4586D33A22C138CE00779050 /* PDOrderedMapProtocol.swift in Sources */,
-				45AC280E22C8AB6F0020C5BE /* PDListTreeElementProtocol.swift in Sources */,
-				45AC280C22C8AB2C0020C5BE /* PDFlattenListTreeTransmission.swift in Sources */,
 				45639CA122C22F1100C0DD71 /* PDRepositoryProtocol.swift in Sources */,
+				45AC281922C8C63A0020C5BE /* PDListRepositoryProtocol.swift in Sources */,
 				45A0888E22BA7A43000628D0 /* Export.swift in Sources */,
 				4586D33822C138C000779050 /* PDOrderedMapRepo.swift in Sources */,
 				450E6C8E22C1167400834386 /* PDTimestamp.swift in Sources */,

@@ -32,8 +32,12 @@
 /// There's `PDUndoRedo` type for your convenience.
 ///
 public protocol PDRepositoryProtocol {
+    associatedtype Snapshot
+
     var timeline: Timeline { get }
-    associatedtype Timeline: PDTimelineProtocol 
+    associatedtype Timeline: PDTimelineProtocol where
+        Timeline.Snapshot == Snapshot
+
     typealias Step = Timeline.Step
 
     var latestOnly: Self { get }
