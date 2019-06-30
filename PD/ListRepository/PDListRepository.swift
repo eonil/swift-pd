@@ -22,53 +22,8 @@ RangeReplaceableCollection {
         impl.replay(x)
     }
     var latestSnapshot: Snapshot {
-        return impl.steps.last?.new.snapshot ?? defaultSnapshot
+        return impl.steps.last?.new.snapshot ?? Snapshot()
     }
-    var defaultSnapshot: Snapshot {
-        return Snapshot()
-    }
-    /// Convenient error-avoiding utilit function to append stepping.
-    mutating func recordStepping(from a: Range<Int>, to b: Range<Int>, with s: Snapshot) {
-        if let p = impl.steps.last?.new {
-            let x = PDListStep(
-                old: Timeline.Point(time: p.time, snapshot: p.snapshot, range: a),
-                new: Timeline.Point(time: PDTimestamp(), snapshot: s, range: b))
-            impl.record(x)
-        }
-        else {
-            let x = PDListStep(
-                old: Timeline.Point(time: PDTimestamp(), snapshot: defaultSnapshot, range: a),
-                new: Timeline.Point(time: PDTimestamp(), snapshot: s, range: b))
-            impl.record(x)
-        }
-    }
-//    mutating func recordStepping(from a: Range<Int>, to b: Range<Int>, with s: Snapshot) {
-//        let t = PDTimestamp()
-//        if let p = impl.steps.last?.new {
-//            let x = Timeline.Step(
-//                previous: Timeline.Point(
-//                    time: p.time,
-//                    snapshot: p.snapshot,
-//                    selection: a),
-//                new: Timeline.Point(
-//                    time: t,
-//                    snapshot: s,
-//                    selection: b))
-//            impl.record(x)
-//        }
-//        else {
-//            let x = Timeline.Step(
-//                previous: Timeline.Point(
-//                    time: t,
-//                    snapshot: latestSnapshot,
-//                    selection: a),
-//                new: Timeline.Point(
-//                    time: t,
-//                    snapshot: s,
-//                    selection: b))
-//            impl.record(x)
-//        }
-//    }
 }
 public extension PDListRepository {
     typealias Timeline = PDTimeline<PDListStep<PDList<Element>>>
@@ -97,28 +52,36 @@ public extension PDListRepository {
             return latestSnapshot[i]
         }
         set(v) {
-            let s = latestSnapshot
-            var s1 = s
-            s1[i] = v
-            let a = i..<i.advanced(by: 1)
-            let b = a
-            recordStepping(from: a, to: b, with: s)
+            let x1 = impl.steps.last
+            let t1 = x1?.new.time ?? PDTimestamp()
+            let t2 = PDTimestamp()
+            let s1 = latestSnapshot
+            var s2 = s1
+            s2[i] = v
+            let x2 = Step(
+                operation: .replace,
+                range: i..<i+1,
+                old: Step.Point(time: t1, snapshot: s1),
+                new: Step.Point(time: t2, snapshot: s2))
+            impl.record(x2)
         }
     }
     mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: __owned C) where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
         let q = subrange.relative(to: self)
-        var s = latestSnapshot
-        s.replaceSubrange(q, with: newElements)
-        let a = q
-        let b = q.lowerBound..<q.lowerBound.advanced(by: newElements.count)
-        recordStepping(from: a, to: b, with: s)
+        let x1 = impl.steps.last
+        let t1 = x1?.new.time ?? PDTimestamp()
+        let t2 = PDTimestamp()
+        let s1 = latestSnapshot
+        var s2 = s1
+        s2.replaceSubrange(q, with: newElements)
+        let x2 = Step(
+            operation: .replace,
+            range: q,
+            old: Step.Point(time: t1, snapshot: s1),
+            new: Step.Point(time: t2, snapshot: s2))
+        impl.record(x2)
     }
     mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
-        let s = latestSnapshot
-        replaceSubrange(s.indices, with: [])
+        replaceSubrange(startIndex..<endIndex, with: EmptyCollection())
     }
-//    mutating func removeAll(where shouldBeRemoved: (Element) throws -> Bool) rethrows {
-//        let s = latestSnapshot
-//        replaceSubrange(s.indices, with: [])
-//    }
 }

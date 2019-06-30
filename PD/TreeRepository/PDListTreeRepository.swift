@@ -97,9 +97,9 @@ public extension PDListTreeRepository {
         /// Path to parent tree of operation.
         public var path = IndexPath()
         /// Range of operation.
-        /// For replacements, this range is about for both point snapshots.
-        /// For insertions, this range is about new point snapshot.
-        /// For removings, this range ia about old point snapshot.
+        /// For replacements, this range is indices in both point snapshots.
+        /// For insertions, this range is indices in new point snapshot.
+        /// For removings, this range is indices in old point snapshot.
         public var range = 0..<0
         public var old = Point()
         public var new = Point()

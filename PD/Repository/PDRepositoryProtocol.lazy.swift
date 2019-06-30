@@ -6,10 +6,16 @@
 //
 
 public extension PDRepositoryProtocol {
-    var lazy: PDLazy<Self> { return PDLazy(base: self) }
+    var lazyRepository: PDLazyRepository<Self> {
+        return PDLazyRepository(base: self)
+    }
 }
 
-public extension PDLazy where Base: PDRepositoryProtocol {
+public struct PDLazyRepository<Base> where Base: PDRepositoryProtocol {
+    let base: Base
+}
+
+public extension PDLazyRepository {
     func map<Derived>(_ mfx: @escaping (Base.Step) -> Derived) -> PDLazyMappedRepository<Base,Derived> where
     Derived: PDTimelineStepProtocol {
         return PDLazyMappedRepository(base: base, mfx: mfx)
@@ -22,11 +28,12 @@ Step: PDTimelineStepProtocol {
     let base: Base
     let mfx: (Base.Step) -> Step
 }
+
 public extension PDLazyMappedRepository {
     var timeline: PDLazyMappedTimeline<Base.Timeline,Step> {
         return base.timeline.lazy.map(mfx)
     }
     var latestOnly: PDLazyMappedRepository {
-        return base.latestOnly.lazy.map(mfx)
+        return base.latestOnly.lazyRepository.map(mfx)
     }
 }

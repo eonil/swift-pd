@@ -6,15 +6,36 @@
 //
 
 public struct PDListStep<Snapshot>: PDTimelineStepProtocol {
+    public var operation = Operation.replace
+    /// Range of operation.
+    /// For replacements, this range is indices in both point snapshots.
+    /// For insertions, this range is indices in new point snapshot.
+    /// For removings, this range is indices in old point snapshot.
+    public var range = 0..<0
     public var old: Point
     public var new: Point
     public func reversed() -> PDListStep {
-        return PDListStep(old: new, new: old)
+        return PDListStep(
+            operation: operation.reversed(),
+            range: range,
+            old: new,
+            new: old)
     }
     public struct Point: PDTimelineStepPointProtocol {
         public var time: PDTimestamp
         public var snapshot: Snapshot
-        /// Edited range at the point in the step.
-        public var range: Range<Int>
+    }
+    public typealias Operation = PDListStepOperation
+}
+public enum PDListStepOperation {
+    case insert
+    case replace
+    case remove
+    func reversed() -> PDListStepOperation {
+        switch self {
+        case .replace:  return .replace
+        case .remove:   return .insert
+        case .insert:   return .remove
+        }
     }
 }

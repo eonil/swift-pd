@@ -16,6 +16,7 @@ public protocol PDTimelineProtocol {
         Steps.Index == Int,
         Steps.Element == Step
 
+    /// Finds an interaction point and returns steps since the point including the point.
     /// - Returns:
     ///     `nil` if there's no matching time in this timeline.
     func suffix(since v: PDTimestamp) -> Self?
