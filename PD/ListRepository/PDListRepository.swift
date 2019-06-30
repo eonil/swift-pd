@@ -7,6 +7,7 @@
 
 public struct PDListRepository<Element>:
 PDRepositoryProtocol,
+PDReplayingProtocol,
 Sequence,
 Collection,
 RandomAccessCollection,

@@ -31,7 +31,14 @@
 /// undo/redo by default. You need to implement it yourself.
 /// There's `PDUndoRedo` type for your convenience.
 ///
-public protocol PDRepositoryProtocol: PDReplayingProtocol {
+public protocol PDRepositoryProtocol {
     var timeline: Timeline { get }
+    associatedtype Timeline: PDTimelineProtocol 
+    typealias Step = Timeline.Step
+
     var latestOnly: Self { get }
+}
+
+public protocol PDReplaceableMutableRepositoryProtocol: PDReplayingProtocol {
+    init()
 }
