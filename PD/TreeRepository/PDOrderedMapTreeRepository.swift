@@ -75,6 +75,12 @@ public extension PDOrderedMapTreeRepository {
         z.impl = Timeline(x)
         return z
     }
+    func latest(since p: PDTimestamp) -> PDOrderedMapTreeRepository? {
+        guard let tx = timeline.suffix(since: p) else { return nil }
+        var x = self
+        x.impl = tx
+        return x
+    }
 }
 public extension PDOrderedMapTreeRepository {
     var subtree: Snapshot.Subtree {

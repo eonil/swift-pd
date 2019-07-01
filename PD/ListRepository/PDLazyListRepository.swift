@@ -31,6 +31,10 @@ public extension PDLazyMapListRepository {
     var latestOnly: PDLazyMapListRepository {
         return PDLazyMapListRepository(base: base.latestOnly, mfx: mfx)
     }
+    func latest(since p: PDTimestamp) -> PDLazyMapListRepository? {
+        guard let r = base.latest(since: p) else { return nil }
+        return PDLazyMapListRepository(base: r, mfx: mfx)
+    }
     var startIndex: Int { return base.startIndex }
     var endIndex: Int { return base.endIndex }
     subscript(_ i: Int) -> Element { return mfx(base[i]) }

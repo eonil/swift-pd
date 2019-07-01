@@ -41,6 +41,14 @@ public protocol PDRepositoryProtocol {
     typealias Step = Timeline.Step
 
     var latestOnly: Self { get }
+
+    /// Gets repository from specific time-point.
+    ///
+    /// This includes steps starting with supplied time-point.
+    ///
+    /// - Returns:
+    ///     `nil` if there's no step since the time-point.
+    func latest(since p: PDTimestamp) -> Self? 
 }
 
 //public protocol PDReplaceableMutableRepositoryProtocol: PDReplayingProtocol {

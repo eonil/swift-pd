@@ -33,6 +33,10 @@ public extension PDKVLTRepository {
         guard let x = impl.steps.last else { return self }
         return PDKVLTRepository(impl: Timeline(x))
     }
+    func latest(since p: PDTimestamp) -> PDKVLTRepository? {
+        guard let tx = timeline.suffix(since: p) else { return nil }
+        return PDKVLTRepository(impl: tx)
+    }
     mutating func replay(_ x: Timeline) {
         impl.replay(x)
     }

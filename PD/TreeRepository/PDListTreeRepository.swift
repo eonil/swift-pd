@@ -27,6 +27,10 @@ public extension PDListTreeRepository {
         guard let x = impl.steps.last else { return self }
         return PDListTreeRepository(impl: Timeline(x))
     }
+    func latest(since p: PDTimestamp) -> PDListTreeRepository? {
+        guard let tx = timeline.suffix(since: p) else { return nil }
+        return PDListTreeRepository(impl: tx)
+    }
     mutating func replay(_ x: Timeline) {
         impl.replay(x)
     }

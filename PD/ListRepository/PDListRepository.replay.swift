@@ -13,13 +13,16 @@ public extension PDListRepository {
             record(x)
         }
     }
+}
+extension PDListRepository {
     /// Replay with mapping elements.
     /// This keeps timestamps as is.
-    mutating func replay<R>(_ r: R, with mfx: (R.Element) -> Element) where
+    mutating func replay<R>(_ r:R, with mfx: (R.Element) -> Element) where
     R:PDListRepositoryProtocol {
         guard !r.timeline.steps.isEmpty else { return }
         precondition(timeline.steps.last?.new.time == r.timeline.steps.first?.old.time)
         for x in r.timeline.steps {
+            guard !x.range.isEmpty else { continue }
             let x1 = timeline.steps.last
             let t1 = x1?.new.time ?? PDTimestamp()
             let t2 = PDTimestamp()

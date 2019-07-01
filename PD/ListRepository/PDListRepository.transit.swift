@@ -24,31 +24,42 @@ public extension PDListRepository {
     R:PDListRepositoryProtocol,
     R.Timeline.Step.Snapshot == Timeline.Step.Snapshot {
         guard !r.timeline.steps.isEmpty else { return }
-        guard let t = timeline.steps.last?.new.time else {
-            // This repository is empty.
-            recordWholeSnapshotReplacement(to: r)
-            return
+        if let tx = r.timeline.suffix(sinceLastPointOf: timeline) {
+            // There's an intersection point.
+            // Replay from there.
+            replay(tx)
         }
-        guard let tx = r.timeline.suffix(since: t) else {
+        else {
             // No intersection point.
-            recordWholeSnapshotReplacement(to: r)
-            return
+            // Make them continuous.
+            // And replay all.
+            let xs = wholeSnapshotReplacementSteps(to: r)
+            for x in xs {
+                record(x)
+            }
+            replay(r.timeline)
         }
-        replay(tx)
     }
     /// Performs `transit` with element mapping on-the-fly.
     mutating func transit<R>(to r:R, with mfx: (R.Element) -> Element) where
     R:PDListRepositoryProtocol {
-        // Exit if supplied timeline is empty so no-op.
-        guard let x2 = r.timeline.steps.first else { return }
-        let x1 = timeline.steps.last
-        guard x1?.isContinuous(to: x2) ?? false else {
-            // Make them continuous.
-            recordWholeSnapshotReplacement(to: r, with: mfx)
-            return
+        guard !r.timeline.steps.isEmpty else { return }
+        if let tx = r.timeline.suffix(sinceLastPointOf: timeline) {
+            // There's an intersection point.
+            // Replay from there.
+            let r1 = r.latest(since: tx.steps.first!.old.time)!
+            replay(r1, with: mfx)
         }
-        // Now both timelines are not empty and continuous.
-        replay(r, with: mfx)
+        else {
+            // No intersection point.
+            // Make them continuous.
+            // And replay all.
+            let xs = wholeSnapshotReplacementSteps(to: r, with: mfx)
+            for x in xs {
+                record(x)
+            }
+            replay(r, with: mfx)
+        }
     }
 }
 
@@ -57,44 +68,56 @@ public extension PDListRepository {
 
 
 
-
+private extension PDTimelineProtocol {
+    func suffix<T>(sinceLastPointOf tx:T) -> Self? where T:PDTimelineProtocol {
+        guard let t = tx.steps.last?.new.time else { return nil }
+        return suffix(since: t)
+    }
+}
 
 private extension PDListRepository {
-    mutating func recordWholeSnapshotReplacement<R>(to r:R) where
+    func wholeSnapshotReplacementSteps<R>(to r:R) -> [Step] where
     R:PDListRepositoryProtocol,
     R.Timeline.Step == Timeline.Step {
         typealias P = Step.Point
         assert(!r.timeline.steps.isEmpty)
-        let p1 = timeline.steps.last
-        let p2 = r.timeline.steps.first!
-        let t1 = p1?.new.time ?? PDTimestamp()
-        let t2 = p2.old.time
-        let s1 = p1?.new.snapshot ?? Snapshot()
-        let s2 = p2.old.snapshot
-        let x = Step(
-            operation: .replace,
+        let p1 = timeline.steps.last?.new ?? P(time: PDTimestamp(), snapshot: Snapshot())
+        let p2 = P(time: PDTimestamp(), snapshot: Snapshot())
+        let p3 = r.timeline.steps.first!.old
+        let s1 = p1.snapshot
+        let s3 = p3.snapshot
+        let x1 = Step(
+            operation: .remove,
             range: s1.startIndex..<s1.endIndex,
-            old: P(time: t1, snapshot: s1),
-            new: P(time: t2, snapshot: s2))
-        record(x)
+            old: p1,
+            new: p2)
+        let x2 = Step(
+            operation: .insert,
+            range: s3.startIndex..<s3.endIndex,
+            old: p2,
+            new: p3)
+        return [x1,x2]
     }
     /// This involves actual mapping.
-    mutating func recordWholeSnapshotReplacement<R>(to r:R, with mfx: (R.Element) -> Element) where
+    func wholeSnapshotReplacementSteps<R>(to r:R, with mfx: (R.Element) -> Element) -> [Step] where
     R:PDListRepositoryProtocol {
         typealias P = Step.Point
         assert(!r.timeline.steps.isEmpty)
-        let p1 = timeline.steps.last
-        let p2 = r.timeline.steps.first!
-        let t1 = p1?.new.time ?? PDTimestamp()
-        let t2 = p2.old.time
-        let s1 = p1?.new.snapshot ?? Snapshot()
-        var s2 = s1
-        s2.replaceSubrange(s1.startIndex..<s1.endIndex, with: p2.old.snapshot.map(mfx))
-        let x = Step(
-            operation: .replace,
+        let p1 = timeline.steps.last?.new ?? P(time: PDTimestamp(), snapshot: Snapshot())
+        let p2 = P(time: PDTimestamp(), snapshot: Snapshot())
+        let p3 = r.timeline.steps.first!.old
+        let s1 = p1.snapshot
+        let s3 = p3.snapshot
+        let x1 = Step(
+            operation: .remove,
             range: s1.startIndex..<s1.endIndex,
-            old: P(time: t1, snapshot: s1),
-            new: P(time: t2, snapshot: s2))
-        record(x)
+            old: p1,
+            new: p2)
+        let x2 = Step(
+            operation: .insert,
+            range: s3.startIndex..<s3.endIndex,
+            old: p2,
+            new: P(time: p3.time, snapshot: Snapshot(p3.snapshot.map(mfx))))
+        return [x1,x2]
     }
 }
