@@ -10,6 +10,7 @@ import Foundation
 public extension PDListTreeRepository {
     /// Performs `transit` with element mapping on-the-fly.
     /// This keeps all timestamps as are.
+    @available(*, deprecated: 0, message: "This method cannot provide timestamp validation. Use `PDListTreeTransmission` type instead of.")
     mutating func transit<R>(to r:R, in pp: IndexPath, with mfx: (R.Element) -> Value) where
     R:PDListRepositoryProtocol {
         guard !r.timeline.steps.isEmpty else { return }
@@ -17,7 +18,7 @@ public extension PDListTreeRepository {
             // There's an intersection point.
             // Replay from there.
             for x in tx.steps {
-                record(x, in: pp, with: mfx)
+                recordUnconditionlly(x, in: pp, with: mfx)
             }
         }
         else {
@@ -29,7 +30,7 @@ public extension PDListTreeRepository {
                 replay(x)
             }
             for x in r.timeline.steps {
-                record(x, in: pp, with: mfx)
+                recordUnconditionlly(x, in: pp, with: mfx)
             }
         }
     }
@@ -50,8 +51,7 @@ private extension PDTimelineProtocol {
 private extension PDListTreeRepository {
     /// This involves actual mapping.
     func wholeSnapshotReplacementSteps<R>(to r:R, in pp: IndexPath, with mfx: (R.Element) -> Value) -> [Step] where
-    R:PDListRepositoryProtocol,
-    R.Index == Int {
+    R:PDListRepositoryProtocol {
         typealias P = Step.Point
         assert(!r.timeline.steps.isEmpty)
         let rp3 = r.timeline.steps.first!.old

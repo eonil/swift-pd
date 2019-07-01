@@ -16,8 +16,7 @@ extension PDListTreeRepository {
     ///
     /// - Warning:
     ///     This records a new step WIHTOUT time-point validation.
-    mutating func record<S>(_ x: PDListStep<S>, in pp: IndexPath, with mfx: (S.Element) -> Value) {
-        precondition(timeline.steps.isEmpty || timeline.steps.last?.new.time == x.old.time)
+    mutating func recordUnconditionlly<S>(_ x: PDListStep<S>, in pp: IndexPath, with mfx: (S.Element) -> Value) {
         let t = x.new.time
         switch x.operation {
         case .remove:
