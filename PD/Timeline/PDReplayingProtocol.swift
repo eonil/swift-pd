@@ -6,7 +6,6 @@
 //
 
 public protocol PDReplayingProtocol {
-    typealias Timeline = PDTimeline<Step>
     associatedtype Step: PDTimelineStepProtocol
 
     /// Replays records in timeline automatically from matching time-point.
@@ -15,12 +14,12 @@ public protocol PDReplayingProtocol {
     /// changes since the time. If there's no matching time, this method
     /// crashes.
     ///
-    mutating func replay(_: Timeline)
+    mutating func replay<T>(_ tx: T) where T:PDTimelineProtocol, T.Step == Step
 }
 
-public extension PDReplayingProtocol {
-    mutating func replay(_ x: Step) {
-        let tx = Timeline(x)
-        replay(tx)
-    }
-}
+//public extension PDReplayingProtocol {
+//    mutating func replay<S>(_ x: S) where S == Step {
+//        let tx = Timeline(x)
+//        replay(tx)
+//    }
+//}

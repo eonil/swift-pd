@@ -35,6 +35,8 @@
 /// You redid 3 operations in `repo`. Now `repo` has 3 items again.
 ///
 public protocol PDUndoRedoProtocol: PDReplayingProtocol {
+    associatedtype Timeline: PDTimelineProtocol
+    
     /// Accumulative timeline.
     /// Changes made by undo/redo will be appended to this timeline.
     /// This is provided for rendering convenience.

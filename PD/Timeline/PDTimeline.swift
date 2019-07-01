@@ -129,22 +129,14 @@ public extension PDTimeline {
     }
 }
 public extension PDTimeline {
-    mutating func replay(_ x: PDTimeline) {
-        if let p = steps.last {
-            // Some steps.
-            // Seek for lastest matching time
-            // and replay from there.
-            let v = p.new.time
-            guard let x1 = x.suffix(since: v) else {
-                fatalError("Supplied timeline is not consecutive.")
-            }
-            guard !x1.steps.isEmpty else { return }
-            record(contentsOf: x1)
-        }
-        else {
-            // No step.
-            // Just append all.
-            record(contentsOf: x)
-        }
+    mutating func replay(_ tx: PDTimeline) {
+        guard !tx.steps.isEmpty else { return }
+        precondition(steps.isEmpty || steps.last?.new.time == tx.steps.first?.old.time)
+        for x in tx.steps { record(x) }
+    }
+    mutating func replay<T>(_ tx: T) where T:PDTimelineProtocol, T.Step == Step {
+        guard !tx.steps.isEmpty else { return }
+        precondition(steps.isEmpty || steps.last?.new.time == tx.steps.first?.old.time)
+        for x in tx.steps { record(x) }
     }
 }

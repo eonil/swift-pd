@@ -43,6 +43,6 @@ public protocol PDRepositoryProtocol {
     var latestOnly: Self { get }
 }
 
-public protocol PDReplaceableMutableRepositoryProtocol: PDReplayingProtocol {
-    init()
-}
+//public protocol PDReplaceableMutableRepositoryProtocol: PDReplayingProtocol {
+//    init()
+//}

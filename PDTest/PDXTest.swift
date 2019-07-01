@@ -11,36 +11,36 @@
 //class PDXTest: XCTestCase {
 //    func test1() {
 //        var log = TXLog()
-//        let r1 = log.groups.lazyRepository.map({ $0.nodify() })
-//        let r2 = log.groups.lazyMap({ $0.nodify() })
-////        r2.timeline.steps.last
+//        var log1 = log.groups.lazy.map({ $0.nodify() })
+//        var pdx = PDX2(log1)
 //
-//        var a = PDListRepository<AAA>()
-//        a.lazyRepository.map({ (_ x: AAA) -> PDXElement<Int> in
-//            PDXElement(
-//                value: x.val,
-//                subrepository: bbb.lazyRepository.map({ x1 in
-//                    x1
-//                }))
+//        log.groups.append(TXLogGroup())
+//        log1 = log.groups.lazy.map({ $0.nodify() })
+//        pdx.replay(log1, with: { n in
+//            switch n {
+//            case .group(let g):
+//                let r = g.items.lazy.map({ $0.nodify() })
+//                let r1 = PDAnyListRepository<TXLogNode>(r)
+//
+//                return r1
+//            default: fatalError()
+//            }
 //        })
-////        var a = PDListRepository<Int>()
-////        var b = a.lazyRepository.map
-////        var x = PDX
 //    }
 //}
 //
-//private enum TXNode {
+//private enum TXLogNode {
 //    case group(TXLogGroup)
 //    case item(TXLogItem)
 //}
 //private extension TXLogGroup {
-//    func nodify() -> TXNode {
-//        return TXNode.group(self)
+//    func nodify() -> TXLogNode {
+//        return .group(self)
 //    }
 //}
 //private extension TXLogItem {
-//    func nodify() -> TXNode {
-//        return TXNode.item(self)
+//    func nodify() -> TXLogNode {
+//        return .item(self)
 //    }
 //}
 //

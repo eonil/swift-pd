@@ -26,19 +26,19 @@ public protocol PDTimelineStepProtocol {
     ///
     /// This function returns `true` if
     /// - `new.time == other.old.verion`.
-    func isContinuous(to other: Self) -> Bool
+    func isContinuous<S>(to other: S) -> Bool where S:PDTimelineStepProtocol
     /// This is opposite of `isContinuous(from:)`.
     /// See the function for details.
-    func isContinuous(from other: Self) -> Bool
+    func isContinuous<S>(from other: S) -> Bool where S:PDTimelineStepProtocol
     func reversed() -> Self
 }
 public extension PDTimelineStepProtocol {
-    func isContinuous(to other: Self) -> Bool {
+    func isContinuous<S>(to other: S) -> Bool where S:PDTimelineStepProtocol {
         let a = self
         let b = other
         return a.new.time == b.old.time
     }
-    func isContinuous(from other: Self) -> Bool {
+    func isContinuous<S>(from other: S) -> Bool where S:PDTimelineStepProtocol {
         return other.isContinuous(to: self)
     }
 }

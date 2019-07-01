@@ -7,13 +7,16 @@
 
 public protocol PDListRepositoryProtocol:
 PDRepositoryProtocol,
-RandomAccessCollection,
-MutableCollection,
-RangeReplaceableCollection where
+RandomAccessCollection where
 Snapshot: RandomAccessCollection,
 Snapshot.Index == Int,
-Index == Snapshot.Index,
-Element == Snapshot.Element {
+Snapshot.Index == Index,
+Snapshot.Element == Element {
     typealias Step = PDListStep<Snapshot>
-//    typealias Element = Snapshot.Element
+}
+
+public protocol PDEditableListRepositoryProtocol:
+PDListRepositoryProtocol,
+MutableCollection,
+RangeReplaceableCollection {
 }

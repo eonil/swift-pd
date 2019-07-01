@@ -9,6 +9,7 @@ public struct PDListRepository<Element>:
 PDReplayingProtocol,
 PDRepositoryProtocol,
 PDListRepositoryProtocol,
+PDEditableListRepositoryProtocol,
 Sequence,
 Collection,
 RandomAccessCollection,
@@ -19,15 +20,13 @@ RangeReplaceableCollection {
     public init(timeline z: Timeline) {
         impl = z
     }
-    public mutating func replay(_ x: Timeline) {
-        impl.replay(x)
-    }
     var latestSnapshot: Snapshot {
         return impl.steps.last?.new.snapshot ?? Snapshot()
     }
 }
 public extension PDListRepository {
     typealias Timeline = PDTimeline<PDListStep<PDList<Element>>>
+    typealias Step = Timeline.Step
     typealias Snapshot = PDList<Element>
 
     var timeline: Timeline {
@@ -38,6 +37,9 @@ public extension PDListRepository {
         var z = self
         z.impl = Timeline(x)
         return z
+    }
+    mutating func record(_ x: Step) {
+        impl.record(x)
     }
 }
 public extension PDListRepository {
