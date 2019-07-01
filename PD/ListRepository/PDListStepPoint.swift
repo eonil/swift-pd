@@ -6,9 +6,17 @@
 //
 
 public struct PDListStepPoint<Snapshot>:
-PDTimelineStepPointProtocol where
+PDTimelineStepPointProtocol,
+CustomReflectable where
 Snapshot: RandomAccessCollection,
 Snapshot.Index == Int {
     public var time: PDTimestamp
     public var snapshot: Snapshot
+}
+public extension PDListStepPoint {
+    var customMirror: Mirror {
+        return Mirror(self, children: [
+            "time": time,
+            "snapshot": Array(snapshot)])
+    }
 }

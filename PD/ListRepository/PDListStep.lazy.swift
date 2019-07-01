@@ -11,9 +11,14 @@ public extension PDListStep {
     struct Lazy { var base: PDListStep }
 }
 public extension PDListStep.Lazy {
+    @available(*, deprecated: 0)
     typealias MapSnapshot<X> = LazyMapCollection<PDListStep.Snapshot,X>
+    @available(*, deprecated: 0)
     typealias MapStep<X> = PDListStep<MapSnapshot<X>>
     /// Makes a lazy-mapping list-step.
+    /// - Warning:
+    ///     This is not really lazy and has been deprecated.
+    @available(*, deprecated: 0)
     func map<X>(_ mfx: @escaping (PDListStep.Snapshot.Element) -> X) -> MapStep<X> {
         typealias C = MapSnapshot<X>
         typealias S = PDListStep<C>

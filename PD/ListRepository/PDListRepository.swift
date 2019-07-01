@@ -14,7 +14,8 @@ Sequence,
 Collection,
 RandomAccessCollection,
 MutableCollection,
-RangeReplaceableCollection {
+RangeReplaceableCollection,
+CustomReflectable {
     private(set) var impl = Timeline()
     public init() {}
     public init(timeline z: Timeline) {

@@ -17,11 +17,16 @@ import Foundation
 /// Though this is a timestamp, you cannot perform comparison
 /// on this value. The time value is hidden for easiler implementation.
 ///
-public struct PDTimestamp: Equatable {
+public struct PDTimestamp:
+Equatable,
+CustomReflectable {
     private let refID = PDRefID()
     public init() {}
     public static func == (_ a: PDTimestamp, _ b: PDTimestamp) -> Bool {
         return a.refID === b.refID
+    }
+    public var customMirror: Mirror {
+        return Mirror(self, children: [])
     }
 }
 
@@ -29,7 +34,7 @@ public struct PDTimestamp: Equatable {
 #if DEBUG
 extension PDTimestamp: CustomStringConvertible {
     public var description: String {
-        return "T:\(refID.num)"
+        return "PDTimestamp:#\(refID.num)"
     }
 }
 extension PDTimestamp: CustomDebugStringConvertible {

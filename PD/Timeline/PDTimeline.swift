@@ -67,7 +67,9 @@
 ///
 /// Datastructures using timeline are supposed to record time-point implicitly.
 ///
-public struct PDTimeline<Step>: PDTimelineProtocol where
+public struct PDTimeline<Step>:
+PDTimelineProtocol,
+CustomReflectable where
 Step: PDTimelineStepProtocol {
     private(set) var impl = PDList<Step>()
     mutating func record(_ s: Step) {

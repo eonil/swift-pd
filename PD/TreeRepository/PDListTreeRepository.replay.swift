@@ -14,9 +14,13 @@ extension PDListTreeRepository {
     /// This keeps original timestamps.
     /// New steps will be recorded with original timestamps.
     ///
+    /// Replacing an element replaces only values and does not touch
+    /// descendants. You have to manually insert/remove each node
+    /// to modify descendants.
+    ///
     /// - Warning:
     ///     This records a new step WIHTOUT time-point validation.
-    mutating func recordUnconditionlly<S>(_ x: PDListStep<S>, in pp: IndexPath, with mfx: (S.Element) -> Value) {
+    mutating func recordUnconditionally<S>(_ x: PDListStep<S>, in pp: IndexPath, with mfx: (S.Element) -> Value) {
         let t = x.new.time
         switch x.operation {
         case .remove:
@@ -31,5 +35,8 @@ extension PDListTreeRepository {
             let i = x.range.lowerBound
             recordValuesSetting(es, at: i, in: pp, with: t)
         }
+    }
+    mutating func recordUnconditionally<S>(_ x: PDListStep<S>, in pp: IndexPath) where S.Element == Value {
+        recordUnconditionally(x, in: pp, with: {$0})
     }
 }

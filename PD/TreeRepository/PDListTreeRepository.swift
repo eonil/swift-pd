@@ -10,7 +10,8 @@ import Tree
 
 public struct PDListTreeRepository<Value>:
 PDRepositoryProtocol,
-ListTreeStorageProtocol {
+ListTreeStorageProtocol,
+CustomReflectable {
     private(set) var impl = PDTimeline<Step>()
     private init(impl x: Timeline) {
         impl = x

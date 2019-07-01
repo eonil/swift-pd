@@ -18,7 +18,7 @@ public extension PDListTreeRepository {
             // There's an intersection point.
             // Replay from there.
             for x in tx.steps {
-                recordUnconditionlly(x, in: pp, with: mfx)
+                recordUnconditionally(x, in: pp, with: mfx)
             }
         }
         else {
@@ -30,7 +30,7 @@ public extension PDListTreeRepository {
                 replay(x)
             }
             for x in r.timeline.steps {
-                recordUnconditionlly(x, in: pp, with: mfx)
+                recordUnconditionally(x, in: pp, with: mfx)
             }
         }
     }

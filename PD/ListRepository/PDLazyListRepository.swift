@@ -21,7 +21,7 @@ Base: PDListRepositoryProtocol {
     let mfx: (Base.Element) -> Element
 }
 public extension PDLazyMapListRepository {
-    typealias Timeline = PDLazyMappedTimeline<Base.Timeline,Step>
+    typealias Timeline = PDLazyMapTimeline<Base.Timeline,Step>
     typealias Step = PDListStep<Base.Snapshot>.Lazy.MapStep<Element>
     typealias Snapshot = LazyMapCollection<Base.Snapshot,Element>
     var timeline: Timeline {
