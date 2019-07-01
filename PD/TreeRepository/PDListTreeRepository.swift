@@ -36,7 +36,7 @@ extension PDListTreeRepository {
             new: Step.Point(time: t2, snapshot: s2))
         impl.record(x2)
     }
-    mutating func recordSubtreesInsertion<C>(contentsOf c: C, at i: Int, in pp: IndexPath, with t: PDTimestamp) where C: Collection, C.Element == ListTree<Value> {
+    mutating func recordSubtreesInsertion<C>(contentsOf c: C, at i: Int, in pp: IndexPath, with t: PDTimestamp) where C: Swift.Collection, C.Element == ListTree<Value> {
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
         var s2 = s1

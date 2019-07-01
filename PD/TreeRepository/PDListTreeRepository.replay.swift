@@ -8,12 +8,16 @@
 import Foundation
 import Tree
 
-public extension PDListTreeRepository {
-    /// Replays a list-step `x` in collection at location `pp` with mapping `mfx`.
+extension PDListTreeRepository {
+    /// Records a list-step `x` in collection at location `pp` with mapping `mfx`.
     /// `[]` means root collection.
     /// This keeps original timestamps.
     /// New steps will be recorded with original timestamps.
-    mutating func replay<S>(_ x: PDListStep<S>, in pp: IndexPath, with mfx: (S.Element) -> Value) {
+    ///
+    /// - Warning:
+    ///     This records a new step WIHTOUT time-point validation.
+    mutating func record<S>(_ x: PDListStep<S>, in pp: IndexPath, with mfx: (S.Element) -> Value) {
+        precondition(timeline.steps.isEmpty || timeline.steps.last?.new.time == x.old.time)
         let t = x.new.time
         switch x.operation {
         case .remove:

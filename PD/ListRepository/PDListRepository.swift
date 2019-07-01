@@ -109,6 +109,7 @@ public extension PDListRepository {
             new: Step.Point(time: t2, snapshot: s2))
         impl.record(x2)
     }
+    @discardableResult
     mutating func remove(at i: Int) -> Element {
         let e = self[i]
         removeSubrange(i..<i+1)

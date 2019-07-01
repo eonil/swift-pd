@@ -17,7 +17,7 @@ public extension PDListTreeRepository {
             // There's an intersection point.
             // Replay from there.
             for x in tx.steps {
-                replay(x, in: pp, with: mfx)
+                record(x, in: pp, with: mfx)
             }
         }
         else {
@@ -29,7 +29,7 @@ public extension PDListTreeRepository {
                 replay(x)
             }
             for x in r.timeline.steps {
-                replay(x, in: pp, with: mfx)
+                record(x, in: pp, with: mfx)
             }
         }
     }
@@ -60,10 +60,10 @@ private extension PDListTreeRepository {
 
         let p1 = timeline.steps.last?.new ?? P(time: PDTimestamp(), snapshot: Snapshot())
         let s1 = p1.snapshot
-        let s1c = s1[pp].collection
+        let s1c = pp.count == 0 ? s1.collection : s1[pp].collection
         let s1r = s1c.startIndex..<s1c.endIndex
         var s2 = s1
-        for i in s1r {
+        for i in s1r.lazy.reversed() {
             let p = pp.appending(i)
             s2.remove(at: p)
         }
