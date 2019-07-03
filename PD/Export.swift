@@ -13,9 +13,9 @@ public typealias PDList<E> = List<E>
 public typealias PDSet<E> = SortedSet<E> where E:Comparable
 public typealias PDMap<K,V> = Map<K,V> where K:Comparable
 
-public typealias PRList<E> = PDListRepository<E>
-public typealias PRSortingMapList<K,V> = PDSortingMapListRepository<K,V> where K:Comparable
-public typealias PRListTree<E> = PDListTreeRepository<E> 
+//public typealias PXList<E> = PDListRepository<E>
+//public typealias PXSortingMapList<K,V> = PDSortingMapListRepository<K,V> where K:Comparable
+//public typealias PXListTree<E> = PDListTreeRepository<E> 
 
 
 //public typealias PDSumList<T> = SBTL<T> where T: SBTLValueProtocol

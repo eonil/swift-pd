@@ -21,6 +21,9 @@ CustomReflectable {
     public init(timeline z: Timeline) {
         impl = z
     }
+    public init<S>(_ s:S) where S:Sequence, S.Element == Element {
+        append(contentsOf: s)
+    }
     var latestSnapshot: Snapshot {
         return impl.steps.last?.new.snapshot ?? Snapshot()
     }
