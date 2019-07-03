@@ -1,11 +1,11 @@
 //
-//  PDListRepository.lazy.swift
+//  PDListRepositoryProtocol.lazy.swift
 //  PD
 //
-//  Created by Henry on 2019/06/30.
+//  Created by Henry on 2019/07/03.
 //
 
-public extension PDListRepository {
+public extension PDListRepositoryProtocol {
     var lazy: Lazy {
         return Lazy(base: self)
     }
