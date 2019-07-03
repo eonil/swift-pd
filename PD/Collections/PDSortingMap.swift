@@ -15,6 +15,15 @@ PDReplaceableSortingMapProtocol
 where Key: Comparable {
     private var impl = Map<Key,Value>()
     public init() {}
+    /// Makes an instance of `PDSortingMapList` with collection of key-value pairs.
+    /// All keys in collection **must be unique**. You have to make sure tham to be unique
+    /// before passing them into here.
+    public init<C>(_ c:C) where C:Collection, C.Element == Element {
+        for (k,v) in c {
+            precondition(self[k] == nil, "A duplicated key has been found.")
+            self[k] = v
+        }
+    }
 }
 public extension PDSortingMapList {
     typealias Element = (key: Key, value: Value)
