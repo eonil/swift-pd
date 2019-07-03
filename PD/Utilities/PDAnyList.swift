@@ -5,6 +5,7 @@
 //  Created by Henry on 2019/07/01.
 //
 
+/// Something like `AnyRandomAccessCollection` but `Index == Int`.
 public struct PDAnyList<Element>: RandomAccessCollection {
     private let r: Range<Int>
     private let sfx: (Int) -> Element

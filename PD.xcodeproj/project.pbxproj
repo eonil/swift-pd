@@ -58,7 +58,6 @@
 		45AC281422C8B17A0020C5BE /* PDListStep.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281322C8B17A0020C5BE /* PDListStep.lazy.swift */; };
 		45AC281922C8C63A0020C5BE /* PDListRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */; };
 		45AC281D22C8C8AB0020C5BE /* PDListStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */; };
-		45AC282322C8CE130020C5BE /* PDLazyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282222C8CE130020C5BE /* PDLazyRepository.swift */; };
 		45AC282B22C8F5E00020C5BE /* PDLazyListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282A22C8F5E00020C5BE /* PDLazyListRepository.swift */; };
 		45AC283122C910290020C5BE /* PDAnyListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283022C910290020C5BE /* PDAnyListRepository.swift */; };
 		45AC283322C915A70020C5BE /* PDAnyTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283222C915A70020C5BE /* PDAnyTimeline.swift */; };
@@ -177,7 +176,6 @@
 		45AC281322C8B17A0020C5BE /* PDListStep.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListStep.lazy.swift; sourceTree = "<group>"; };
 		45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryProtocol.swift; sourceTree = "<group>"; };
 		45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListStepPoint.swift; sourceTree = "<group>"; };
-		45AC282222C8CE130020C5BE /* PDLazyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazyRepository.swift; sourceTree = "<group>"; };
 		45AC282A22C8F5E00020C5BE /* PDLazyListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazyListRepository.swift; sourceTree = "<group>"; };
 		45AC283022C910290020C5BE /* PDAnyListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAnyListRepository.swift; sourceTree = "<group>"; };
 		45AC283222C915A70020C5BE /* PDAnyTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAnyTimeline.swift; sourceTree = "<group>"; };
@@ -238,12 +236,12 @@
 			path = Experimental1;
 			sourceTree = "<group>";
 		};
-		4536256E22CB2514002CEF59 /* Collections */ = {
+		4536256E22CB2514002CEF59 /* Datastructures */ = {
 			isa = PBXGroup;
 			children = (
 				4536257122CB2669002CEF59 /* PDSortingMap.swift */,
 			);
-			path = Collections;
+			path = Datastructures;
 			sourceTree = "<group>";
 		};
 		4536257322CB2D66002CEF59 /* ObsoleteTest1 */ = {
@@ -349,7 +347,7 @@
 			path = ListRepository;
 			sourceTree = "<group>";
 		};
-		45AC27F522C862040020C5BE /* TreeRepository */ = {
+		45AC27F522C862040020C5BE /* ListTreeRepository */ = {
 			isa = PBXGroup;
 			children = (
 				454EA3E422C60AE60043E99D /* PDListTreeRepository.swift */,
@@ -364,7 +362,7 @@
 				45639CE522C3208B00C0DD71 /* PDOrderedMapTreeStep.swift */,
 				459D75D422C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift */,
 			);
-			path = TreeRepository;
+			path = ListTreeRepository;
 			sourceTree = "<group>";
 		};
 		45AC27F822C8629B0020C5BE /* Timeline */ = {
@@ -391,16 +389,14 @@
 			children = (
 				45639CA022C22F1100C0DD71 /* PDRepositoryProtocol.swift */,
 				45AC27FF22C86A9C0020C5BE /* PDRepositoryProtocol.lazy.swift */,
+				45AC27F822C8629B0020C5BE /* Timeline */,
+				45AC27F422C861FC0020C5BE /* ListRepository */,
+				45AC27F522C862040020C5BE /* ListTreeRepository */,
+				4591BA7222BC3CDD0052039C /* PDUndoRedoRepository.swift */,
+				4548E2E822BB6FC50099E410 /* PDUndoRedo.swift */,
+				45AC280122C86ACA0020C5BE /* PDLazy.swift */,
 			);
 			path = Repository;
-			sourceTree = "<group>";
-		};
-		45AC281522C8B3A40020C5BE /* Lazy */ = {
-			isa = PBXGroup;
-			children = (
-				45AC282222C8CE130020C5BE /* PDLazyRepository.swift */,
-			);
-			path = Lazy;
 			sourceTree = "<group>";
 		};
 		45D8F48B22BB92CA0096E6BF /* Frameworks */ = {
@@ -441,16 +437,9 @@
 		45DE46B522B8FED7006DAC40 /* PD */ = {
 			isa = PBXGroup;
 			children = (
-				4536256E22CB2514002CEF59 /* Collections */,
-				45AC27F822C8629B0020C5BE /* Timeline */,
+				4536256E22CB2514002CEF59 /* Datastructures */,
 				45AC27FE22C86A8E0020C5BE /* Repository */,
-				45AC27F422C861FC0020C5BE /* ListRepository */,
-				45AC27F522C862040020C5BE /* TreeRepository */,
-				4591BA7222BC3CDD0052039C /* PDUndoRedoRepository.swift */,
-				4548E2E822BB6FC50099E410 /* PDUndoRedo.swift */,
-				45AC280122C86ACA0020C5BE /* PDLazy.swift */,
 				45A0888D22BA7A43000628D0 /* Export.swift */,
-				45AC281522C8B3A40020C5BE /* Lazy */,
 				45AC27EC22C85FB40020C5BE /* Utilities */,
 			);
 			path = PD;
@@ -600,7 +589,6 @@
 				45AC280022C86A9C0020C5BE /* PDRepositoryProtocol.lazy.swift in Sources */,
 				4536258922CC7A5E002CEF59 /* PDListRepositoryProtocol.lazy.swift in Sources */,
 				45AC284D22C9BE430020C5BE /* PDListTreeRepository.replay.swift in Sources */,
-				45AC282322C8CE130020C5BE /* PDLazyRepository.swift in Sources */,
 				45639C9722C2248F00C0DD71 /* PDTimeline.swift in Sources */,
 				45639CE622C3208B00C0DD71 /* PDOrderedMapTreeStep.swift in Sources */,
 				45AC27FD22C862EC0020C5BE /* PDTimelineProtocol.swift in Sources */,

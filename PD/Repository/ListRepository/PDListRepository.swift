@@ -136,6 +136,9 @@ public extension PDListRepository {
     mutating func append(_ e: Element) {
         insert(e, at: endIndex)
     }
+    /// This also deletes all timeline.
+    /// Clearing timeline triggers whole snapshot replacement,
+    /// therefore it'll yield same result.
     mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
         removeSubrange(startIndex..<endIndex)
     }

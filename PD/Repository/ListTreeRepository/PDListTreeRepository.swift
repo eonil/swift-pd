@@ -19,6 +19,9 @@ CustomReflectable {
     public init() {}
 }
 extension PDListTreeRepository {
+    var latestSnapshot: Snapshot {
+        return timeline.steps.last?.new.snapshot ?? Snapshot()
+    }
     mutating func recordValuesSetting<C>(_ vs: C, at i: Int, in pp: IndexPath, with t: PDTimestamp) where C: Collection, C.Element == Value {
         guard !vs.isEmpty else { return }
         let x1 = impl.steps.last
@@ -99,9 +102,11 @@ public extension PDListTreeRepository {
     }
 }
 public extension PDListTreeRepository {
+    var isEmpty: Bool {
+        return collection.isEmpty
+    }
     var collection: Snapshot.Collection {
-        let s = impl.steps.last?.new.snapshot ?? Snapshot()
-        return s.collection
+        return latestSnapshot.collection
     }
     mutating func setValues<C>(_ vs: C, at i: Int, in pp: IndexPath) where C: Collection, C.Element == Value {
         recordValuesSetting(vs, at: i, in: pp, with: PDTimestamp())
@@ -142,6 +147,18 @@ public extension PDListTreeRepository {
         let r = i..<i+1
         let pp = p.dropLast()
         recordSubtreesRemoving(r, in: pp, with: PDTimestamp())
+    }
+    /// Removes all elements.
+    /// This effectively results empty state.
+    ///
+    /// Optimization
+    /// ------------
+    /// As an optimization, timeline will also be cleared.
+    /// Clearing of timeline triggers whole snapshot replacemen,
+    /// therefore yields same result.
+    mutating func removeAll() {
+        guard !isEmpty else { return }
+        impl = Timeline()
     }
 }
 public extension PDListTreeRepository {

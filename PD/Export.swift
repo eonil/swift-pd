@@ -9,8 +9,14 @@ import Foundation
 import BTree
 import Tree
 
-public typealias PDList<T> = List<T>
-public typealias PDSet<T> = SortedSet<T> where T: Comparable
+public typealias PDList<E> = List<E>
+public typealias PDSet<E> = SortedSet<E> where E:Comparable
+public typealias PDMap<K,V> = Map<K,V> where K:Comparable
+
+public typealias PRList<E> = PDListRepository<E>
+public typealias PRSortingMapList<K,V> = PDSortingMapListRepository<K,V> where K:Comparable
+public typealias PRListTree<E> = PDListTreeRepository<E> 
+
 
 //public typealias PDSumList<T> = SBTL<T> where T: SBTLValueProtocol
 ////public typealias PDSumSet<T> = SBTLSet<T> where T: Comparable & SBTLValueProtocol
@@ -20,6 +26,8 @@ public typealias PDSet<T> = SortedSet<T> where T: Comparable
 //public typealias PDUnorderedMapTree<Key,Value> = PersistentUnorderedMapTree<Key,Value> where Key: Comparable
 //public typealias PDOrderedMapTree<Key,Value> = PersistentOrderedMapTree<Key,Value> where Key: Comparable
 
+@available(*,deprecated: 0)
 public typealias PDOrderedMapTree<Key,Value> = PersistentOrderedMapTree<Key,Value> where Key: Comparable
+@available(*,deprecated: 0)
 public typealias PDOrderedMapTreeProtocol = OrderedMapTreeProtocol
 
