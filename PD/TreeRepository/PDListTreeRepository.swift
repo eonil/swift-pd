@@ -20,6 +20,7 @@ CustomReflectable {
 }
 extension PDListTreeRepository {
     mutating func recordValuesSetting<C>(_ vs: C, at i: Int, in pp: IndexPath, with t: PDTimestamp) where C: Collection, C.Element == Value {
+        guard !vs.isEmpty else { return }
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
         var s2 = s1
@@ -38,6 +39,7 @@ extension PDListTreeRepository {
         impl.record(x2)
     }
     mutating func recordSubtreesInsertion<C>(contentsOf c: C, at i: Int, in pp: IndexPath, with t: PDTimestamp) where C: Swift.Collection, C.Element == ListTree<Value> {
+        guard !c.isEmpty else { return }
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
         var s2 = s1
@@ -56,6 +58,7 @@ extension PDListTreeRepository {
         impl.record(x2)
     }
     mutating func recordSubtreesRemoving(_ r: Range<Int>, in pp: IndexPath, with t: PDTimestamp) {
+        guard !r.isEmpty else { return }
         let x1 = impl.steps.last
         let s1 = x1?.new.snapshot ?? Snapshot()
         var s2 = s1
