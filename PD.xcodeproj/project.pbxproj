@@ -20,8 +20,14 @@
 		4536253522CA43DE002CEF59 /* PDTimeline.mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536253422CA43DE002CEF59 /* PDTimeline.mirror.swift */; };
 		4536253722CA45EE002CEF59 /* PDListTreeRepository.mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536253622CA45EE002CEF59 /* PDListTreeRepository.mirror.swift */; };
 		4536253D22CA4D24002CEF59 /* PDListTreeTransmission.mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536253C22CA4D24002CEF59 /* PDListTreeTransmission.mirror.swift */; };
+		4536255F22CAFBA2002CEF59 /* PDListRepositoryProtocol.transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536255E22CAFBA2002CEF59 /* PDListRepositoryProtocol.transfer.swift */; };
+		4536256922CB0317002CEF59 /* PDSortingMapListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536256822CB0317002CEF59 /* PDSortingMapListRepository.swift */; };
+		4536256D22CB1FC0002CEF59 /* PDStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536256C22CB1FC0002CEF59 /* PDStepPoint.swift */; };
+		4536257222CB2669002CEF59 /* PDSortingMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536257122CB2669002CEF59 /* PDSortingMap.swift */; };
+		4536257522CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536257422CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift */; };
+		4536257722CB2EC7002CEF59 /* PDSortingMapListRepository.apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536257622CB2EC7002CEF59 /* PDSortingMapListRepository.apply.swift */; };
+		4536257A22CB6422002CEF59 /* PDMergingListTransmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536257922CB6422002CEF59 /* PDMergingListTransmission.swift */; };
 		4546647022C7B35E002BD139 /* PDDiffUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546646F22C7B35E002BD139 /* PDDiffUtilTest.swift */; };
-		4548E31122BB91D10099E410 /* PDTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548E31022BB91D10099E410 /* PDTest.swift */; };
 		4548E31322BB91D10099E410 /* libPD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DE46B322B8FED7006DAC40 /* libPD.a */; };
 		454EA3E522C60AE60043E99D /* PDListTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454EA3E422C60AE60043E99D /* PDListTreeRepository.swift */; };
 		45639C9522C1EFC800C0DD71 /* PDListStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639C9422C1EFC800C0DD71 /* PDListStep.swift */; };
@@ -33,12 +39,10 @@
 		45639CA322C2350300C0DD71 /* PDMapTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CA222C2350300C0DD71 /* PDMapTreeProtocol.swift */; };
 		45639CDF22C3205500C0DD71 /* PDOrderedMapTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CDE22C3205500C0DD71 /* PDOrderedMapTreeRepository.swift */; };
 		45639CE622C3208B00C0DD71 /* PDOrderedMapTreeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45639CE522C3208B00C0DD71 /* PDOrderedMapTreeStep.swift */; };
-		4569EB0122BBC3B100782C6A /* PDSumListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4569EB0022BBC3B100782C6A /* PDSumListTest.swift */; };
 		4586CE0122C9E64A0080BA48 /* PDListTreeTransmissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586CE0022C9E64A0080BA48 /* PDListTreeTransmissionTest.swift */; };
 		4586D33822C138C000779050 /* PDOrderedMapRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33722C138C000779050 /* PDOrderedMapRepo.swift */; };
 		4586D33A22C138CE00779050 /* PDOrderedMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33922C138CE00779050 /* PDOrderedMapProtocol.swift */; };
 		4586D33C22C1393C00779050 /* PDOrderedMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586D33B22C1393C00779050 /* PDOrderedMap.swift */; };
-		4591BA7722BC4F990052039C /* TreeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591BA7622BC4F990052039C /* TreeTest.swift */; };
 		459D75D522C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75D422C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift */; };
 		459D75F622C4C6F100CE5841 /* PDKVLTRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75F522C4C6F100CE5841 /* PDKVLTRepository.swift */; };
 		459D75FD22C4C88E00CE5841 /* PDTimelineStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459D75FC22C4C88E00CE5841 /* PDTimelineStepPoint.swift */; };
@@ -55,12 +59,10 @@
 		45AC281922C8C63A0020C5BE /* PDListRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */; };
 		45AC281D22C8C8AB0020C5BE /* PDListStepPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */; };
 		45AC282322C8CE130020C5BE /* PDLazyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282222C8CE130020C5BE /* PDLazyRepository.swift */; };
-		45AC282922C8EBC70020C5BE /* PDXTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282822C8EBC70020C5BE /* PDXTest.swift */; };
 		45AC282B22C8F5E00020C5BE /* PDLazyListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC282A22C8F5E00020C5BE /* PDLazyListRepository.swift */; };
 		45AC283122C910290020C5BE /* PDAnyListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283022C910290020C5BE /* PDAnyListRepository.swift */; };
 		45AC283322C915A70020C5BE /* PDAnyTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283222C915A70020C5BE /* PDAnyTimeline.swift */; };
 		45AC283722C9198F0020C5BE /* PDAnyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283622C9198F0020C5BE /* PDAnyList.swift */; };
-		45AC283922C995EF0020C5BE /* PDListRepository.transit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283822C995EF0020C5BE /* PDListRepository.transit.swift */; };
 		45AC283B22C9A3CB0020C5BE /* PDListRepository.replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC283A22C9A3CB0020C5BE /* PDListRepository.replay.swift */; };
 		45AC284522C9AD970020C5BE /* PDListRepositoryTransitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC284422C9AD970020C5BE /* PDListRepositoryTransitTest.swift */; };
 		45AC284722C9B8A80020C5BE /* PDListRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC284622C9B8A80020C5BE /* PDListRepositoryTest.swift */; };
@@ -117,6 +119,15 @@
 		4536253422CA43DE002CEF59 /* PDTimeline.mirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimeline.mirror.swift; sourceTree = "<group>"; };
 		4536253622CA45EE002CEF59 /* PDListTreeRepository.mirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeRepository.mirror.swift; sourceTree = "<group>"; };
 		4536253C22CA4D24002CEF59 /* PDListTreeTransmission.mirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeTransmission.mirror.swift; sourceTree = "<group>"; };
+		4536254922CADF85002CEF59 /* PDSetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSetRepository.swift; sourceTree = "<group>"; };
+		4536254B22CAE4D8002CEF59 /* RDSet.lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDSet.lazy.swift; sourceTree = "<group>"; };
+		4536255E22CAFBA2002CEF59 /* PDListRepositoryProtocol.transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryProtocol.transfer.swift; sourceTree = "<group>"; };
+		4536256822CB0317002CEF59 /* PDSortingMapListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSortingMapListRepository.swift; sourceTree = "<group>"; };
+		4536256C22CB1FC0002CEF59 /* PDStepPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDStepPoint.swift; sourceTree = "<group>"; };
+		4536257122CB2669002CEF59 /* PDSortingMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSortingMap.swift; sourceTree = "<group>"; };
+		4536257422CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSortingMapListRepositoryTest.swift; sourceTree = "<group>"; };
+		4536257622CB2EC7002CEF59 /* PDSortingMapListRepository.apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDSortingMapListRepository.apply.swift; sourceTree = "<group>"; };
+		4536257922CB6422002CEF59 /* PDMergingListTransmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMergingListTransmission.swift; sourceTree = "<group>"; };
 		4546646F22C7B35E002BD139 /* PDDiffUtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDDiffUtilTest.swift; sourceTree = "<group>"; };
 		4548E2B022BAA79A0099E410 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		4548E2D222BB4F1F0099E410 /* PDTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTimeline.swift; sourceTree = "<group>"; };
@@ -167,12 +178,10 @@
 		45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryProtocol.swift; sourceTree = "<group>"; };
 		45AC281C22C8C8AB0020C5BE /* PDListStepPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListStepPoint.swift; sourceTree = "<group>"; };
 		45AC282222C8CE130020C5BE /* PDLazyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazyRepository.swift; sourceTree = "<group>"; };
-		45AC282822C8EBC70020C5BE /* PDXTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDXTest.swift; sourceTree = "<group>"; };
 		45AC282A22C8F5E00020C5BE /* PDLazyListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazyListRepository.swift; sourceTree = "<group>"; };
 		45AC283022C910290020C5BE /* PDAnyListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAnyListRepository.swift; sourceTree = "<group>"; };
 		45AC283222C915A70020C5BE /* PDAnyTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAnyTimeline.swift; sourceTree = "<group>"; };
 		45AC283622C9198F0020C5BE /* PDAnyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAnyList.swift; sourceTree = "<group>"; };
-		45AC283822C995EF0020C5BE /* PDListRepository.transit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepository.transit.swift; sourceTree = "<group>"; };
 		45AC283A22C9A3CB0020C5BE /* PDListRepository.replay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepository.replay.swift; sourceTree = "<group>"; };
 		45AC284422C9AD970020C5BE /* PDListRepositoryTransitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryTransitTest.swift; sourceTree = "<group>"; };
 		45AC284622C9B8A80020C5BE /* PDListRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryTest.swift; sourceTree = "<group>"; };
@@ -212,32 +221,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4548E30F22BB91D10099E410 /* PDTest */ = {
+		4536254822CADF78002CEF59 /* SetRepository */ = {
+			isa = PBXGroup;
+			children = (
+				4536254922CADF85002CEF59 /* PDSetRepository.swift */,
+				4536254B22CAE4D8002CEF59 /* RDSet.lazy.swift */,
+			);
+			path = SetRepository;
+			sourceTree = "<group>";
+		};
+		4536254D22CAF3B7002CEF59 /* Experimental1 */ = {
+			isa = PBXGroup;
+			children = (
+				4536254822CADF78002CEF59 /* SetRepository */,
+			);
+			path = Experimental1;
+			sourceTree = "<group>";
+		};
+		4536256E22CB2514002CEF59 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				4536257122CB2669002CEF59 /* PDSortingMap.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		4536257322CB2D66002CEF59 /* ObsoleteTest1 */ = {
 			isa = PBXGroup;
 			children = (
 				4548E31022BB91D10099E410 /* PDTest.swift */,
 				4569EB0022BBC3B100782C6A /* PDSumListTest.swift */,
+				4591BA7622BC4F990052039C /* TreeTest.swift */,
+			);
+			path = ObsoleteTest1;
+			sourceTree = "<group>";
+		};
+		4548E30F22BB91D10099E410 /* PDTest */ = {
+			isa = PBXGroup;
+			children = (
 				45AC284622C9B8A80020C5BE /* PDListRepositoryTest.swift */,
 				45AC284422C9AD970020C5BE /* PDListRepositoryTransitTest.swift */,
 				45AC284E22C9CBC60020C5BE /* PDListTreeRepositoryTransitTest.swift */,
 				4586CE0022C9E64A0080BA48 /* PDListTreeTransmissionTest.swift */,
-				4591BA7622BC4F990052039C /* TreeTest.swift */,
+				4536257422CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift */,
 				45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */,
 				4548E31222BB91D10099E410 /* Info.plist */,
 				4546646F22C7B35E002BD139 /* PDDiffUtilTest.swift */,
-				45AC282822C8EBC70020C5BE /* PDXTest.swift */,
 			);
 			path = PDTest;
 			sourceTree = "<group>";
 		};
-		45639C1822C1C28400C0DD71 /* Deprecated */ = {
+		45639C1822C1C28400C0DD71 /* Obsoleted1 */ = {
 			isa = PBXGroup;
 			children = (
 				4586D33922C138CE00779050 /* PDOrderedMapProtocol.swift */,
 				4586D33B22C1393C00779050 /* PDOrderedMap.swift */,
 				4586D33722C138C000779050 /* PDOrderedMapRepo.swift */,
 			);
-			path = Deprecated;
+			path = Obsoleted1;
 			sourceTree = "<group>";
 		};
 		45639C2E22C1C84E00C0DD71 /* Experimental */ = {
@@ -248,7 +289,7 @@
 			path = Experimental;
 			sourceTree = "<group>";
 		};
-		45639CA622C238B300C0DD71 /* Deprecated1 */ = {
+		45639CA622C238B300C0DD71 /* Obsoleted2 */ = {
 			isa = PBXGroup;
 			children = (
 				4548E2E022BB6D340099E410 /* PDRepositoryProtocol.swift */,
@@ -257,10 +298,10 @@
 				4548E2D222BB4F1F0099E410 /* PDTimeline.swift */,
 				4586D33D22C13B9700779050 /* PDTimeline.util.swift */,
 			);
-			path = Deprecated1;
+			path = Obsoleted2;
 			sourceTree = "<group>";
 		};
-		45639D9622C4574A00C0DD71 /* Deprecated2 */ = {
+		45639D9622C4574A00C0DD71 /* Obsoleted3 */ = {
 			isa = PBXGroup;
 			children = (
 				45AC280322C8725A0020C5BE /* PDListTreeRepository.replayRecursively.swift */,
@@ -269,7 +310,7 @@
 				45639C1122C1B6AA00C0DD71 /* PDUnorderedMapTreeRepository.swift */,
 				45639CA422C2352100C0DD71 /* PDUnorderedMapTreeStep.swift */,
 			);
-			path = Deprecated2;
+			path = Obsoleted3;
 			sourceTree = "<group>";
 		};
 		45AC27EC22C85FB40020C5BE /* Utilities */ = {
@@ -288,10 +329,10 @@
 				45A12D9622BF6E5F004DFDAF /* PDListRepository.swift */,
 				45AC283A22C9A3CB0020C5BE /* PDListRepository.replay.swift */,
 				45AC27F622C862110020C5BE /* PDListRepository.lazy.swift */,
-				45AC283822C995EF0020C5BE /* PDListRepository.transit.swift */,
 				453624F922CA2EE8002CEF59 /* PDListRepository.mirror.swift */,
-				453624F322CA11D0002CEF59 /* PDListRepositoryProtocol.any.swift */,
 				45AC281822C8C63A0020C5BE /* PDListRepositoryProtocol.swift */,
+				453624F322CA11D0002CEF59 /* PDListRepositoryProtocol.any.swift */,
+				4536255E22CAFBA2002CEF59 /* PDListRepositoryProtocol.transfer.swift */,
 				45639C9422C1EFC800C0DD71 /* PDListStep.swift */,
 				45AC285022C9CD910020C5BE /* PDListStep.util.swift */,
 				453624F722CA1A73002CEF59 /* PDListStep.map.swift */,
@@ -301,6 +342,9 @@
 				45AC280922C87C8B0020C5BE /* PDStepGroupingListRepository.swift */,
 				45AC282A22C8F5E00020C5BE /* PDLazyListRepository.swift */,
 				45AC283022C910290020C5BE /* PDAnyListRepository.swift */,
+				4536256822CB0317002CEF59 /* PDSortingMapListRepository.swift */,
+				4536257622CB2EC7002CEF59 /* PDSortingMapListRepository.apply.swift */,
+				4536257922CB6422002CEF59 /* PDMergingListTransmission.swift */,
 			);
 			path = ListRepository;
 			sourceTree = "<group>";
@@ -337,6 +381,7 @@
 				459D75FC22C4C88E00CE5841 /* PDTimelineStepPoint.swift */,
 				453624F522CA16F1002CEF59 /* PDLazyTimeline.swift */,
 				45AC283222C915A70020C5BE /* PDAnyTimeline.swift */,
+				4536256C22CB1FC0002CEF59 /* PDStepPoint.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -370,12 +415,14 @@
 			children = (
 				45DE46E822B8FF81006DAC40 /* README.md */,
 				4548E2B022BAA79A0099E410 /* Package.swift */,
+				4536254D22CAF3B7002CEF59 /* Experimental1 */,
 				45DE46B522B8FED7006DAC40 /* PD */,
 				4548E30F22BB91D10099E410 /* PDTest */,
 				45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */,
-				45639D9622C4574A00C0DD71 /* Deprecated2 */,
-				45639CA622C238B300C0DD71 /* Deprecated1 */,
-				45639C1822C1C28400C0DD71 /* Deprecated */,
+				4536257322CB2D66002CEF59 /* ObsoleteTest1 */,
+				45639D9622C4574A00C0DD71 /* Obsoleted3 */,
+				45639CA622C238B300C0DD71 /* Obsoleted2 */,
+				45639C1822C1C28400C0DD71 /* Obsoleted1 */,
 				45639C2E22C1C84E00C0DD71 /* Experimental */,
 				45DE46B422B8FED7006DAC40 /* Products */,
 				45D8F48B22BB92CA0096E6BF /* Frameworks */,
@@ -394,6 +441,7 @@
 		45DE46B522B8FED7006DAC40 /* PD */ = {
 			isa = PBXGroup;
 			children = (
+				4536256E22CB2514002CEF59 /* Collections */,
 				45AC27F822C8629B0020C5BE /* Timeline */,
 				45AC27FE22C86A8E0020C5BE /* Repository */,
 				45AC27F422C861FC0020C5BE /* ListRepository */,
@@ -527,14 +575,11 @@
 			files = (
 				45ECB14B22C76ACE00013698 /* PDListTreeRepositoryTest.swift in Sources */,
 				45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */,
-				4591BA7722BC4F990052039C /* TreeTest.swift in Sources */,
 				45AC284F22C9CBC60020C5BE /* PDListTreeRepositoryTransitTest.swift in Sources */,
+				4536257522CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift in Sources */,
 				45AC284522C9AD970020C5BE /* PDListRepositoryTransitTest.swift in Sources */,
-				4548E31122BB91D10099E410 /* PDTest.swift in Sources */,
 				45AC284722C9B8A80020C5BE /* PDListRepositoryTest.swift in Sources */,
 				4546647022C7B35E002BD139 /* PDDiffUtilTest.swift in Sources */,
-				45AC282922C8EBC70020C5BE /* PDXTest.swift in Sources */,
-				4569EB0122BBC3B100782C6A /* PDSumListTest.swift in Sources */,
 				4586CE0122C9E64A0080BA48 /* PDListTreeTransmissionTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,7 +590,9 @@
 			files = (
 				459D75D522C476FB00CE5841 /* PDOrderedMapTreeStep.lazy.swift in Sources */,
 				45AC281222C8B0CB0020C5BE /* PDTimelineStepProtocol.swift in Sources */,
+				4536257A22CB6422002CEF59 /* PDMergingListTransmission.swift in Sources */,
 				45AC283122C910290020C5BE /* PDAnyListRepository.swift in Sources */,
+				4536256922CB0317002CEF59 /* PDSortingMapListRepository.swift in Sources */,
 				450E6C8B22C1167400834386 /* PDListRepository.swift in Sources */,
 				45639C9922C2274C00C0DD71 /* PDTimeline.points.swift in Sources */,
 				45639CA322C2350300C0DD71 /* PDMapTreeProtocol.swift in Sources */,
@@ -554,12 +601,12 @@
 				45AC284D22C9BE430020C5BE /* PDListTreeRepository.replay.swift in Sources */,
 				45AC282322C8CE130020C5BE /* PDLazyRepository.swift in Sources */,
 				45AC27F722C862110020C5BE /* PDListRepository.lazy.swift in Sources */,
-				45AC283922C995EF0020C5BE /* PDListRepository.transit.swift in Sources */,
 				45639C9722C2248F00C0DD71 /* PDTimeline.swift in Sources */,
 				45639CE622C3208B00C0DD71 /* PDOrderedMapTreeStep.swift in Sources */,
 				45AC27FD22C862EC0020C5BE /* PDTimelineProtocol.swift in Sources */,
 				453624FA22CA2EE8002CEF59 /* PDListRepository.mirror.swift in Sources */,
 				45AC27FB22C862B40020C5BE /* PDTimelineProtocol.lazy.swift in Sources */,
+				4536257722CB2EC7002CEF59 /* PDSortingMapListRepository.apply.swift in Sources */,
 				45AC281422C8B17A0020C5BE /* PDListStep.lazy.swift in Sources */,
 				45639C9522C1EFC800C0DD71 /* PDListStep.swift in Sources */,
 				454EA3E522C60AE60043E99D /* PDListTreeRepository.swift in Sources */,
@@ -577,8 +624,10 @@
 				45AC283322C915A70020C5BE /* PDAnyTimeline.swift in Sources */,
 				45AC283722C9198F0020C5BE /* PDAnyList.swift in Sources */,
 				45ECB1BF22C7AD5900013698 /* PDListTreeDiffUtil.swift in Sources */,
+				4536257222CB2669002CEF59 /* PDSortingMap.swift in Sources */,
 				45639C9B22C2281200C0DD71 /* PDTimeline.steps.swift in Sources */,
 				4536253722CA45EE002CEF59 /* PDListTreeRepository.mirror.swift in Sources */,
+				4536255F22CAFBA2002CEF59 /* PDListRepositoryProtocol.transfer.swift in Sources */,
 				450E6C8D22C1167400834386 /* PDUndoRedo.swift in Sources */,
 				4536253D22CA4D24002CEF59 /* PDListTreeTransmission.mirror.swift in Sources */,
 				4586D33A22C138CE00779050 /* PDOrderedMapProtocol.swift in Sources */,
@@ -595,6 +644,7 @@
 				45639CDF22C3205500C0DD71 /* PDOrderedMapTreeRepository.swift in Sources */,
 				45639C9F22C22EB700C0DD71 /* PDReplayingProtocol.swift in Sources */,
 				45AC280222C86ACA0020C5BE /* PDLazy.swift in Sources */,
+				4536256D22CB1FC0002CEF59 /* PDStepPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

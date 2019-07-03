@@ -24,7 +24,8 @@ Snapshot.Index == Int {
             old: new,
             new: old)
     }
-    public typealias Point = PDListStepPoint<Snapshot>
+    public typealias Point = PDStepPoint<Snapshot>
+//    public typealias Point = PDListStepPoint<Snapshot>
     public typealias Operation = PDListStepOperation
 }
 public enum PDListStepOperation {

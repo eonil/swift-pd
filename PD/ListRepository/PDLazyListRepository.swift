@@ -5,9 +5,10 @@
 //  Created by Henry on 2019/06/30.
 //
 
-
-public extension PDListRepository.Lazy {
-    typealias Base = PDListRepository
+public struct PDLazyListRepository<Base> where Base: PDListRepositoryProtocol {
+    let base: Base
+}
+public extension PDLazyListRepository {
     typealias Map<X> = PDLazyMapListRepository<Base,X>
     func map<X>(_ mfx: @escaping (Base.Element) -> X) -> Map<X> {
         return PDLazyMapListRepository<Base,X>(base: base, mfx: mfx)

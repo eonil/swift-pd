@@ -11,7 +11,6 @@ import Tree
 
 public typealias PDList<T> = List<T>
 public typealias PDSet<T> = SortedSet<T> where T: Comparable
-public typealias PDMap<K,V> = Map<K,V> where K: Comparable
 
 //public typealias PDSumList<T> = SBTL<T> where T: SBTLValueProtocol
 ////public typealias PDSumSet<T> = SBTLSet<T> where T: Comparable & SBTLValueProtocol

@@ -16,6 +16,15 @@
 /// This defines minimum requirements, and each repository
 /// define their own step type for their needs.
 ///
+/// Conforming PDTimelineStepProtocol
+/// ---------------------------------
+/// Define these members.
+/// - `Snapshot`
+/// - `Point`.
+/// Implement these members.
+/// - `old`
+/// - `new`
+/// - `reversed`.
 public protocol PDTimelineStepProtocol {
     associatedtype Snapshot
     associatedtype Point: PDTimelineStepPointProtocol where

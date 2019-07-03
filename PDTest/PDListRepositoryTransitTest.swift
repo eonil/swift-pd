@@ -11,12 +11,12 @@ import XCTest
 class PDListRepositoryTransitTest: XCTestCase {
     func testBasics() {
         var a = PDListRepository<Int>()
-        var b = PDListRepository<String>()
+        var b = PDListRepository<Int>()
         a.append(111)
         a.append(222)
         a.append(333)
-        b.transit(to: a, with: { "\($0)" })
+        a.transfer(to: &b)
         let b1 = Array(b)
-        XCTAssertEqual(b1, ["111","222","333"])
+        XCTAssertEqual(b1, [111,222,333])
     }
 }

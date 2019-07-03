@@ -9,7 +9,5 @@ public extension PDListRepository {
     var lazy: Lazy {
         return Lazy(base: self)
     }
-    struct Lazy {
-        var base: PDListRepository
-    }
+    typealias Lazy = PDLazyListRepository<Self>
 }

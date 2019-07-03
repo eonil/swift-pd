@@ -1,11 +1,18 @@
 //
-//  PDListRepository.transit.swift
+//  PDListRepositoryProtocol.transfer.swift
 //  PD
 //
-//  Created by Henry on 2019/07/01.
+//  Created by Henry on 2019/07/02.
 //
 
-public extension PDListRepository {
+public extension PDListRepositoryProtocol {
+    func transfer(to r: inout PDListRepository<Element>) {
+        r.transit(to: self, with: { $0 })
+    }
+}
+
+/// NOT READY FOR PUBLIC USE YET
+private extension PDListRepository {
     /// Performs transitions to become latest state of target repository `r`.
     ///
     /// Replay vs. Transit
