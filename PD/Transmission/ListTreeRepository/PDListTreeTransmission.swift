@@ -80,7 +80,7 @@ extension PDListTreeTransmission {
         else {
             // No intersection.
             // Reset to latest source state.
-            if !target.collection.isEmpty {
+            if !(pp.count == 0 ? target.collection : target[pp].collection).isEmpty {
                 // Add remove-all step.
                 let ec = pp.count == 0 ? target.collection : target[pp].collection
                 let er = 0..<ec.count
