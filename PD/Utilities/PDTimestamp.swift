@@ -28,6 +28,8 @@ CustomReflectable {
     public var customMirror: Mirror {
         return Mirror(self, children: [])
     }
+
+    static let `default` = PDTimestamp()
 }
 
 

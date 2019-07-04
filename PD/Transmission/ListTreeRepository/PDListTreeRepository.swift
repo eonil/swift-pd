@@ -17,6 +17,17 @@ CustomReflectable {
         impl = x
     }
     public init() {}
+    /// Initializes a new instance with initial snapshot.
+    public init(_ s:ListTreeStorage<Value>) {
+        let r = s.collection.startIndex..<s.collection.endIndex
+        let x = Step(
+            operation: .insertSubtrees,
+            path: [],
+            range: r,
+            old: Step.Point(time: PDTimestamp(), snapshot: latestSnapshot),
+            new: Step.Point(time: PDTimestamp(), snapshot: s))
+        impl.record(x)
+    }
 }
 extension PDListTreeRepository {
     var latestSnapshot: Snapshot {
@@ -162,44 +173,5 @@ public extension PDListTreeRepository {
     }
 }
 public extension PDListTreeRepository {
-    struct Step: PDTimelineStepProtocol {
-        public typealias Snapshot = PDListTreeRepository.Snapshot
-        /// Operation performed in this step.
-        public var operation = Operation.setValues
-        /// Path to parent tree of operation.
-        public var path = IndexPath()
-        /// Range of operation.
-        /// For replacements, this range is indices in both point snapshots.
-        /// For insertions, this range is indices in new point snapshot.
-        /// For removings, this range is indices in old point snapshot.
-        public var range = 0..<0
-        public var old = Point()
-        public var new = Point()
-
-        public func reversed() -> PDListTreeRepository<Value>.Step {
-            return Step(
-                operation: operation.reversed(),
-                path: path,
-                range: range,
-                old: new,
-                new: old)
-        }
-        public struct Point: PDTimelineStepPointProtocol {
-            public var time = PDTimestamp()
-            public var snapshot = PDListTreeRepository.Snapshot()
-        }
-        public enum Operation {
-            case setValues
-            case insertSubtrees
-//            case replaceSubtrees
-            case removeSubtrees
-            func reversed() -> Operation {
-                switch self {
-                case .setValues:        return .setValues
-                case .removeSubtrees:   return .insertSubtrees
-                case .insertSubtrees:   return .removeSubtrees
-                }
-            }
-        }
-    }
+    typealias Step = PDListTreeStep<Value>
 }
