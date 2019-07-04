@@ -79,17 +79,14 @@ extension PDListTreeTransmission {
         }
         else {
             // No intersection.
-            // Reset to source state.
-            if !target.timeline.steps.isEmpty {
+            // Reset to latest source state.
+            if !target.collection.isEmpty {
                 // Add remove-all step.
-                let tc = timestampTree[pp].collection
-                let tr = 0..<tc.count
-                timestampTree.removeSubrange(tr, in: pp)
                 let ec = pp.count == 0 ? target.collection : target[pp].collection
                 let er = 0..<ec.count
-                assert(tr == er)
                 target.recordSubtreesRemoving(er, in: pp, with: PDTimestamp())
             }
+            timestampTree[pp].collection.removeAll()
             do {
                 // Add insert-all step.
                 let x = source.timeline.steps.last!
