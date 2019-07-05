@@ -75,6 +75,7 @@
 		45AC285122C9CD910020C5BE /* PDListStep.util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC285022C9CD910020C5BE /* PDListStep.util.swift */; };
 		45AC285322C9DD630020C5BE /* PDListTreeTransmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AC285222C9DD630020C5BE /* PDListTreeTransmission.swift */; };
 		45D8F49422BBA9000096E6BF /* PD2Timeline.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */; };
+		45DECF6222CF25EB007D8C22 /* PDMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DECF6122CF25EB007D8C22 /* PDMagic.swift */; };
 		45ECB14B22C76ACE00013698 /* PDListTreeRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */; };
 		45ECB1BF22C7AD5900013698 /* PDListTreeDiffUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */; };
 		45ECB1C722C7AD8700013698 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 45ECB1C622C7AD8700013698 /* DifferenceKit */; };
@@ -202,6 +203,7 @@
 		45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD2Timeline.extension.swift; sourceTree = "<group>"; };
 		45DE46B322B8FED7006DAC40 /* libPD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE46E822B8FF81006DAC40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		45DECF6122CF25EB007D8C22 /* PDMagic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMagic.swift; sourceTree = "<group>"; };
 		45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeRepositoryTest.swift; sourceTree = "<group>"; };
 		45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListTreeDiffUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -341,6 +343,7 @@
 				45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */,
 				45D8F49122BBA5B10096E6BF /* PDTimestamp.swift */,
 				45AC283622C9198F0020C5BE /* PDAnyList.swift */,
+				45DECF6122CF25EB007D8C22 /* PDMagic.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				4536257A22CB6422002CEF59 /* PDMergingListTransmission.swift in Sources */,
 				455001BC22CE1F02007CEDF3 /* PDTimelineProtocol.continuity.swift in Sources */,
 				45AC283122C910290020C5BE /* PDAnyListRepository.swift in Sources */,
+				45DECF6222CF25EB007D8C22 /* PDMagic.swift in Sources */,
 				4536256922CB0317002CEF59 /* PDSortingMapListRepository.swift in Sources */,
 				450E6C8B22C1167400834386 /* PDListRepository.swift in Sources */,
 				45639C9922C2274C00C0DD71 /* PDTimeline.points.swift in Sources */,

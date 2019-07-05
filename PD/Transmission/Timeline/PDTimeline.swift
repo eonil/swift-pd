@@ -5,6 +5,8 @@
 //  Created by Henry on 2019/06/25.
 //
 
+import Foundation
+
 /// Collection of time-points, snapshots and changed ranges.
 ///
 /// Timeline organizes each component like this.
@@ -72,14 +74,30 @@ PDTimelineProtocol,
 CustomReflectable where
 Step: PDTimelineStepProtocol {
     private(set) var impl = PDList<Step>()
+    /// Removes steps older than global limit.
+    /// Global limit can be set by using `PDMagic.stepExpirationDuration`.
+    private mutating func removeStepsOlderThanGlobalLimit() {
+        guard !impl.isEmpty else { return }
+        let t = Date()
+        let xd = PDMagic.global.expirationDate
+        let xi = PDMagic.global.expirationInterval
+        func isExpired(_ x:Step) -> Bool {
+            return x.new.time.approximatedAge(since: t) > xi
+                || x.new.time.isApproximatelyOlder(than: xd)
+        }
+        let i = impl.firstIndex(where: {!isExpired($0)}) ?? impl.endIndex-1
+        impl.removeSubrange(..<i)
+    }
     mutating func record(_ s: Step) {
         steps.last?.preconditionContinuity(to: s)
         impl.append(s)
+        removeStepsOlderThanGlobalLimit()
     }
     mutating func record<C>(contentsOf other: C) where C: Collection, C.Element == Step {
         guard !other.isEmpty else { return }
         steps.last?.preconditionContinuity(to: other.first!)
         impl.append(contentsOf: other)
+        removeStepsOlderThanGlobalLimit()
     }
     mutating func record(contentsOf other: PDTimeline) {
         record(contentsOf: other.steps)

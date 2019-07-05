@@ -74,7 +74,7 @@ public extension PDListRepository {
                 range: i..<i+1,
                 old: Step.Point(time: t1, snapshot: s1),
                 new: Step.Point(time: t2, snapshot: s2))
-            impl.record(x2)
+            record(x2)
         }
     }
     /// This is the only way to make `.replace` operation step.
@@ -91,7 +91,7 @@ public extension PDListRepository {
             range: r,
             old: Step.Point(time: t1, snapshot: s1),
             new: Step.Point(time: t2, snapshot: s2))
-        impl.record(x2)
+        record(x2)
     }
     /// This makes consecutive `.remove` and `.insert` steps.
     mutating func replaceSubrange<C, R>(_ r: R, with es: C) where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
@@ -111,7 +111,7 @@ public extension PDListRepository {
             range: r,
             old: Step.Point(time: t1, snapshot: s1),
             new: Step.Point(time: t2, snapshot: s2))
-        impl.record(x2)
+        record(x2)
     }
     @discardableResult
     mutating func remove(at i: Int) -> Element {
@@ -131,7 +131,7 @@ public extension PDListRepository {
             range: i..<i+es.count,
             old: Step.Point(time: t1, snapshot: s1),
             new: Step.Point(time: t2, snapshot: s2))
-        impl.record(x2)
+        record(x2)
     }
     mutating func insert(_ e: Element, at i: Int) {
         insert(contentsOf: CollectionOfOne(e), at: i)

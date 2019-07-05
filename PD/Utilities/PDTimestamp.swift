@@ -20,10 +20,19 @@ import Foundation
 public struct PDTimestamp:
 Equatable,
 CustomReflectable {
-    private let refID = PDRefID()
+    private let impl = IMPLTimestamp()
+
+    /// Approximated age since a finite time-point.
+    func approximatedAge(since d: Date) -> TimeInterval {
+        return d.timeIntervalSince(impl.finiteTimePoint)
+    }
+    func isApproximatelyOlder(than d: Date) -> Bool {
+        return impl.finiteTimePoint < d
+    }
+
     public init() {}
     public static func == (_ a: PDTimestamp, _ b: PDTimestamp) -> Bool {
-        return a.refID === b.refID
+        return a.impl === b.impl
     }
     public var customMirror: Mirror {
         return Mirror(self, children: [])
@@ -36,7 +45,7 @@ CustomReflectable {
 #if DEBUG
 extension PDTimestamp: CustomStringConvertible {
     public var description: String {
-        return "PDTimestamp:#\(refID.num)"
+        return "PDTimestamp:#\(impl.num)"
     }
 }
 extension PDTimestamp: CustomDebugStringConvertible {
@@ -45,7 +54,8 @@ extension PDTimestamp: CustomDebugStringConvertible {
     }
 }
 
-private final class PDRefID {
+private final class IMPLTimestamp {
+    let finiteTimePoint = Date()
     let num = {
         let n: Int
         exck.lock()
@@ -59,6 +69,8 @@ private var seed = 0
 private let exck = NSLock()
 
 #else
-private final class PDRefID {}
+private final class IMPLTimestamp {
+    let finiteTimePoint = Date()
+}
 #endif
 
