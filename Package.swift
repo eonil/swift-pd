@@ -18,7 +18,7 @@ let package = Package(
     targets: [
         .target(
             name: "PD",
-            dependencies: ["Tree", "DifferenceKit", "PDTreeV3"],
+            dependencies: ["Tree", "DifferenceKit", "TreeV3"],
             path: "PD"),
         .testTarget(
             name: "PDTest",
