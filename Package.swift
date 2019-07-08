@@ -12,13 +12,14 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/eonil/swift-tree", .branch("master")),
-        .package(url: "https://github.com/eonil/swift-tree-v3", .branch("master")),
+//        .package(url: "https://github.com/eonil/swift-tree-v3", .branch("master")),
         .package(url: "https://github.com/ra1028/DifferenceKit", .branch("master")),
     ],
     targets: [
         .target(
             name: "PD",
-            dependencies: ["Tree", "DifferenceKit", "TreeV3"],
+//            dependencies: ["Tree", "DifferenceKit", "TreeV3"],
+            dependencies: ["Tree", "DifferenceKit"],
             path: "PD"),
         .testTarget(
             name: "PDTest",

@@ -8,12 +8,13 @@
 import Foundation
 import BTree
 import Tree
-import PDTreeV3
+//import PDTreeV3
 
 public typealias PDList<E> = List<E>
 public typealias PDSet<E> = SortedSet<E> where E:Comparable
 public typealias PDMap<K,V> = Map<K,V> where K:Comparable
-public typealias PDTree<E> = PDListBranchTree<E>
+
+//public typealias PDTree<E> = PDListBranchTree<E>
 
 //public typealias PDSumList<T> = SBTL<T> where T: SBTLValueProtocol
 ////public typealias PDSumSet<T> = SBTLSet<T> where T: Comparable & SBTLValueProtocol
