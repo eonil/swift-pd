@@ -8,7 +8,7 @@
 public extension PDSortingMapListRepository {
     mutating func apply<R>(_ r:R) where
     R:PDListRepositoryProtocol,
-    R.Snapshot.Index == Int,
+//    R.Snapshot.Index == Int,
     R.Snapshot.Element == Element {
         for x in r.timeline.steps {
             apply(x)

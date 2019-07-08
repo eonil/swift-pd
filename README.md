@@ -5,6 +5,15 @@ Eonil, 2019.
 A collection of protocols and default implementation of some persistent datastructures.
 
 
+
+WARNING!
+-------------
+`-Repository` series features are moving into `CX` library. Once after moved out,
+they will be removed from this library and this library will remain only to serve
+persistent datastructures.
+
+
+
 Persistence
 --------------
 All types are persistent datastructure. Copying cost is always `O(1)`,
@@ -58,10 +67,6 @@ steppings.
 
 
 
-
-PDTX
--------
-Transmission utility types for persistent datastructures.
 
 
 

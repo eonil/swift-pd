@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45079BCF22CCFE1F00FB9B2E /* PXCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45079BCE22CCFE1F00FB9B2E /* PXCollection.swift */; };
 		450E6C7B22C1117700834386 /* Tree in Frameworks */ = {isa = PBXBuildFile; productRef = 450E6C7A22C1117700834386 /* Tree */; };
 		450E6C8522C1167400834386 /* PDUndoRedoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591BA7222BC3CDD0052039C /* PDUndoRedoRepository.swift */; };
 		450E6C8822C1167400834386 /* CompressingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8F48F22BB9C270096E6BF /* CompressingTime.swift */; };
@@ -80,6 +79,7 @@
 		45ECB1BF22C7AD5900013698 /* PDListTreeDiffUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */; };
 		45ECB1C722C7AD8700013698 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 45ECB1C622C7AD8700013698 /* DifferenceKit */; };
 		45ECB1CB22C7AD9C00013698 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 45ECB1CA22C7AD9C00013698 /* DifferenceKit */; };
+		45F7264222D32C2B0056187D /* PDTreeV3 in Frameworks */ = {isa = PBXBuildFile; productRef = 45F7264122D32C2B0056187D /* PDTreeV3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,7 +117,6 @@
 
 /* Begin PBXFileReference section */
 		45079BC322CCFD4300FB9B2E /* libPDTX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPDTX.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		45079BCE22CCFE1F00FB9B2E /* PXCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXCollection.swift; sourceTree = "<group>"; };
 		453624F322CA11D0002CEF59 /* PDListRepositoryProtocol.any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListRepositoryProtocol.any.swift; sourceTree = "<group>"; };
 		453624F522CA16F1002CEF59 /* PDLazyTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLazyTimeline.swift; sourceTree = "<group>"; };
 		453624F722CA1A73002CEF59 /* PDListStep.map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDListStep.map.swift; sourceTree = "<group>"; };
@@ -231,20 +230,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				45ECB1C722C7AD8700013698 /* DifferenceKit in Frameworks */,
+				45F7264222D32C2B0056187D /* PDTreeV3 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		45079BC422CCFD4400FB9B2E /* PDTX */ = {
-			isa = PBXGroup;
-			children = (
-				45079BCE22CCFE1F00FB9B2E /* PXCollection.swift */,
-			);
-			path = PDTX;
-			sourceTree = "<group>";
-		};
 		4536254822CADF78002CEF59 /* SetRepository */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,7 +442,6 @@
 				45639CA622C238B300C0DD71 /* Obsoleted2 */,
 				45639C1822C1C28400C0DD71 /* Obsoleted1 */,
 				45639C2E22C1C84E00C0DD71 /* Experimental */,
-				45079BC422CCFD4400FB9B2E /* PDTX */,
 				45DE46B422B8FED7006DAC40 /* Products */,
 				45D8F48B22BB92CA0096E6BF /* Frameworks */,
 			);
@@ -469,9 +460,9 @@
 		45DE46B522B8FED7006DAC40 /* PD */ = {
 			isa = PBXGroup;
 			children = (
+				45A0888D22BA7A43000628D0 /* Export.swift */,
 				4536256E22CB2514002CEF59 /* Datastructures */,
 				45AC27FE22C86A8E0020C5BE /* Transmission */,
-				45A0888D22BA7A43000628D0 /* Export.swift */,
 				45AC27EC22C85FB40020C5BE /* Utilities */,
 			);
 			path = PD;
@@ -551,12 +542,15 @@
 			buildRules = (
 			);
 			dependencies = (
+				45F7264622D32C3F0056187D /* PBXTargetDependency */,
+				45F7264822D32C3F0056187D /* PBXTargetDependency */,
 				45ECB1C922C7AD9500013698 /* PBXTargetDependency */,
 				450E6C7D22C111A900834386 /* PBXTargetDependency */,
 			);
 			name = PD;
 			packageProductDependencies = (
 				45ECB1C622C7AD8700013698 /* DifferenceKit */,
+				45F7264122D32C2B0056187D /* PDTreeV3 */,
 			);
 			productName = PersistentDatastructure;
 			productReference = 45DE46B322B8FED7006DAC40 /* libPD.a */;
@@ -596,6 +590,7 @@
 			packageReferences = (
 				450E6C7722C1116E00834386 /* XCRemoteSwiftPackageReference "swift-tree" */,
 				45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */,
 			);
 			productRefGroup = 45DE46B422B8FED7006DAC40 /* Products */;
 			projectDirPath = "";
@@ -623,7 +618,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45079BCF22CCFE1F00FB9B2E /* PXCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +726,14 @@
 		45ECB1CD22C7AD9E00013698 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 45ECB1CC22C7AD9E00013698 /* DifferenceKit */;
+		};
+		45F7264622D32C3F0056187D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 45F7264522D32C3F0056187D /* PDTreeV3 */;
+		};
+		45F7264822D32C3F0056187D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 45F7264722D32C3F0056187D /* TreeV3 */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1160,6 +1162,14 @@
 				kind = branch;
 			};
 		};
+		45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eonil/swift-tree-v3";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1197,6 +1207,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
 			productName = DifferenceKit;
+		};
+		45F7264122D32C2B0056187D /* PDTreeV3 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */;
+			productName = PDTreeV3;
+		};
+		45F7264522D32C3F0056187D /* PDTreeV3 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */;
+			productName = PDTreeV3;
+		};
+		45F7264722D32C3F0056187D /* TreeV3 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */;
+			productName = TreeV3;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
