@@ -77,8 +77,6 @@
 		45DECF6222CF25EB007D8C22 /* PDMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DECF6122CF25EB007D8C22 /* PDMagic.swift */; };
 		45ECB14B22C76ACE00013698 /* PDListTreeRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */; };
 		45ECB1BF22C7AD5900013698 /* PDListTreeDiffUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */; };
-		45ECB1C722C7AD8700013698 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 45ECB1C622C7AD8700013698 /* DifferenceKit */; };
-		45ECB1CB22C7AD9C00013698 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 45ECB1CA22C7AD9C00013698 /* DifferenceKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,7 +208,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45ECB1CB22C7AD9C00013698 /* DifferenceKit in Frameworks */,
 				450E6C7B22C1117700834386 /* Tree in Frameworks */,
 				4548E31322BB91D10099E410 /* libPD.a in Frameworks */,
 			);
@@ -220,7 +217,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45ECB1C722C7AD8700013698 /* DifferenceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,17 +240,17 @@
 			path = Experimental1;
 			sourceTree = "<group>";
 		};
-		4536256E22CB2514002CEF59 /* Datastructures */ = {
-			isa = PBXGroup;
-			children = (
-				4536257122CB2669002CEF59 /* PDSortingMap.swift */,
-			);
-			path = Datastructures;
-			sourceTree = "<group>";
-		};
 		4536257322CB2D66002CEF59 /* ObsoleteTest1 */ = {
 			isa = PBXGroup;
 			children = (
+				45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */,
+				4546646F22C7B35E002BD139 /* PDDiffUtilTest.swift */,
+				45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */,
+				45AC284622C9B8A80020C5BE /* PDListRepositoryTest.swift */,
+				45AC284422C9AD970020C5BE /* PDListRepositoryTransitTest.swift */,
+				45AC284E22C9CBC60020C5BE /* PDListTreeRepositoryTransitTest.swift */,
+				4586CE0022C9E64A0080BA48 /* PDListTreeTransmissionTest.swift */,
+				4536257422CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift */,
 				4548E31022BB91D10099E410 /* PDTest.swift */,
 				4569EB0022BBC3B100782C6A /* PDSumListTest.swift */,
 				4591BA7622BC4F990052039C /* TreeTest.swift */,
@@ -265,14 +261,7 @@
 		4548E30F22BB91D10099E410 /* PDTest */ = {
 			isa = PBXGroup;
 			children = (
-				45AC284622C9B8A80020C5BE /* PDListRepositoryTest.swift */,
-				45AC284422C9AD970020C5BE /* PDListRepositoryTransitTest.swift */,
-				45AC284E22C9CBC60020C5BE /* PDListTreeRepositoryTransitTest.swift */,
-				4586CE0022C9E64A0080BA48 /* PDListTreeTransmissionTest.swift */,
-				4536257422CB2D90002CEF59 /* PDSortingMapListRepositoryTest.swift */,
-				45D8F49322BBA9000096E6BF /* PD2Timeline.extension.swift */,
 				4548E31222BB91D10099E410 /* Info.plist */,
-				4546646F22C7B35E002BD139 /* PDDiffUtilTest.swift */,
 			);
 			path = PDTest;
 			sourceTree = "<group>";
@@ -317,17 +306,6 @@
 				45639CA422C2352100C0DD71 /* PDUnorderedMapTreeStep.swift */,
 			);
 			path = Obsoleted3;
-			sourceTree = "<group>";
-		};
-		45AC27EC22C85FB40020C5BE /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */,
-				45D8F49122BBA5B10096E6BF /* PDTimestamp.swift */,
-				45AC283622C9198F0020C5BE /* PDAnyList.swift */,
-				45DECF6122CF25EB007D8C22 /* PDMagic.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		45AC27F422C861FC0020C5BE /* ListRepository */ = {
@@ -426,7 +404,7 @@
 				4536254D22CAF3B7002CEF59 /* Experimental1 */,
 				45DE46B522B8FED7006DAC40 /* PD */,
 				4548E30F22BB91D10099E410 /* PDTest */,
-				45ECB14A22C76ACE00013698 /* PDListTreeRepositoryTest.swift */,
+				45E7E06B22D5777600326465 /* Obsoleted4 */,
 				4536257322CB2D66002CEF59 /* ObsoleteTest1 */,
 				45639D9622C4574A00C0DD71 /* Obsoleted3 */,
 				45639CA622C238B300C0DD71 /* Obsoleted2 */,
@@ -450,11 +428,21 @@
 			isa = PBXGroup;
 			children = (
 				45A0888D22BA7A43000628D0 /* Export.swift */,
-				4536256E22CB2514002CEF59 /* Datastructures */,
-				45AC27FE22C86A8E0020C5BE /* Transmission */,
-				45AC27EC22C85FB40020C5BE /* Utilities */,
+				4536257122CB2669002CEF59 /* PDSortingMap.swift */,
 			);
 			path = PD;
+			sourceTree = "<group>";
+		};
+		45E7E06B22D5777600326465 /* Obsoleted4 */ = {
+			isa = PBXGroup;
+			children = (
+				45DECF6122CF25EB007D8C22 /* PDMagic.swift */,
+				45AC283622C9198F0020C5BE /* PDAnyList.swift */,
+				45D8F49122BBA5B10096E6BF /* PDTimestamp.swift */,
+				45ECB1BE22C7AD5900013698 /* PDListTreeDiffUtil.swift */,
+				45AC27FE22C86A8E0020C5BE /* Transmission */,
+			);
+			path = Obsoleted4;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,14 +470,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				45ECB1CD22C7AD9E00013698 /* PBXTargetDependency */,
 				45639C3222C1CA4500C0DD71 /* PBXTargetDependency */,
 				4548E31522BB91D10099E410 /* PBXTargetDependency */,
 			);
 			name = PDTest;
 			packageProductDependencies = (
 				450E6C7A22C1117700834386 /* Tree */,
-				45ECB1CA22C7AD9C00013698 /* DifferenceKit */,
 			);
 			productName = PDTest;
 			productReference = 4548E30E22BB91D10099E410 /* PDTest.xctest */;
@@ -508,12 +494,10 @@
 			);
 			dependencies = (
 				45F7264822D32C3F0056187D /* PBXTargetDependency */,
-				45ECB1C922C7AD9500013698 /* PBXTargetDependency */,
 				450E6C7D22C111A900834386 /* PBXTargetDependency */,
 			);
 			name = PD;
 			packageProductDependencies = (
-				45ECB1C622C7AD8700013698 /* DifferenceKit */,
 			);
 			productName = PersistentDatastructure;
 			productReference = 45DE46B322B8FED7006DAC40 /* libPD.a */;
@@ -548,7 +532,6 @@
 			mainGroup = 45DE46A822B8FEC1006DAC40;
 			packageReferences = (
 				450E6C7722C1116E00834386 /* XCRemoteSwiftPackageReference "swift-tree" */,
-				45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */,
 				45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */,
 			);
 			productRefGroup = 45DE46B422B8FED7006DAC40 /* Products */;
@@ -669,14 +652,6 @@
 		45639C3222C1CA4500C0DD71 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 45639C3122C1CA4500C0DD71 /* Tree */;
-		};
-		45ECB1C922C7AD9500013698 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 45ECB1C822C7AD9500013698 /* DifferenceKit */;
-		};
-		45ECB1CD22C7AD9E00013698 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 45ECB1CC22C7AD9E00013698 /* DifferenceKit */;
 		};
 		45F7264822D32C3F0056187D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1010,14 +985,6 @@
 				kind = branch;
 			};
 		};
-		45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ra1028/DifferenceKit";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		45F7264022D32C2B0056187D /* XCRemoteSwiftPackageReference "swift-tree-v3" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/eonil/swift-tree-v3";
@@ -1043,26 +1010,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 450E6C7722C1116E00834386 /* XCRemoteSwiftPackageReference "swift-tree" */;
 			productName = Tree;
-		};
-		45ECB1C622C7AD8700013698 /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
-		};
-		45ECB1C822C7AD9500013698 /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
-		};
-		45ECB1CA22C7AD9C00013698 /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
-		};
-		45ECB1CC22C7AD9E00013698 /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 45ECB1C522C7AD8700013698 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
 		};
 		45F7264722D32C3F0056187D /* TreeV3 */ = {
 			isa = XCSwiftPackageProductDependency;
